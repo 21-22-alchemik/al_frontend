@@ -22,7 +22,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: stable
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+---          
 name: Tests
 
 on: [push]
