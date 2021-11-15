@@ -21,7 +21,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: stable
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
   test:
     name: Jest automatic test
     runs-on: ubuntu-latest
@@ -29,3 +29,5 @@ jobs:
       - uses: actions/checkout@v1
       - name: Run Jest
         uses: stefanoeb/jest-action@1.0.3
+        with:
+          jestArgs: .github/tests/my.test.js
