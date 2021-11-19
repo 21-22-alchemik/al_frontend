@@ -216,7 +216,19 @@ function dragElement(atom) {
       		elmnt.style.left="5px";
       		atom.connections.forEach(conn => connectionMove(conn));
       	}
+		//popraw z-indexy
+		zIndexReduction();
     }  
+}
+
+function zIndexReduction(){
+	var tab = new Array();
+	atomsList.forEach(elem => tab.push([elem.DOM.style.zIndex,elem]));
+	tab = tab.sort();
+	for(var i = 3; i < tab.length+3;i++){
+		tab[i-3][1].DOM.style.zIndex=i;
+	}
+	zIndexVal = i;
 }
 
 function connectionMove(elem){
