@@ -14,14 +14,14 @@ class Counter{
 const counter = new Counter();
 
 class Atom{
-	constructor(Name, Color, Valance=0, X=5, Y=5){
+	constructor(Name, Color, Valence=0, X=5, Y=5){
 		this.id = counter.atom();
 		this.name = Name;
 		this.color = Color;
 		this.x = X;
 		this.y = Y;
 		this.connections = new Array();
-		this.valance = Valance;
+		this.valence = Valence;
 		this.DOM = null;
 
 		this.generate();
@@ -56,17 +56,22 @@ class Atom{
 			sum += elem.count;
 		})
 		//zbyt dużo wiązań
-		if(sum > this.valance){
+		if(sum > this.valence){
 			console.log("ZA DUŻO!!!");
 		}
 		//zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
-		else if(sum < this.valance){
+		else if(sum < this.valence){
 			console.log("ZA MAŁO!!!");
 		}
 		//jest dobrze
 		else{
 			console.log("jakby to powiedział Paweł, jest git");
 		}
+		//zwracana wartość
+		// 0 - git
+		//ujemna - za mało wiązań
+		//dodatnia - zbyt dużo wiązań
+		return sum - this.valence;
 	}
 }
 
@@ -119,6 +124,7 @@ class Connection{
 	}
 }
 
+//funkcja dodawania wiązania między atomami
 function connection(Parent1, Parent2){
 	var checker = false;
 	Parent1.connections.forEach(elem => { 
@@ -128,12 +134,13 @@ function connection(Parent1, Parent2){
 		};
 	});
 	if(!checker)
-		new Connection(Parent1, Parent2);
+		connsList.push(new Connection(Parent1, Parent2));
 }
 
 var atomsHolder = document.getElementById("atomsHolder");
 var connsHolder = document.getElementById("connsHolder");
 var atomsList = new Array();
+var connsList = new Array();
 
 //Atomy
 atomsList.push(new Atom("H","rebeccapurple",1));
