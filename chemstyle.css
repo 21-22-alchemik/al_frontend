@@ -306,3 +306,32 @@ body {
 .active_zakladka {
 	display:block;
 }
+/* panel dolny */
+.panelDolny {
+	position: absolute;
+	left: -10px;
+	bottom: -10px;
+	height: 10vh;
+	width: 60vw;
+	background-color: #7467E1;
+	border-radius: 10px;
+}
+/* SPRAWDŹ ZADANIE - STYL */
+.sprawdzZadanie{
+	float: right;
+	margin: 10px 40px;
+	width: 200px;
+	height: 7vh;
+	border-radius: 10px;
+	border: 2px solid white;
+	color: white;
+	font-size: 20px;
+	background: transparent;
+	transition: 0.3s;
+}
+.sprawdzZadanie:hover {
+	cursor: pointer;
+	font-size: 22px;
+	background-color: white;
+	color: #7467E1;
+}

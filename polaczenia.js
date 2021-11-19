@@ -58,14 +58,17 @@ class Atom {
 		//zbyt dużo wiązań
 		if (sum > this.valance) {
 			console.log("ZA DUŻO!!!");
+			return false
 		}
 		//zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
 		else if (sum < this.valance) {
 			console.log("ZA MAŁO!!!");
+			return false
 		}
 		//jest dobrze
 		else {
-			console.log("jakby to powiedział Paweł, jest git");
+			console.log("WSZYSTKO DOBRZE!!!");
+			return true
 		}
 	}
 }
@@ -144,7 +147,12 @@ connection(atomsList[0], atomsList[1]);
 connection(atomsList[0], atomsList[1]);
 connection(atomsList[1], atomsList[2]);
 
-atomsList.forEach(elem => elem.check());
+// atomsList.forEach(elem => elem.check());
+//WALIDACJA
+var btnCheck = document.getElementById("sprawdzZadanie");
+btnCheck.addEventListener('click', ()=> {
+	var wynik = atomsList.forEach(elem => elem.check());
+})
 
 //tryb usuwania połączeń
 //conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
