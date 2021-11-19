@@ -1,20 +1,20 @@
-class Counter{
-	constructor(){
-		this.atoms=0;
-		this.conns=0;
+class Counter {
+	constructor() {
+		this.atoms = 0;
+		this.conns = 0;
 	}
-	atom(){
+	atom() {
 		return this.atoms++;
 	}
-	connection(){
+	connection() {
 		return this.conns++;
 	}
 }
 
 const counter = new Counter();
 
-class Atom{
-	constructor(Name, Color, Valance=0, X=5, Y=5){
+class Atom {
+	constructor(Name, Color, Valance = 0, X = 5, Y = 5) {
 		this.id = counter.atom();
 		this.name = Name;
 		this.color = Color;
@@ -27,11 +27,11 @@ class Atom{
 		this.generate();
 	}
 	//dodawanie połączenia
-	newConnection(conn){
+	newConnection(conn) {
 		/*if(this.connections.includes(conn))
 			this.connections[this.connections.indexOf(conn)].changeCount(1);
 		else*/
-			this.connections.push(conn);
+		this.connections.push(conn);
 	}
 	/*removeConnection(conn){
 		console.log(conn);
@@ -40,38 +40,38 @@ class Atom{
 		console.log(this.connections);
 	}*/
 	//generowanie obiektu
-	generate(){
+	generate() {
 		var atom = document.createElement("DIV");
 		atom.style.backgroundColor = this.color;
 		atom.innerHTML = this.name;
-		atom.style.top = this.y+"px";
-		atom.style.left = this.x+"px";
+		atom.style.top = this.y + "px";
+		atom.style.left = this.x + "px";
 		atomsHolder.appendChild(atom);
 		this.DOM = atom;
 		dragElement(this);
 	}
-	check(){
+	check() {
 		var sum = 0;
 		this.connections.forEach(elem => {
 			sum += elem.count;
 		})
 		//zbyt dużo wiązań
-		if(sum > this.valance){
+		if (sum > this.valance) {
 			console.log("ZA DUŻO!!!");
 		}
 		//zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
-		else if(sum < this.valance){
+		else if (sum < this.valance) {
 			console.log("ZA MAŁO!!!");
 		}
 		//jest dobrze
-		else{
+		else {
 			console.log("jakby to powiedział Paweł, jest git");
 		}
 	}
 }
 
-class Connection{
-	constructor(Parent1, Parent2, Count=1){
+class Connection {
+	constructor(Parent1, Parent2, Count = 1) {
 		this.id = counter.connection();
 		this.DOM = null;
 		this.parent1 = Parent1;
@@ -82,19 +82,19 @@ class Connection{
 		Parent2.newConnection(this);
 		//wygenerowanie w DOM
 		this.generate();
-		
+
 	}
-	generate(){
+	generate() {
 		//wygenerowanie obiektu DOM
 		var conn = document.createElement("DIV");
-		conn.className = "connection"+this.count;
+		conn.className = "connection" + this.count;
 		connsHolder.appendChild(conn);
 		//podpięcie odnośnika do obiektu DOM
 		this.DOM = conn;
 		//utworzenie fizycznego połączenia
 		connectionMove(this);
 	}
-	delete(){
+	delete() {
 		this.changeCount(-100);
 		//usunięcie wpisu w rodzicach
 		//this.parent1.removeConnection(this);
@@ -104,30 +104,29 @@ class Connection{
 
 		//destroy(this);
 	}
-	changeCount(value){
+	changeCount(value) {
 		//zmiana rodzaju połączenia
 		this.count += value;
-		if(this.count > 9) {
+		if (this.count > 9) {
 			console.log("zbyt potężne wiązanie!");
 			this.count = 9;
-		}
-		else if(this.count <= 0) 
+		} else if (this.count <= 0)
 			this.delete();
 		else
-			this.DOM.classList= "connection"+this.count;
+			this.DOM.classList = "connection" + this.count;
 		connectionMove(this);
 	}
 }
 
-function connection(Parent1, Parent2){
+function connection(Parent1, Parent2) {
 	var checker = false;
-	Parent1.connections.forEach(elem => { 
-		if(elem.parent1 == Parent2 || elem.parent2 == Parent2) {
+	Parent1.connections.forEach(elem => {
+		if (elem.parent1 == Parent2 || elem.parent2 == Parent2) {
 			elem.changeCount(1);
 			checker = true;
 		};
 	});
-	if(!checker)
+	if (!checker)
 		new Connection(Parent1, Parent2);
 }
 
@@ -136,14 +135,14 @@ var connsHolder = document.getElementById("connsHolder");
 var atomsList = new Array();
 
 //Atomy
-atomsList.push(new Atom("H","rebeccapurple",1));
-atomsList.push(new Atom("O","forestgreen",2,85,5));
-atomsList.push(new Atom("H","rebeccapurple",1,5,85));
+atomsList.push(new Atom("H", "rebeccapurple", 1));
+atomsList.push(new Atom("O", "forestgreen", 2, 85, 5));
+atomsList.push(new Atom("H", "rebeccapurple", 1, 5, 85));
 
 //wiązania
-connection(atomsList[0],atomsList[1]);
-connection(atomsList[0],atomsList[1]);
-connection(atomsList[1],atomsList[2]);
+connection(atomsList[0], atomsList[1]);
+connection(atomsList[0], atomsList[1]);
+connection(atomsList[1], atomsList[2]);
 
 atomsList.forEach(elem => elem.check());
 
@@ -156,81 +155,139 @@ zIndexVal = 3;
 
 function dragElement(atom) {
 	var elmnt = atom.DOM;
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    //przypisanie funkcji naciśnięcia klawisza myszki
-    elmnt.onmousedown = dragMouseDown;
+	var pos1 = 0,
+		pos2 = 0,
+		pos3 = 0,
+		pos4 = 0;
+	//przypisanie funkcji naciśnięcia klawisza myszki
+	elmnt.onmousedown = dragMouseDown;
 
-    function dragMouseDown(e) {
-    	e = e || window.event;
-    	e.preventDefault();
+	function dragMouseDown(e) {
+		e = e || window.event;
+		e.preventDefault();
 
-    	//z index +1
-        if(elmnt.style.zIndex == "")
-        	elmnt.style.zIndex = zIndexVal++;
-        else
-        	elmnt.style.zIndex = parseInt(elmnt.style.zIndex)+1 == zIndexVal ? elmnt.style.zIndex : zIndexVal++;
-      
-        //pozycja startowa myszy
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        //funkcja przy puszczeniu klawisza myszki
-        document.onmouseup = closeDragElement;
-        //funkcja przy ruszaniu myszką 
-        document.onmousemove = elementDrag;
-    }
+		//z index +1
+		if (elmnt.style.zIndex == "")
+			elmnt.style.zIndex = zIndexVal++;
+		else
+			elmnt.style.zIndex = parseInt(elmnt.style.zIndex) + 1 == zIndexVal ? elmnt.style.zIndex : zIndexVal++;
 
-    function elementDrag(e) {
-    	e = e || window.event;
-     	e.preventDefault();
+		//pozycja startowa myszy
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		//funkcja przy puszczeniu klawisza myszki
+		document.onmouseup = closeDragElement;
+		//funkcja przy ruszaniu myszką 
+		document.onmousemove = elementDrag;
+	}
 
-      	//stara i nowa pozycja myszki
-      	pos1 = pos3 - e.clientX;
-      	pos2 = pos4 - e.clientY;
-      	pos3 = e.clientX;
-      	pos4 = e.clientY;
-      	// nowa pozycja elementu
-      	elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      	elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	function elementDrag(e) {
+		e = e || window.event;
+		e.preventDefault();
 
-      	//zmiana wyświetlania wiązania
-      	atom.connections.forEach(conn => connectionMove(conn));
-    }
+		//stara i nowa pozycja myszki
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		// nowa pozycja elementu
+		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 
-    function closeDragElement() {
-      	//przerwij poruszanie gdy klawisz myszy jest puszczony
-      	document.onmouseup = null;
-      	document.onmousemove = null;
-      	//czy div jest w przestrzeni planszy
-      	if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2))<0){
-      		elmnt.style.top="5px";
-      		atom.connections.forEach(conn => connectionMove(conn));
-      	}
-      	if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2))<0){
-      		elmnt.style.left="5px";
-      		atom.connections.forEach(conn => connectionMove(conn));
-      	}
-    }  
+		//zmiana wyświetlania wiązania
+		atom.connections.forEach(conn => connectionMove(conn));
+	}
+
+	function closeDragElement() {
+		//przerwij poruszanie gdy klawisz myszy jest puszczony
+		document.onmouseup = null;
+		document.onmousemove = null;
+		//czy div jest w przestrzeni planszy
+		if (parseInt(elmnt.style.top.substr(0, elmnt.style.top.length - 2)) < 0) {
+			elmnt.style.top = "5px";
+			atom.connections.forEach(conn => connectionMove(conn));
+		}
+		if (parseInt(elmnt.style.left.substr(0, elmnt.style.left.length - 2)) < 0) {
+			elmnt.style.left = "5px";
+			atom.connections.forEach(conn => connectionMove(conn));
+		}
+	}
 }
 
-function connectionMove(elem){
-	if(elem.count>0){
+function connectionMove(elem) {
+	if (elem.count > 0) {
 		var x1, x2, y1, y2;
 		var div1 = elem.parent1;
 		var div2 = elem.parent2;
 
-	  	y1 = parseInt(div1.DOM.style.top.substr(0, div1.DOM.style.top.length-2))+37;
-	  	x1 = parseInt(div1.DOM.style.left.substr(0, div1.DOM.style.left.length-2))+37;
-	  	y2 = parseInt(div2.DOM.style.top.substr(0, div2.DOM.style.top.length-2))+37;
-	  	x2 = parseInt(div2.DOM.style.left.substr(0, div2.DOM.style.left.length-2))+37;
-	  	
-	  	var angle = Math.atan2((y1-y2),(x1-x2))*(180/Math.PI);
-		var length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
+		y1 = parseInt(div1.DOM.style.top.substr(0, div1.DOM.style.top.length - 2)) + 37;
+		x1 = parseInt(div1.DOM.style.left.substr(0, div1.DOM.style.left.length - 2)) + 37;
+		y2 = parseInt(div2.DOM.style.top.substr(0, div2.DOM.style.top.length - 2)) + 37;
+		x2 = parseInt(div2.DOM.style.left.substr(0, div2.DOM.style.left.length - 2)) + 37;
+
+		var angle = Math.atan2((y1 - y2), (x1 - x2)) * (180 / Math.PI);
+		var length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
 		var cx = ((x1 + x2) / 2) - (length / 2);
 		var cy = ((y1 + y2) / 2) - (elem.DOM.offsetHeight / 2);
 
 		elem.DOM.style.top = cy + "px";
-	  	elem.DOM.style.left = cx + "px";
-	  	elem.DOM.style.width = length +"px"; 
-	   	elem.DOM.style.transform="rotate(" + angle + "deg)";
+		elem.DOM.style.left = cx + "px";
+		elem.DOM.style.width = length + "px";
+		elem.DOM.style.transform = "rotate(" + angle + "deg)";
 	}
+}
+
+
+// MENU
+//wczytanie elementów
+var menuWrapper = document.getElementById("menuWrapper");
+var btnMenu = document.getElementById("menu_menu");
+var btnPierwiastki = document.getElementById("menu_pierwiastki");
+var btnZwiazki = document.getElementById("menu_zwiazki");
+var zakladkaMenu = document.getElementById("zakladkaMenu");
+//otwieranie menu, zarzadzanie zakladkami
+function showMenu(element) {
+	//wysuniecie menu
+	menuWrapper.style.right = "0vw";
+	//wybór zakładki
+	if (element === "menu_menu") {
+		btnMenu.classList.toggle('active_menu');
+		zakladkaMenu.classList.add('active_zakladka');
+	} else if (element === "menu_pierwiastki") {
+		btnPierwiastki.classList.toggle('active_menu');
+	} else if (element === "menu_zwiazki") {
+		btnZwiazki.classList.toggle('active_menu');
+	}
+}
+btnMenu.addEventListener('click', () => {
+	if (btnPierwiastki.classList.contains("active_menu") || btnZwiazki.classList.contains("active_menu")) {
+		btnMenu.classList.add('active_menu');
+		btnPierwiastki.classList.remove('active_menu');
+		btnZwiazki.classList.remove('active_menu');
+		zakladkaMenu.classList.add('active_zakladka');
+	}
+})
+btnPierwiastki.addEventListener('click', () => {
+	if (btnMenu.classList.contains("active_menu") || btnZwiazki.classList.contains("active_menu")) {
+		btnPierwiastki.classList.add('active_menu');
+		btnMenu.classList.remove('active_menu');
+		btnZwiazki.classList.remove('active_menu');
+		zakladkaMenu.classList.remove('active_zakladka');
+	}
+})
+btnZwiazki.addEventListener('click', () => {
+	if (btnPierwiastki.classList.contains("active_menu") || btnMenu.classList.contains("active_menu")) {
+		btnMenu.classList.remove('active_menu');
+		btnPierwiastki.classList.remove('active_menu');
+		btnZwiazki.classList.add('active_menu');
+		zakladkaMenu.classList.remove('active_zakladka');
+	}
+})
+//zamykanie menu - przycisk
+function closeMenu() {
+	menuWrapper.style.right = "-20vw";
+	btnMenu.classList.remove('active_menu');
+	btnPierwiastki.classList.remove('active_menu');
+	btnZwiazki.classList.remove('active_menu');
+	zakladkaMenu.classList.remove('active_zakladka')
 }
