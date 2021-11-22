@@ -6,6 +6,10 @@
 }
 body {
 	overflow: hidden;
+	min-width: 10024px;
+}
+.v-generated-body{
+	min-width: 1024px;
 }
 .atomsHolder div {
 	height: 75px;
@@ -161,7 +165,7 @@ body {
 .wrapper {
 	position: absolute;
 	top: 0;
-	right: -20vw;
+	right: -384px;
 	transition: 0.4s;
 }
 .menu_panel {
@@ -169,7 +173,7 @@ body {
 	top: 0;
 	right: 0;
 	height: 100vh;
-	width: 20vw;
+	width: 384px;
 	z-index: 3;
 	background-color:#4D42A7;
 	transition: 0.4s;
@@ -179,7 +183,7 @@ body {
 	top: 5vh;
 	right: 0;
 	height: 25vh;
-	width: 23vw;
+	width: 442px;
 	z-index: 1;
 	background-color:#7467E1;
 	border-radius: 6px;
@@ -190,7 +194,7 @@ body {
 	top: 37vh;
 	right: 0;
 	height: 25vh;
-	width: 23vw;
+	width: 442px;
 	z-index: 1;
 	background-color:#7467E1;
 	border-radius: 6px;
@@ -201,7 +205,7 @@ body {
 	top: 70vh;
 	right: 0;
 	height: 25vh;
-	width: 23vw;
+	width: 442px;
 	z-index: 1;
 	background-color:#7467E1;
 	border-radius: 6px;
@@ -249,8 +253,8 @@ body {
 }
 /* przycisk wyjscia z menu */
 .menu_wyjscie {
-	width: 60%;
-	height: 5vh;;
+	width: 200px;
+	height: 40px;
 	position: absolute;
 	bottom: 5vh;
 	margin-left: 20%;

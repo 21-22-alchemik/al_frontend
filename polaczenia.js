@@ -256,7 +256,7 @@ var zakladkaMenu = document.getElementById("zakladkaMenu");
 //otwieranie menu, zarzadzanie zakladkami
 function showMenu(element) {
 	//wysuniecie menu
-	menuWrapper.style.right = "0vw";
+	menuWrapper.style.right = "0";
 	//wybór zakładki
 	if (element === "menu_menu") {
 		btnMenu.classList.toggle('active_menu');
@@ -293,7 +293,7 @@ btnZwiazki.addEventListener('click', () => {
 })
 //zamykanie menu - przycisk
 function closeMenu() {
-	menuWrapper.style.right = "-20vw";
+	menuWrapper.style.right = "-384px";
 	btnMenu.classList.remove('active_menu');
 	btnPierwiastki.classList.remove('active_menu');
 	btnZwiazki.classList.remove('active_menu');
