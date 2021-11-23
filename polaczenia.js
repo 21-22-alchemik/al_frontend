@@ -28,9 +28,9 @@ class Atom {
     }
     // dodawanie połączenia
     newConnection(conn) {
-    /*if(this.connections.includes(conn))
-        this.connections[this.connections.indexOf(conn)].changeCount(1);
-else*/
+        /*if(this.connections.includes(conn))
+            this.connections[this.connections.indexOf(conn)].changeCount(1);
+    else*/
         this.connections.push(conn);
     }
     /*removeConnection(conn){
@@ -86,7 +86,7 @@ class Connection {
         this.generate();
     }
     generate() {
-    // wygenerowanie obiektu DOM
+        // wygenerowanie obiektu DOM
         var conn = document.createElement("DIV");
         conn.className = "connection" + this.count;
         connsHolder.appendChild(conn);
@@ -103,10 +103,10 @@ class Connection {
         // usunięcie obiektu DOM
         // connsHolder.removeChild(this.DOM);
 
-    // destroy(this);
+        // destroy(this);
     }
     changeCount(value) {
-    // zmiana rodzaju połączenia
+        // zmiana rodzaju połączenia
         this.count += value;
         if (this.count > 9) {
             console.log("zbyt potężne wiązanie!");
@@ -198,7 +198,7 @@ function dragElement(atom) {
     }
 
     function closeDragElement() {
-    // przerwij poruszanie gdy klawisz myszy jest puszczony
+        // przerwij poruszanie gdy klawisz myszy jest puszczony
         document.onmouseup = null;
         document.onmousemove = null;
         // czy div jest w przestrzeni planszy
@@ -220,15 +220,15 @@ function connectionMove(elem) {
         var div2 = elem.parent2;
 
         y1 = parseInt(div1.DOM.style.top.substr(0, div1.DOM.style.top.length - 2)) +
-        37;
+            37;
         x1 = parseInt(
             div1.DOM.style.left.substr(0, div1.DOM.style.left.length - 2)) +
-        37;
+            37;
         y2 = parseInt(div2.DOM.style.top.substr(0, div2.DOM.style.top.length - 2)) +
-        37;
+            37;
         x2 = parseInt(
             div2.DOM.style.left.substr(0, div2.DOM.style.left.length - 2)) +
-        37;
+            37;
 
         var angle = Math.atan2((y1 - y2), (x1 - x2)) * (180 / Math.PI);
         var length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
