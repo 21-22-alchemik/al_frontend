@@ -54,7 +54,7 @@ class Atom {
         var sum = 0;
         this.connections.forEach(elem => {
             sum += elem.count;
-        })
+        });
         //ten if else jest tylko informacyjny, później sie go usunie bo on i tak nic nie zmienia
         //zbyt dużo wiązań
         if (sum > this.valence) {
@@ -131,7 +131,7 @@ function connection(Parent1, Parent2) {
         if (elem.parent1 == Parent2 || elem.parent2 == Parent2) {
             elem.changeCount(1);
             checker = true;
-        };
+        }
     });
     if (!checker)
         connsList.push(new Connection(Parent1, Parent2));
@@ -155,16 +155,16 @@ connection(atomsList[1], atomsList[2]);
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA
 var btnCheck = document.getElementById("sprawdzZadanie");
-btnCheck.addEventListener('click', () => {
+btnCheck.addEventListener("click", () => {
     atomsList.forEach(elem => elem.check());
-})
+});
 
 //tryb usuwania połączeń
 //conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
 //connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
 
 
-zIndexVal = 3;
+var zIndexVal = 3;
 
 function dragElement(atom) {
     var elmnt = atom.DOM;
