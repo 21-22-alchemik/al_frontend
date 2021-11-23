@@ -26,6 +26,6 @@
         "stylelint-config-standard": "^24.0.0"
     },
     "eslint.validate": [
-        "javascript",
+        "javascript"
     ]
 }
