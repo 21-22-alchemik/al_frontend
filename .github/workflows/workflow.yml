@@ -23,6 +23,7 @@ jobs:
 
   test:
     name: Jest automatic test
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
