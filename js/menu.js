@@ -2,7 +2,6 @@
 function checkSize() {
 	//wczytanie wartosci okna przegladarki
 	var width = window.innerWidth;
-    console.log(width)
 	var newDivMessage = document.getElementById('newDivMessage');
 	//min 1000px, sprawdzenie
 	if(width < 1000){

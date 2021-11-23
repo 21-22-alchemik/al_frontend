@@ -151,7 +151,7 @@ connection(atomsList[1], atomsList[2]);
 //WALIDACJA
 var btnCheck = document.getElementById("sprawdzZadanie");
 btnCheck.addEventListener('click', ()=> {
-	var wynik = atomsList.forEach(elem => elem.check());
+	atomsList.forEach(elem => elem.check());
 })
 
 //tryb usuwania połączeń
