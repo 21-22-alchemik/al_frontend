@@ -4,11 +4,11 @@ function checkSize() {
 	var width = window.innerWidth;
 	var newDivMessage = document.getElementById('newDivMessage');
 	//min 1000px, sprawdzenie
-	if(width < 1000){
+	if (width < 1000) {
 		newDivMessage.classList.remove('active_badSize');
 	} else {
-        newDivMessage.classList.add('active_badSize');
-    }
+		newDivMessage.classList.add('active_badSize');
+	}
 }
 //sprawdzenie co zmiane szerokosci okna przegladarki
 window.addEventListener('resize', checkSize);
