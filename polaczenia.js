@@ -29,16 +29,16 @@ class Atom {
   // dodawanie połączenia
   newConnection(conn) {
     /*if(this.connections.includes(conn))
-            this.connections[this.connections.indexOf(conn)].changeCount(1);
-    else*/
+        this.connections[this.connections.indexOf(conn)].changeCount(1);
+else*/
     this.connections.push(conn);
   }
   /*removeConnection(conn){
-          console.log(conn);
-          console.log(this.connections);
-          this.connections.pop(this.connections.indexOf(conn));
-          console.log(this.connections);
-  }*/
+        console.log(conn);
+        console.log(this.connections);
+        this.connections.pop(this.connections.indexOf(conn));
+        console.log(this.connections);
+}*/
   // generowanie obiektu
   generate() {
     var atom = document.createElement('DIV');
@@ -54,7 +54,7 @@ class Atom {
     var sum = 0;
     this.connections.forEach(elem => {
       sum += elem.count;
-    })
+    });
     // zbyt dużo wiązań
     if (sum > this.valance) {
       console.log('ZA DUŻO!!!');
@@ -125,7 +125,7 @@ function connection(Parent1, Parent2) {
     if (elem.parent1 == Parent2 || elem.parent2 == Parent2) {
       elem.changeCount(1);
       checker = true;
-    };
+    }
   });
   if (!checker) new Connection(Parent1, Parent2);
 }
