@@ -21,7 +21,7 @@
         "jest": "^25.1.0"
     },
     "devDependencies": {
-        "htmlhintrc": "^1.0.1",
+        "htmlhintrc": "^1.0.1"
     },
     "eslint.validate": [
         "javascript"
