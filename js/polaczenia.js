@@ -163,7 +163,7 @@ btnCheck.addEventListener('click', ()=> {
 // connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
 
 
-zIndexVal = 3;
+var zIndexVal = 3;
 
 function dragElement(atom) {
   var elmnt = atom.DOM;
