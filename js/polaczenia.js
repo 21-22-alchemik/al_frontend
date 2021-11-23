@@ -20,7 +20,7 @@ class Atom {
         this.color = Color;
         this.x = X;
         this.y = Y;
-        thisz.connections = new Array();
+        this.connections = new Array();
         this.valence = Valence;
         this.DOM = null;
 
