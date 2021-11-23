@@ -27,6 +27,5 @@
     },
     "eslint.validate": [
         "javascript",
-        "html"
     ]
 }
