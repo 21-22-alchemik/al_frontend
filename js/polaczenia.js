@@ -13,7 +13,6 @@ class Counter {
 
 const counter = new Counter();
 
-<<<<<<< HEAD:js/polaczenia.js
 class Atom{
 	constructor(Name, Color, Valence=0, X=5, Y=5){
 		this.id = counter.atom();
@@ -75,65 +74,6 @@ class Atom{
 		//dodatnia - zbyt dużo wiązań
 		return sum - this.valence;
 	}
-=======
-class Atom {
-  constructor(Name, Color, Valance = 0, X = 5, Y = 5) {
-    this.id = counter.atom();
-    this.name = Name;
-    this.color = Color;
-    this.x = X;
-    this.y = Y;
-    this.connections = new Array();
-    this.valance = Valance;
-    this.DOM = null;
-
-    this.generate();
-  }
-  // dodawanie połączenia
-  newConnection(conn) {
-    /*if(this.connections.includes(conn))
-            this.connections[this.connections.indexOf(conn)].changeCount(1);
-    else*/
-    this.connections.push(conn);
-  }
-  /*removeConnection(conn){
-          console.log(conn);
-          console.log(this.connections);
-          this.connections.pop(this.connections.indexOf(conn));
-          console.log(this.connections);
-  }*/
-  // generowanie obiektu
-  generate() {
-    var atom = document.createElement('DIV');
-    atom.style.backgroundColor = this.color;
-    atom.innerHTML = this.name;
-    atom.style.top = this.y + 'px';
-    atom.style.left = this.x + 'px';
-    atomsHolder.appendChild(atom);
-    this.DOM = atom;
-    dragElement(this);
-  }
-  check() {
-    var sum = 0;
-    this.connections.forEach(elem => {
-      sum += elem.count;
-    })
-    // zbyt dużo wiązań
-    if (sum > this.valance) {
-      console.log('ZA DUŻO!!!');
-    }
-    // zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby
-    // domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb
-    // edukacyjny - wtedy użytkownik musi dodać je sam
-    else if (sum < this.valance) {
-      console.log('ZA MAŁO!!!');
-    }
-    // jest dobrze
-    else {
-      console.log('jakby to powiedział Paweł, jest git');
-    }
-  }
->>>>>>> origin/add-es-lint-config:polaczenia.js
 }
 
 class Connection {
@@ -183,7 +123,6 @@ class Connection {
   }
 }
 
-<<<<<<< HEAD:js/polaczenia.js
 //funkcja dodawania wiązania między atomami
 function connection(Parent1, Parent2){
 	var checker = false;
@@ -195,17 +134,6 @@ function connection(Parent1, Parent2){
 	});
 	if(!checker)
 		connsList.push(new Connection(Parent1, Parent2));
-=======
-function connection(Parent1, Parent2) {
-  var checker = false;
-  Parent1.connections.forEach(elem => {
-    if (elem.parent1 == Parent2 || elem.parent2 == Parent2) {
-      elem.changeCount(1);
-      checker = true;
-    };
-  });
-  if (!checker) new Connection(Parent1, Parent2);
->>>>>>> origin/add-es-lint-config:polaczenia.js
 }
 
 var atomsHolder = document.getElementById('atomsHolder');
@@ -294,8 +222,7 @@ function dragElement(atom) {
       elmnt.style.left = '5px';
       atom.connections.forEach(conn => connectionMove(conn));
     }
-<<<<<<< HEAD:js/polaczenia.js
-
+  }
     function closeDragElement() {
       	//przerwij poruszanie gdy klawisz myszy jest puszczony
       	document.onmouseup = null;
@@ -345,36 +272,4 @@ function connectionMove(elem){
 	  	elem.DOM.style.width = length +"px"; 
 	   	elem.DOM.style.transform="rotate(" + angle + "deg)";
 	}
-=======
-  }
-}
-
-function connectionMove(elem) {
-  if (elem.count > 0) {
-    var x1, x2, y1, y2;
-    var div1 = elem.parent1;
-    var div2 = elem.parent2;
-
-    y1 = parseInt(div1.DOM.style.top.substr(0, div1.DOM.style.top.length - 2)) +
-        37;
-    x1 = parseInt(
-             div1.DOM.style.left.substr(0, div1.DOM.style.left.length - 2)) +
-        37;
-    y2 = parseInt(div2.DOM.style.top.substr(0, div2.DOM.style.top.length - 2)) +
-        37;
-    x2 = parseInt(
-             div2.DOM.style.left.substr(0, div2.DOM.style.left.length - 2)) +
-        37;
-
-    var angle = Math.atan2((y1 - y2), (x1 - x2)) * (180 / Math.PI);
-    var length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
-    var cx = ((x1 + x2) / 2) - (length / 2);
-    var cy = ((y1 + y2) / 2) - (elem.DOM.offsetHeight / 2);
-
-    elem.DOM.style.top = cy + 'px';
-    elem.DOM.style.left = cx + 'px';
-    elem.DOM.style.width = length + 'px';
-    elem.DOM.style.transform = 'rotate(' + angle + 'deg)';
-  }
->>>>>>> origin/add-es-lint-config:polaczenia.js
 }
