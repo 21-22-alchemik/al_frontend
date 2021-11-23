@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="chemstyle.css">
 </head>
 
-<body>
+<body onload="checkSize()">
 	<div id="atomsHolder" class="atomsHolder">
 	</div>
 	<div id="connsHolder" class="connsHolder">
@@ -71,8 +71,14 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- div na za maly ekran -->
+	<div class="newDivMessage" id="newDivMessage">
+		<div class="messageToSmall">
+			<h1>Zwiększ rozmiar okna przeglądarki!</h1>
+		</div>	
+	</div>
 </body>
-<script type="text/javascript" src="polaczenia.js"></script>
+<script type="text/javascript" src="./js/polaczenia.js"></script>
+<script type="text/javascript" src="./js/menu.js"></script>
 
 </html>
