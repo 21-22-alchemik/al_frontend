@@ -34,10 +34,10 @@ else*/
     this.connections.push(conn);
   }
   /*removeConnection(conn){
-        console.log(conn);
-        console.log(this.connections);
-        this.connections.pop(this.connections.indexOf(conn));
-        console.log(this.connections);
+      console.log(conn);
+      console.log(this.connections);
+      this.connections.pop(this.connections.indexOf(conn));
+      console.log(this.connections);
 }*/
   // generowanie obiektu
   generate() {
