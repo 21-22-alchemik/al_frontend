@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Alchemik</title>
+	<link rel="stylesheet" type="text/css" href="./style/main.css">
+	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
+	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
+	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
+</head>
+
+<body onload="checkSize()">
+
+	<!-- Holdery atomów i wiązań -->
+	<div id="atomsHolder" class="atomsHolder"></div>
+	<div id="connsHolder" class="connsHolder"></div>
+
+	<!-- Menu i panel dolny-->
+	<div>
+		<!-- Panel dolny -->
+		<div class="panelDolny">
+			<!-- button chech() -->
+			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
+		</div>
+
+		<!-- Menu -->
+		<div class="wrapper menuClosed" id="menuWrapper">
+			<div class="menuMenu" id="menu_menu">
+				<div class="zakladka">
+					<h1 class="menuTytul">MENU</h1>
+				</div>
+			</div>
+			<div class="menuPierwiastki" id="menu_pierwiastki">
+				<div class="zakladka">
+					<h1 class="menuTytulPierwiastki">PIERWIASTKI</h1>
+				</div>
+			</div>
+			<div class="menuZwiazki" id="menu_zwiazki">
+				<div class="zakladka">
+					<h1 class="menuTytulZwiazki">ZWIĄZKI</h1>
+				</div>
+			</div>
+			<div class="menuPanel">
+				<div class="zakladkaMenu" id="zakladkaMenu">
+					<div class="pdf przyciskiMenu">
+						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn">
+							<span>Konwertuj do PDF</span>
+							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
+						</button>
+					</div>
+					<div class="QA przyciskiMenu">
+						<button class="QABtn zakladkaMenuBtn" id="QABtn">
+							<span>Q&A</span>
+							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
+						</button>
+					</div>
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
+							<span>Zapisz</span>
+							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
+						</button>
+					</div>
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
+							<span>Kontakt</span>
+							<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
+						</button>
+					</div>
+				</div>
+				<div class="zakladkaMenu" id="zakladkaPierwiastki">
+					<div>
+						<button class="zakladkaMenuBtn" onclick="document.getElementById('mendelejew').classList.toggle('hidden');">
+							Otwórz Tablicę Mendelejewa
+						</button>
+					</div>
+				</div>
+				<div class="zakladkaMenu" id="zakladkaZwiazki"></div>
+				<!-- close button -->
+				<div class="menuWyjscie">
+					<button class="wyjscie" id="wyjscie">
+						ZAMKNIJ MENU
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Prompty (pełno ekranowe obiekty) -->
+
+		<!-- Block Screen dla menu-->
+		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
+
+		<!-- div na za maly ekran -->
+		<div class="newDivMessage" id="newDivMessage">
+			<div class="messageToSmall">
+				<h1>Zwiększ rozmiar okna przeglądarki!</h1>
+			</div>
+		</div>
+
+		<!-- Tablica Mendelejewa -->
+		<div class="mendelejew hidden" id="mendelejew">
+			<div class="mGrid" id="grid">
+				<div style="grid-area: 2 / 7 / 3 / 9;" class="noHover" onclick="document.getElementById('mendelejew').classList.toggle('hidden');"><h3>Zamknij</h3></div>
+				<div style="grid-area: 6 / 3 / 7 / 4;" class="noHover"><h3>*</h3></div>
+				<div style="grid-area: 7 / 3 / 8 / 4;" class="noHover"><h3>**</h3></div>
+				<div class="eGrid"></div>
+				<div class="lGrid" id="lantan">
+					<div class="noHover"><h3>*</h3></div>
+				</div>
+				<div class="aGrid" id="aktyn">
+					<div class="noHover"><h3>**</h3></div>
+				</div>
+			</div>
+		</div>
+		<!-- Wybór walencji -->
+		<div class="valence hidden" id="valence">
+			<div class="vHolder">
+				<h3 id="valInp">none</h3>
+				<div class="vGrid" id="vGrid">
+					<div><h3>none</h3></div>
+					<div><h3>none</h3></div>
+					<div><h3>none</h3></div>
+				</div>
+				<div class="vBtn" onclick="document.getElementById('valence').classList.toggle('hidden');">Anuluj</div>
+			</div>
+			
+		</div>
+
+	<!-- Skrypty -->
+		<script type="text/javascript" src="./js/polaczenia.js"></script>
+		<script type="text/javascript" src="./js/menu.js"></script>
+		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
+		<script type="text/javascript" src="./js/periodicTable.js"></script>
+		<script type="text/javascript" src="./js/mendelejew.js"></script>
+
+</body>
+</html>

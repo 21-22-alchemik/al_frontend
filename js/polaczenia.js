@@ -1,14 +1,14 @@
 class Counter {
-	constructor() {
-		this.atoms = 0;
-		this.conns = 0;
-	}
-	atom() {
-		return this.atoms++;
-	}
-	connection() {
-		return this.conns++;
-	}
+    constructor() {
+        this.atoms = 0;
+        this.conns = 0;
+    }
+    atom() {
+        return this.atoms++;
+    }
+    connection() {
+        return this.conns++;
+    }
 }
 
 const counter = new Counter();
@@ -39,102 +39,101 @@ class Atom {
 		this.connections.pop(this.connections.indexOf(conn));
 		console.log(this.connections);
 	}*/
-	//generowanie obiektu
-	generate() {
-		var atom = document.createElement("DIV");
-		atom.style.backgroundColor = this.color;
-		atom.innerHTML = this.name;
-		atom.style.top = this.y + "px";
-		atom.style.left = this.x + "px";
-		atomsHolder.appendChild(atom);
-		this.DOM = atom;
-		dragElement(this);
-	}
-	check() {
-		var sum = 0;
-		this.connections.forEach(elem => {
-			sum += elem.count;
-		})
-		//ten if else jest tylko informacyjny, później sie go usunie bo on i tak nic nie zmienia
-		//zbyt dużo wiązań
-		if (sum > this.valence) {
-			console.log("ZA DUŻO!!!");
-		}
-		//zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
-		else if (sum < this.valence) {
-			console.log("ZA MAŁO!!!");
-		}
-		//jest dobrze
-		else {
-			console.log("jakby to powiedział Paweł, jest git");
-		}
-		//zwracana wartość
-		// 0 - git
-		//ujemna - za mało wiązań
-		//dodatnia - zbyt dużo wiązań
-		return sum - this.valence;
-	}
+    //generowanie obiektu
+    generate(){
+        var atom = document.createElement("DIV");
+        atom.style.backgroundColor = this.color;
+        atom.innerHTML = this.name;
+        atom.style.top = this.y+"px";
+        atom.style.left = this.x+"px";
+        atomsHolder.appendChild(atom);
+        this.DOM = atom;
+        dragElement(this);
+    }
+    check(){
+        var sum = 0;
+        this.connections.forEach(elem => {
+            sum += elem.count;
+        });
+        //ten if else jest tylko informacyjny, później sie go usunie bo on i tak nic nie zmienia
+        //zbyt dużo wiązań
+        if(sum > this.valence){
+            console.log("ZA DUŻO!!!");
+        }
+        //zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
+        else if(sum < this.valence){
+            console.log("ZA MAŁO!!!");
+        }
+        //jest dobrze
+        else{
+            console.log("jakby to powiedział Paweł, jest git");
+        }
+        //zwracana wartość
+        // 0 - git
+        //ujemna - za mało wiązań
+        //dodatnia - zbyt dużo wiązań
+        return sum - this.valence;
+    }
 }
 
 class Connection {
-	constructor(Parent1, Parent2, Count = 1) {
-		this.id = counter.connection();
-		this.DOM = null;
-		this.parent1 = Parent1;
-		this.parent2 = Parent2;
-		this.count = Count;
-		//podpięcie pod rodziców
-		Parent1.newConnection(this);
-		Parent2.newConnection(this);
-		//wygenerowanie w DOM
-		this.generate();
+    constructor(Parent1, Parent2, Count = 1) {
+        this.id = counter.connection();
+        this.DOM = null;
+        this.parent1 = Parent1;
+        this.parent2 = Parent2;
+        this.count = Count;
+        // podpięcie pod rodziców
+        Parent1.newConnection(this);
+        Parent2.newConnection(this);
+        // wygenerowanie w DOM
+        this.generate();
+    }
+    generate() {
+    // wygenerowanie obiektu DOM
+        var conn = document.createElement("DIV");
+        conn.className = "connection" + this.count;
+        connsHolder.appendChild(conn);
+        // podpięcie odnośnika do obiektu DOM
+        this.DOM = conn;
+        // utworzenie fizycznego połączenia
+        connectionMove(this);
+    }
+    delete() {
+        this.changeCount(-100);
+        // usunięcie wpisu w rodzicach
+        // this.parent1.removeConnection(this);
+        // this.parent2.removeConnection(this);
+        // usunięcie obiektu DOM
+        // connsHolder.removeChild(this.DOM);
 
-	}
-	generate() {
-		//wygenerowanie obiektu DOM
-		var conn = document.createElement("DIV");
-		conn.className = "connection" + this.count;
-		connsHolder.appendChild(conn);
-		//podpięcie odnośnika do obiektu DOM
-		this.DOM = conn;
-		//utworzenie fizycznego połączenia
-		connectionMove(this);
-	}
-	delete() {
-		this.changeCount(-100);
-		//usunięcie wpisu w rodzicach
-		//this.parent1.removeConnection(this);
-		//this.parent2.removeConnection(this);
-		//usunięcie obiektu DOM
-		//connsHolder.removeChild(this.DOM);
-
-		//destroy(this);
-	}
-	changeCount(value) {
-		//zmiana rodzaju połączenia
-		this.count += value;
-		if (this.count > 9) {
-			console.log("zbyt potężne wiązanie!");
-			this.count = 9;
-		} else if (this.count <= 0)
-			this.delete();
-		else
-			this.DOM.classList = "connection" + this.count;
-		connectionMove(this);
-	}
+    // destroy(this);
+    }
+    changeCount(value) {
+    // zmiana rodzaju połączenia
+        this.count += value;
+        if (this.count > 9) {
+            console.log("zbyt potężne wiązanie!");
+            this.count = 9;
+        } else if (this.count <= 0)
+            this.delete();
+        else
+            this.DOM.classList = "connection" + this.count;
+        connectionMove(this);
+    }
 }
 
 //funkcja dodawania wiązania między atomami
-function connection(Parent1, Parent2) {
-	var checker = false;
-	Parent1.connections.forEach(elem => {
-		if (elem.parent1 == Parent2 || elem.parent2 == Parent2) {
-			elem.changeCount(1);
-			checker = true;
-		};
-	});
-	if (!checker)
-		connsList.push(new Connection(Parent1, Parent2));
+function connection(Parent1, Parent2){
+    var checker = false;
+    Parent1.connections.forEach(elem => { 
+        if(elem.parent1 == Parent2 || elem.parent2 == Parent2) {
+            elem.changeCount(1);
+            checker = true;
+        }
+    });
+    if(!checker)
+        connsList.push(new Connection(Parent1, Parent2));
 }
 
 var atomsHolder = document.getElementById("atomsHolder");
@@ -155,16 +154,16 @@ connection(atomsList[1], atomsList[2]);
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA
 var btnCheck = document.getElementById("sprawdzZadanie");
-btnCheck.addEventListener('click', () => {
-	atomsList.forEach(elem => elem.check());
-})
+btnCheck.addEventListener("click", () => {
+    atomsList.forEach(elem => elem.check());
+});
 
 //tryb usuwania połączeń
 //conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
 //connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
 
 
-zIndexVal = 3;
+var zIndexVal = 3;
 
 function dragElement(atom) {
 	var elmnt = atom.DOM;
