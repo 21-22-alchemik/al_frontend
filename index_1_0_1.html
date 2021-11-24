@@ -1,86 +1,126 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Alchemik</title>
+	<link rel="stylesheet" type="text/css" href="./style/main.css">
 	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
+	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
 </head>
 
 <body onload="checkSize()">
-	<div id="atomsHolder" class="atomsHolder">
-	</div>
-	<div id="connsHolder" class="connsHolder">
-	</div>
 
-	<div class="panelDolny">
-		<!-- button chech() -->
-		<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
-	</div>
+	<!-- Holdery atomów i wiązań -->
+	<div id="atomsHolder" class="atomsHolder"></div>
+	<div id="connsHolder" class="connsHolder"></div>
 
-	<!-- Menu -->
-	<div class="wrapper" id="menuWrapper">
-		<div class="menu_menu" id="menu_menu" onClick='showMenu("menu_menu")'>
-			<div class="zakladka">
-				<h1 class="menu_tytul">MENU</h1>
-			</div>
+	<!-- Menu i panel dolny-->
+	<div>
+		<!-- Panel dolny -->
+		<div class="panelDolny">
+			<!-- button chech() -->
+			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
 		</div>
-		<div class="menu_pierwiastki" id="menu_pierwiastki" onClick='showMenu("menu_pierwiastki")'>
-			<div class="zakladka">
-				<h1 class="menu_tytul_pierwiastki">PIERWIASTKI</h1>
-			</div>
-		</div>
-		<div class="menu_zwiazki" id="menu_zwiazki" onClick='showMenu("menu_zwiazki")'>
-			<div class="zakladka">
-				<h1 class="menu_tytul_zwiazki">ZWIĄZKI</h1>
-			</div>
-		</div>
-		<div class="menu_panel">
-			<div class="zakladkaMenu" id="zakladkaMenu">
-				<div class="pdf przyciski_menu">
-					<button class="pdfBtn zakladkaMenu_btn" id="pdfBtn">
-						<p>Konwertuj do PDF</p>
-						<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
-					</button>
-				</div>
-				<div class="QA przyciski_menu">
-					<button class="QABtn zakladkaMenu_btn" id="QABtn">
-						<p>Q&A</p>
-						<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
-					</button>
-				</div>
-				<div class="save przyciski_menu">
-					<button class="saveBtn zakladkaMenu_btn" id="saveBtn">
-						<p>Zapisz</p>
-						<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
-					</button>
-				</div>
-				<div class="save przyciski_menu">
-					<button class="saveBtn zakladkaMenu_btn" id="saveBtn">
-						<p>Kontakt</p>
-						<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
-					</button>
+
+		<!-- Menu -->
+		<div class="wrapper" id="menuWrapper">
+			<div class="menuMenu" id="menu_menu" onClick='showMenu("menu_menu")'>
+				<div class="zakladka">
+					<h1 class="menuTytul">MENU</h1>
 				</div>
 			</div>
-			<!-- close button -->
-			<div class="menu_wyjscie">
-				<button class="wyjscie" id="wyjscie" onClick='closeMenu()'>
-					ZAMKNIJ MENU
-				</button>
+			<div class="menuPierwiastki" id="menu_pierwiastki" onClick='showMenu("menu_pierwiastki")'>
+				<div class="zakladka">
+					<h1 class="menuTytulPierwiastki">PIERWIASTKI</h1>
+				</div>
+			</div>
+			<div class="menuZwiazki" id="menu_zwiazki" onClick='showMenu("menu_zwiazki")'>
+				<div class="zakladka">
+					<h1 class="menuTytulZwiazki">ZWIĄZKI</h1>
+				</div>
+			</div>
+			<div class="menuPanel">
+				<div class="zakladkaMenu" id="zakladkaMenu">
+					<div class="pdf przyciskiMenu">
+						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn">
+							<p>Konwertuj do PDF</p>
+							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
+						</button>
+					</div>
+					<div class="QA przyciskiMenu">
+						<button class="QABtn zakladkaMenuBtn" id="QABtn">
+							<p>Q&A</p>
+							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
+						</button>
+					</div>
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
+							<p>Zapisz</p>
+							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
+						</button>
+					</div>
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
+							<p>Kontakt</p>
+							<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
+						</button>
+					</div>
+				</div>
+				<!-- close button -->
+				<div class="menuWyjscie">
+					<button class="wyjscie" id="wyjscie" onClick='closeMenu()'>
+						ZAMKNIJ MENU
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- div na za maly ekran -->
-	<div class="newDivMessage" id="newDivMessage">
-		<div class="messageToSmall">
-			<h1>Zwiększ rozmiar okna przeglądarki!</h1>
+	
+	<!-- Prompty (pełno ekranowe obiekty) -->
+
+		<!-- div na za maly ekran -->
+		<div class="newDivMessage" id="newDivMessage">
+			<div class="messageToSmall">
+				<h1>Zwiększ rozmiar okna przeglądarki!</h1>
+			</div>
 		</div>
-	</div>
+
+		<!-- Tablica Mendelejewa -->
+		<div class="mendelejew" id="mendelejew">
+			<div class="mGrid" id="grid">
+				<div style="grid-area: 6 / 3 / 7 / 4;" class="noHover"><h3>*</h3></div>
+				<div style="grid-area: 7 / 3 / 8 / 4;" class="noHover"><h3>**</h3></div>
+				<div class="eGrid"></div>
+				<div class="lGrid" id="lantan">
+					<div class="noHover"><h3>*</h3></div>
+				</div>
+				<div class="aGrid" id="aktyn">
+					<div class="noHover"><h3>**</h3></div>
+				</div>
+			</div>
+		</div>
+		<!-- Wybór walencji -->
+		<div class="valence hidden" id="valence">
+			<div class="vHolder">
+				<h3 id="valInp"></h3>
+				<div class="vGrid" id="vGrid">
+					<div><h3>I</h3></div>
+					<div><h3>II</h3></div>
+					<div><h3>IV</h3></div>
+				</div>
+				<div class="vBtn" onclick="document.getElementById('valence').classList.toggle('hidden');">Anuluj</div>
+			</div>
+			
+		</div>
+
+	<!-- Skrypty -->
+		<script type="text/javascript" src="./js/polaczenia.js"></script>
+		<script type="text/javascript" src="./js/menu.js"></script>
+		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
+		<script type="text/javascript" src="./js/periodicTable.js"></script>
+		<script type="text/javascript" src="./js/mendelejew.js"></script>
+
 </body>
-<script type="text/javascript" src="./js/polaczenia.js"></script>
-<script type="text/javascript" src="./js/menu.js"></script>
-<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
-<script type="text/javascript" src="./js/periodicTable.js"></script>
 </html>

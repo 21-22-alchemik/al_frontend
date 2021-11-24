@@ -6,9 +6,9 @@ function checkSize() {
     var newDivMessage = document.getElementById("newDivMessage");
     //min 1000px, sprawdzenie
     if(width < 1000){
-        newDivMessage.classList.remove("active_badSize");
+        newDivMessage.classList.remove("activeBadSize");
     } else {
-        newDivMessage.classList.add("active_badSize");
+        newDivMessage.classList.add("activeBadSize");
     }
 }
 //sprawdzenie co zmiane szerokosci okna przegladarki
@@ -27,43 +27,43 @@ function showMenu(element) {
     menuWrapper.style.right = "0";
     //wybór zakładki
     if (element === "menu_menu") {
-        btnMenu.classList.toggle("active_menu");
-        zakladkaMenu.classList.add("active_zakladka");
+        btnMenu.classList.toggle("activeMenu");
+        zakladkaMenu.classList.add("activeZakladka");
     } else if (element === "menu_pierwiastki") {
-        btnPierwiastki.classList.toggle("active_menu");
+        btnPierwiastki.classList.toggle("activeMenu");
     } else if (element === "menu_zwiazki") {
-        btnZwiazki.classList.toggle("active_menu");
+        btnZwiazki.classList.toggle("activeMenu");
     }
 }
 btnMenu.addEventListener("click", () => {
-    if (btnPierwiastki.classList.contains("active_menu") || btnZwiazki.classList.contains("active_menu")) {
-        btnMenu.classList.add("active_menu");
-        btnPierwiastki.classList.remove("active_menu");
-        btnZwiazki.classList.remove("active_menu");
-        zakladkaMenu.classList.add("active_zakladka");
+    if (btnPierwiastki.classList.contains("activeMenu") || btnZwiazki.classList.contains("activeMenu")) {
+        btnMenu.classList.add("activeMenu");
+        btnPierwiastki.classList.remove("activeMenu");
+        btnZwiazki.classList.remove("activeMenu");
+        zakladkaMenu.classList.add("activeZakladka");
     }
 });
 btnPierwiastki.addEventListener("click", () => {
-    if (btnMenu.classList.contains("active_menu") || btnZwiazki.classList.contains("active_menu")) {
-        btnPierwiastki.classList.add("active_menu");
-        btnMenu.classList.remove("active_menu");
-        btnZwiazki.classList.remove("active_menu");
-        zakladkaMenu.classList.remove("active_zakladka");
+    if (btnMenu.classList.contains("activeMenu") || btnZwiazki.classList.contains("activeMenu")) {
+        btnPierwiastki.classList.add("activeMenu");
+        btnMenu.classList.remove("activeMenu");
+        btnZwiazki.classList.remove("activeMenu");
+        zakladkaMenu.classList.remove("activeZakladka");
     }
 });
 btnZwiazki.addEventListener("click", () => {
-    if (btnPierwiastki.classList.contains("active_menu") || btnMenu.classList.contains("active_menu")) {
-        btnMenu.classList.remove("active_menu");
-        btnPierwiastki.classList.remove("active_menu");
-        btnZwiazki.classList.add("active_menu");
-        zakladkaMenu.classList.remove("active_zakladka");
+    if (btnPierwiastki.classList.contains("activeMenu") || btnMenu.classList.contains("activeMenu")) {
+        btnMenu.classList.remove("activeMenu");
+        btnPierwiastki.classList.remove("activeMenu");
+        btnZwiazki.classList.add("activeMenu");
+        zakladkaMenu.classList.remove("activeZakladka");
     }
 });
 //zamykanie menu - przycisk
 function closeMenu() {
     menuWrapper.style.right = "-384px";
-    btnMenu.classList.remove("active_menu");
-    btnPierwiastki.classList.remove("active_menu");
-    btnZwiazki.classList.remove("active_menu");
-    zakladkaMenu.classList.remove("active_zakladka");
+    btnMenu.classList.remove("activeMenu");
+    btnPierwiastki.classList.remove("activeMenu");
+    btnZwiazki.classList.remove("activeMenu");
+    zakladkaMenu.classList.remove("activeZakladka");
 }
