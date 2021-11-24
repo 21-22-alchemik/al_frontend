@@ -8,8 +8,9 @@
   text-align: center;
   line-height: 75px;
   font-size: 25px;
-  font-family: Verdana;
   user-select: none;
+
+  /* font-family: Verdana; */
 }
 
 .connsHolder div {

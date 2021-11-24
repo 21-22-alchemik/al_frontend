@@ -10,7 +10,7 @@ var aktyn = document.getElementById("aktyn");
 for (var i = 0; i < periodicTable.length; i++) {
     var div = document.createElement("DIV");
     div.innerHTML = "<h3>" + periodicTable[i].symbol+"</h3><p>"+periodicTable[i].name+"</p>";
-    div.addEventListener("click", chooseValence.bind(null,periodicTable[i].atomicNumber));
+    div.addEventListener("click", chooseValence.bind(null,periodicTable[i].symbol));
     div.style.background = periodicTable[i].hexColor;
 
     if(periodicTable[i].placement[0]== 6 && periodicTable[i].placement[1]==3){
@@ -44,8 +44,9 @@ function checkMendelejew(){
 function chooseValence(symbol){
     let valence = periodicTable[periodicTable.findIndex(lookFor,symbol)].valences;
     //czy można wybrać wartościowość
-    if(Number.isInteger(valence)){
+    if(valence.length == 1){
         //utwórz atom z podaną walencją
+        toDo(symbol,valence[0]);
     }
     else{
         document.getElementById("valInp").innerHTML = "Wybierz wartościowość dla "+symbol;
@@ -66,6 +67,6 @@ function toDo(symbol,valence){
     document.getElementById("valence").classList.toggle("hidden");
 }
 
-function lookFor(symbol){
-    return symbol.atomicNumber==this;
+function lookFor(atom){
+    return atom.symbol==this;
 }

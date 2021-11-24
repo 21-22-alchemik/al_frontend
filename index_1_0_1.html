@@ -25,18 +25,18 @@
 		</div>
 
 		<!-- Menu -->
-		<div class="wrapper" id="menuWrapper">
-			<div class="menuMenu" id="menu_menu" onClick='showMenu("menu_menu")'>
+		<div class="wrapper menuClosed" id="menuWrapper">
+			<div class="menuMenu" id="menu_menu">
 				<div class="zakladka">
 					<h1 class="menuTytul">MENU</h1>
 				</div>
 			</div>
-			<div class="menuPierwiastki" id="menu_pierwiastki" onClick='showMenu("menu_pierwiastki")'>
+			<div class="menuPierwiastki" id="menu_pierwiastki">
 				<div class="zakladka">
 					<h1 class="menuTytulPierwiastki">PIERWIASTKI</h1>
 				</div>
 			</div>
-			<div class="menuZwiazki" id="menu_zwiazki" onClick='showMenu("menu_zwiazki")'>
+			<div class="menuZwiazki" id="menu_zwiazki">
 				<div class="zakladka">
 					<h1 class="menuTytulZwiazki">ZWIĄZKI</h1>
 				</div>
@@ -45,32 +45,40 @@
 				<div class="zakladkaMenu" id="zakladkaMenu">
 					<div class="pdf przyciskiMenu">
 						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn">
-							<p>Konwertuj do PDF</p>
+							<span>Konwertuj do PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
 					</div>
 					<div class="QA przyciskiMenu">
 						<button class="QABtn zakladkaMenuBtn" id="QABtn">
-							<p>Q&A</p>
+							<span>Q&A</span>
 							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
 						</button>
 					</div>
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
-							<p>Zapisz</p>
+							<span>Zapisz</span>
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
-							<p>Kontakt</p>
+							<span>Kontakt</span>
 							<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
 						</button>
 					</div>
 				</div>
+				<div class="zakladkaMenu" id="zakladkaPierwiastki">
+					<div>
+						<button class="zakladkaMenuBtn" onclick="document.getElementById('mendelejew').classList.toggle('hidden');">
+							Otwórz Tablicę Mendelejewa
+						</button>
+					</div>
+				</div>
+				<div class="zakladkaMenu" id="zakladkaZwiazki"></div>
 				<!-- close button -->
 				<div class="menuWyjscie">
-					<button class="wyjscie" id="wyjscie" onClick='closeMenu()'>
+					<button class="wyjscie" id="wyjscie">
 						ZAMKNIJ MENU
 					</button>
 				</div>
@@ -80,6 +88,9 @@
 	
 	<!-- Prompty (pełno ekranowe obiekty) -->
 
+		<!-- Block Screen dla menu-->
+		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
+
 		<!-- div na za maly ekran -->
 		<div class="newDivMessage" id="newDivMessage">
 			<div class="messageToSmall">
@@ -88,8 +99,9 @@
 		</div>
 
 		<!-- Tablica Mendelejewa -->
-		<div class="mendelejew" id="mendelejew">
+		<div class="mendelejew hidden" id="mendelejew">
 			<div class="mGrid" id="grid">
+				<div style="grid-area: 2 / 7 / 3 / 9;" class="noHover" onclick="document.getElementById('mendelejew').classList.toggle('hidden');"><h3>Zamknij</h3></div>
 				<div style="grid-area: 6 / 3 / 7 / 4;" class="noHover"><h3>*</h3></div>
 				<div style="grid-area: 7 / 3 / 8 / 4;" class="noHover"><h3>**</h3></div>
 				<div class="eGrid"></div>
@@ -104,11 +116,11 @@
 		<!-- Wybór walencji -->
 		<div class="valence hidden" id="valence">
 			<div class="vHolder">
-				<h3 id="valInp"></h3>
+				<h3 id="valInp">none</h3>
 				<div class="vGrid" id="vGrid">
-					<div><h3>I</h3></div>
-					<div><h3>II</h3></div>
-					<div><h3>IV</h3></div>
+					<div><h3>none</h3></div>
+					<div><h3>none</h3></div>
+					<div><h3>none</h3></div>
 				</div>
 				<div class="vBtn" onclick="document.getElementById('valence').classList.toggle('hidden');">Anuluj</div>
 			</div>

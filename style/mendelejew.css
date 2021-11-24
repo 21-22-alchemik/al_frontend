@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(255 255 255 / 50%);
+  background: rgb(0 0 0 / 40%);
   z-index: 1000000;
 }
 
@@ -51,6 +51,19 @@
   text-align: center;
 }
 
+.mGrid div h3,
+.lGrid div h3,
+.aGrid div h3 {
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.mGrid div p,
+.lGrid div p,
+.aGrid div p {
+  font-size: 15px;
+}
+
 .lGrid,
 .aGrid {
   display: grid;
@@ -69,6 +82,11 @@
   line-height: 75px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
+.noHover h3 {
+  margin-top: 2px !important;
+}
+
 .eGrid {
   width: 100%;
   border: none !important;
@@ -84,14 +102,15 @@
   display: none !important;
 }
 
+/* Styl panelu wybierania walencji */
+
 .valence {
   position: fixed;
   height: 100vh;
   width: 100vw;
   top: 0;
   left: 0;
-  background: rgb(0 0 0 / 80%);
-  display: flex;
+  background: rgb(0 0 0 / 40%);
   z-index: 1000002;
   flex-direction: column;
   flex-wrap: nowrap;

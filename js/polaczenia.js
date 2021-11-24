@@ -227,7 +227,6 @@ function dragElement(atom) {
             elmnt.style.left="5px";
             restartNeeded = true;
         }
-        console.log(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (window.innerWidth - 58 - 75));
         if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (window.innerWidth - 58 - 75)) {
             elmnt.style.left = (window.innerWidth - 58 - 5 - 75) + "px";
             restartNeeded = true;
