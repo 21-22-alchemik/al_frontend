@@ -139,32 +139,6 @@ connection(atomsList[0], atomsList[1]);
 connection(atomsList[0], atomsList[1]);
 connection(atomsList[1], atomsList[2]);
 
-// atomsList.forEach(elem => elem.check());
-//WALIDACJA
-var btnCheck = document.getElementById("sprawdzZadanie");
-var wynik = []
-var sprawdzenieWiazania = 0
-btnCheck.addEventListener('click', () => {
-	atomsList.forEach(elem => {
-		sprawdzenieWiazania = elem.check()
-		wynik = [elem.name, sprawdzenieWiazania]
-		console.log(wynik)
-
-		if (sprawdzenieWiazania > 0) {
-			createMessage(elem.name, sprawdzenieWiazania);
-		}
-		else if (sprawdzenieWiazania < 0) {
-			createMessage(elem.name, sprawdzenieWiazania);
-		}
-		else {
-			console.log("Jest DOBRZE!");
-		}
-	});
-})
-function createMessage(jakiPierwiastek, jakiBlad) {
-
-}
-
 //tryb usuwania połączeń
 //conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
 //connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
