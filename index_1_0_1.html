@@ -7,6 +7,7 @@
 	<title>Alchemik</title>
 	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
+	<link rel="stylesheet" type="text/css" href="./style/walidacjaStyle.css">
 </head>
 
 <body onload="checkSize()">
@@ -76,6 +77,21 @@
 	<div class="newDivMessage" id="newDivMessage">
 		<div class="messageToSmall">
 			<h1>Zwiększ rozmiar okna przeglądarki!</h1>
+		</div>
+	</div>
+	<!-- komunikat o bledach sprawdzenia -->
+	<div class="wynikSprawdzeniaCheck" id="wynikSprawdzeniaCheck">
+		<h1>Lista błędów w Twoim działaniu:</h1>
+		<div class="messageFailed">
+			<div class="przyklad">
+				<h1>Lista błędów w Twoim działaniu:</h1>
+			</div>
+		</div>
+		<!-- close button -->
+		<div class="lista_wyjscie">
+			<button class="wyjscieLista" id="wyjscieLista" onClick=''>
+				ZAMKNIJ LISTĘ
+			</button>
 		</div>
 	</div>
 </body>
