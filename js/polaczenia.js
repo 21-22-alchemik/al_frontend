@@ -55,23 +55,10 @@ class Atom {
 		this.connections.forEach(elem => {
 			sum += elem.count;
 		})
-		//ten if else jest tylko informacyjny, później sie go usunie bo on i tak nic nie zmienia
-		//zbyt dużo wiązań
-		if (sum > this.valence) {
-			console.log("ZA DUŻO!!!");
-		}
-		//zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
-		else if (sum < this.valence) {
-			console.log("ZA MAŁO!!!");
-		}
-		//jest dobrze
-		else {
-			console.log("jakby to powiedział Paweł, jest git");
-		}
 		//zwracana wartość
-		// 0 - git
-		//ujemna - za mało wiązań
-		//dodatnia - zbyt dużo wiązań
+		// 0 - DOBRZE
+		//ujemna - ZA MAŁO WIĄZAŃ
+		//dodatnia - ZA DUŻO WIĄZAŃ
 		return sum - this.valence;
 	}
 }
@@ -155,9 +142,28 @@ connection(atomsList[1], atomsList[2]);
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA
 var btnCheck = document.getElementById("sprawdzZadanie");
+var wynik = []
+var sprawdzenieWiazania = 0
 btnCheck.addEventListener('click', () => {
-	atomsList.forEach(elem => elem.check());
+	atomsList.forEach(elem => {
+		sprawdzenieWiazania = elem.check()
+		wynik = [elem.name, sprawdzenieWiazania]
+		console.log(wynik)
+
+		if (sprawdzenieWiazania > 0) {
+			createMessage(elem.name, sprawdzenieWiazania);
+		}
+		else if (sprawdzenieWiazania < 0) {
+			createMessage(elem.name, sprawdzenieWiazania);
+		}
+		else {
+			console.log("Jest DOBRZE!");
+		}
+	});
 })
+function createMessage(jakiPierwiastek, jakiBlad) {
+
+}
 
 //tryb usuwania połączeń
 //conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
