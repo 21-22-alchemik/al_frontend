@@ -73,9 +73,23 @@
 						<button class="zakladkaMenuBtn" onclick="document.getElementById('mendelejew').classList.toggle('hidden');">
 							Otwórz Tablicę Mendelejewa
 						</button>
+						<div id="miniMendelejew" class="miniMendelejew"></div>
 					</div>
 				</div>
-				<div class="zakladkaMenu" id="zakladkaZwiazki"></div>
+				<div class="zakladkaMenu" id="zakladkaZwiazki">
+					<button class="zakladkaMenuBtn" onclick="easyExample()">
+						Łatwy związek
+					</button>
+					<button class="zakladkaMenuBtn" onclick="averageExample()">
+						Średni związek
+					</button>
+					<button class="zakladkaMenuBtn" onclick="hardExample()">
+						Trudny związek
+					</button>
+					<button class="zakladkaMenuBtn" onclick="extremeExample()">
+						Trudniejszy zwiąek
+					</button>
+				</div>
 				<!-- close button -->
 				<div class="menuWyjscie">
 					<button class="wyjscie" id="wyjscie">
@@ -133,6 +147,11 @@
 		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
 		<script type="text/javascript" src="./js/periodicTable.js"></script>
 		<script type="text/javascript" src="./js/mendelejew.js"></script>
+		<script type="text/javascript" src="./js/actions.js"></script>
+		<script type="text/javascript" src="./js/easy.js"></script>
+		<script type="text/javascript" src="./js/average.js"></script>
+		<script type="text/javascript" src="./js/hard.js"></script>
+		<script type="text/javascript" src="./js/extreme.js"></script>
 
 </body>
 </html>
