@@ -184,6 +184,35 @@
 .mGrid div:hover,
 .lGrid div:hover,
 .aGrid div:hover {
-  border: 1px #4d42a7 solid;
-  box-shadow: 0 0 5px 2px #4d42a7;
+  border: 1px white solid;
+  box-shadow: 0 0 5px 2px white;
+
+  /* border: 1px #4d42a7 solid;
+  box-shadow: 0 0 5px 2px #4d42a7; */
+}
+
+.miniMendelejew {
+  display: flex;
+  overflow-y: auto;
+  width: 100%;
+  height: 70vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.miniMendelejew div {
+  width: calc(50% - 10px);
+  height: 60px;
+  margin: 5px;
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.mGrid > div:nth-child(7),
+.miniMendelejew div:first-child {
+  color: white;
 }

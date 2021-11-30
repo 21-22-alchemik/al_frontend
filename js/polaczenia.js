@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 class Counter {
     constructor() {
         this.atoms = 0;
@@ -141,15 +142,15 @@ var connsHolder = document.getElementById("connsHolder");
 var atomsList = new Array();
 var connsList = new Array();
 
-//Atomy
-atomsList.push(new Atom("H", "rebeccapurple", 1));
-atomsList.push(new Atom("O", "forestgreen", 2, 85, 5));
-atomsList.push(new Atom("H", "rebeccapurple", 1, 5, 85));
+// Atomy
+//atomsList.push(new Atom("H", "rebeccapurple", 1));
+//atomsList.push(new Atom("O", "forestgreen", 2, 85, 5));
+//atomsList.push(new Atom("H", "rebeccapurple", 1, 5, 85));
 
-//wiązania
-connection(atomsList[0], atomsList[1]);
-connection(atomsList[0], atomsList[1]);
-connection(atomsList[1], atomsList[2]);
+// wiązania
+//connection(atomsList[0], atomsList[1]);
+//connection(atomsList[0], atomsList[1]);
+//connection(atomsList[1], atomsList[2]);
 
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA

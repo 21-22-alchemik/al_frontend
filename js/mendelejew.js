@@ -3,30 +3,46 @@ checkMendelejew();
 
 const romans = ["-","I","II","III","IV","V","VI","VII","VIII","IX","X"];
 
-var holder = document.getElementById("grid");
-var lantan = document.getElementById("lantan");
-var aktyn = document.getElementById("aktyn");
+var miniMendelejewHolder = document.getElementById("miniMendelejew");
+var mendelejewHolder = document.getElementById("grid");
+var lantanHolder = document.getElementById("lantan");
+var aktynHolder = document.getElementById("aktyn");
 
+//generowanie tablicy mendelejewa
 for (var i = 0; i < periodicTable.length; i++) {
+    //generowanie tablicy mendelejewa
     var div = document.createElement("DIV");
+
     div.innerHTML = "<h3>" + periodicTable[i].symbol+"</h3><p>"+periodicTable[i].name+"</p>";
     div.addEventListener("click", chooseValence.bind(null,periodicTable[i].symbol));
     div.style.background = periodicTable[i].hexColor;
 
     if(periodicTable[i].placement[0]== 6 && periodicTable[i].placement[1]==3){
-        lantan.appendChild(div);
+        lantanHolder.appendChild(div);
     }
     else if(periodicTable[i].placement[0]==7 && periodicTable[i].placement[1]==3){
-        aktyn.appendChild(div);
+        aktynHolder.appendChild(div);
     }
     else{
         div.style.gridRowStart = periodicTable[i].placement[0];
         div.style.gridColumnStart = periodicTable[i].placement[1];
         div.style.gridRowEnd = periodicTable[i].placement[0]+1;
         div.style.gridColumnEnd = periodicTable[i].placement[1]+1;
-        holder.appendChild(div);
+        mendelejewHolder.appendChild(div);
     }
+
+    //generowanie menu szybkiego dostępu do pierwiastków
+    var div2 = document.createElement("DIV");
+
+    div2.innerHTML = "<h3>" + periodicTable[i].symbol+"</h3><p>"+periodicTable[i].name+"</p>";
+    div2.addEventListener("click", chooseValence.bind(null,periodicTable[i].symbol));
+    div2.style.background = periodicTable[i].hexColor;
+
+    miniMendelejewHolder.appendChild(div2);
 }
+
+
+
 
 window.addEventListener("resize",checkMendelejew);
 
@@ -64,7 +80,8 @@ function chooseValence(symbol){
 
 function toDo(symbol,valence){
     console.log(symbol+"["+valence+"]");
-    document.getElementById("valence").classList.toggle("hidden");
+    atomsList.push(new Atom(symbol, getColorBySymbol(symbol), valence, 5, 5));
+    //document.getElementById("valence").classList.toggle("hidden");
 }
 
 function lookFor(atom){
