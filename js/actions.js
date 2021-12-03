@@ -8,6 +8,8 @@ function clearAll(){
     connsHolder.innerHTML="";
     atomsList = new Array();
     connsList = new Array();
+    counter.atoms = 0;
+    counter.conns = 0;
 }
 
 function getColorBySymbol(sym){

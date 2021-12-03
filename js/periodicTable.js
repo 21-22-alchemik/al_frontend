@@ -1,5 +1,5 @@
 const periodicTable = [
-{"atomicNumber":1,"symbol":"H","name":"Wodór","atomicMass":"1.00794(4)","hexColor":"#000000","valences":[1],"placement":[1, 1]},
+{"atomicNumber":1,"symbol":"H","name":"Wodór","atomicMass":"1.00794(4)","hexColor":"#404040","valences":[1],"placement":[1, 1]},
 {"atomicNumber":2,"symbol":"He","name":"Hel","atomicMass":"4.002602(2)","hexColor":"#D9FFFF","valences":[0],"placement":[1, 18]},
 {"atomicNumber":3,"symbol":"Li","name":"Lit","atomicMass":"6.941(2)","hexColor":"#CC80FF","valences":[1],"placement":[2, 1]},
 {"atomicNumber":4,"symbol":"Be","name":"Beryl","atomicMass":"9.012182(3)","hexColor":"#C2FF00","valences":[2],"placement":[2, 2]},

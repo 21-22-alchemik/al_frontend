@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
+	<link rel="stylesheet" type="text/css" href="./style/editStyle.css">
 </head>
 
 <body onload="checkSize()">
@@ -22,6 +23,9 @@
 		<div class="panelDolny">
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
+			<button class="przyciskEdycji" id="addConnection">DODAJ WIĄZANIA</button>
+			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ ELEMENT</button>
+			<button class="przyciskEdycji" id="changeColor">NADAJ KOLOR</button>
 		</div>
 
 		<!-- Menu -->
@@ -141,6 +145,10 @@
 			
 		</div>
 
+		<!-- Wybór customowego koloru -->
+		<div class="colorPickerBackground" id="colorPickerBackground"></div>
+		<canvas class="colorCanvas" id="colorCanvas"></canvas>
+
 	<!-- Skrypty -->
 		<script type="text/javascript" src="./js/polaczenia.js"></script>
 		<script type="text/javascript" src="./js/menu.js"></script>
@@ -152,6 +160,7 @@
 		<script type="text/javascript" src="./js/average.js"></script>
 		<script type="text/javascript" src="./js/hard.js"></script>
 		<script type="text/javascript" src="./js/extreme.js"></script>
+		<script type="text/javascript" src="./js/editButtons.js"></script>
 
 </body>
 </html>

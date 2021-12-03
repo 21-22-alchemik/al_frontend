@@ -16,7 +16,7 @@ const counter = new Counter();
 
 class Atom {
 	constructor(Name, Color, Valence = 0, X = 5, Y = 5) {
-		this.id = counter.atom();
+		this.atomId = counter.atom();
 		this.name = Name;
 		this.color = Color;
 		this.x = X;
@@ -34,12 +34,12 @@ class Atom {
 		else*/
 		this.connections.push(conn);
 	}
-	/*removeConnection(conn){
-		console.log(conn);
-		console.log(this.connections);
-		this.connections.pop(this.connections.indexOf(conn));
-		console.log(this.connections);
-	}*/
+	removeConnection(conn){
+		//console.log(conn);
+		//console.log(this.connections);
+		this.connections.splice(this.connections.indexOf(conn));
+		//console.log(this.connections);
+	}
     //generowanie obiektu
     generate(){
         var atom = document.createElement("DIV");
@@ -47,6 +47,7 @@ class Atom {
         atom.innerHTML = this.name;
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
+		atom.id = "atom_" + this.atomId;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);
@@ -79,7 +80,7 @@ class Atom {
 
 class Connection {
     constructor(Parent1, Parent2, Count = 1) {
-        this.id = counter.connection();
+        this.connectionId = counter.connection();
         this.DOM = null;
         this.parent1 = Parent1;
         this.parent2 = Parent2;
@@ -94,6 +95,7 @@ class Connection {
     // wygenerowanie obiektu DOM
         var conn = document.createElement("DIV");
         conn.className = "connection" + this.count;
+		conn.id = "connection_" + this.connectionId;
         connsHolder.appendChild(conn);
         // podpięcie odnośnika do obiektu DOM
         this.DOM = conn;
@@ -101,10 +103,10 @@ class Connection {
         connectionMove(this);
     }
     delete() {
-        this.changeCount(-100);
+        //this.changeCount(-100);
         // usunięcie wpisu w rodzicach
-        // this.parent1.removeConnection(this);
-        // this.parent2.removeConnection(this);
+        this.parent1.removeConnection(this);
+        this.parent2.removeConnection(this);
         // usunięcie obiektu DOM
         // connsHolder.removeChild(this.DOM);
 
