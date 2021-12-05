@@ -2,24 +2,6 @@ var addConnection = document.getElementById("addConnection");
 var deleteConnectionAtom = document.getElementById("deleteConnectionAtom");
 var changeColor = document.getElementById("changeColor");
 var bodyStyle = document.getElementsByTagName('body')[0].style;
-var colorPickerBackground = document.getElementById('colorPickerBackground');
-
-//Tworzenie przestrzeni dla wyboru customowego koloru
-var colorCanvas = document.getElementById('colorCanvas');
-var colorContext = colorCanvas.getContext('2d');
-var color = 'rgba(0, 0, 255, 0.5)';
-
-let gradientV = colorContext.createLinearGradient(0, 0, 0, 300);
-gradientV.addColorStop(0, 'rgb(255,255,255)');
-gradientV.addColorStop(0.5, 'rgba(0,0,0,1');
-colorContext.fillStyle = gradientV;
-colorContext.fillRect(0, 0, 300, 300);
-let gradientH = colorContext.createLinearGradient(0, 0, 300, 0);
-gradientH.addColorStop(0, 'rgb(255,255,255)');
-gradientH.addColorStop(1, color);
-colorContext.fillStyle = gradientH;
-colorContext.fillRect(0, 0, 300, 300);
-
 var pickedAtomStartingPosition = {};
 var panelEnabled = true;
 var firstElementPicked = false;
@@ -30,8 +12,54 @@ atomsList.push(new Atom("C", getColorBySymbol("C"), 4, 250, 120));
 atomsList.push(new Atom("N", getColorBySymbol("N"), 3, 85, 165));
 connection(atomsList[0], atomsList[1]);
 connection(atomsList[1], atomsList[2]);
-connection(atomsList[0], atomsList[2]);
-connection(atomsList[0], atomsList[2]);
+connection(atomsList[1], atomsList[2]);
+connection(atomsList[1], atomsList[2]);
+
+//#region COLOR PICKER
+
+var pickedColor = document.getElementById('pickedColor');
+var canvasLogicConfirm = document.getElementById('canvasLogicConfirm');
+var canvasLogicCancel = document.getElementById('canvasLogicCancel');
+var colorPickerBackground = document.getElementById('colorPickerBackground');
+var colorCanvasContainer = document.getElementById('colorCanvasContainer');
+var colorCanvas = document.getElementById('colorCanvas');
+
+var colorContext = colorCanvas.getContext('2d');
+var color = 'rgba(0, 0, 255, 0.5)';
+var gradient = colorContext.createLinearGradient(0, 0, 400, 0);
+gradient.addColorStop(0, "rgb(255, 0, 0)");
+gradient.addColorStop(0.15, "rgb(255, 0, 255)");
+gradient.addColorStop(0.33, "rgb(0, 0, 255)");
+gradient.addColorStop(0.49, "rgb(0, 255, 255)");
+gradient.addColorStop(0.67, "rgb(0, 255, 0)");
+gradient.addColorStop(0.84, "rgb(255, 255, 0)");
+gradient.addColorStop(1, "rgb(255, 0, 0)");
+colorContext.fillStyle = gradient;
+colorContext.fillRect(0, 0, 400, 400);
+
+gradient = colorContext.createLinearGradient(0, 0, 0, 400);
+gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+gradient.addColorStop(0.18, "rgba(255, 255, 255, 0)");
+gradient.addColorStop(0.18, "rgba(0, 0, 0, 0)");
+gradient.addColorStop(0.37, "rgba(0, 0, 0, 1)");
+colorContext.fillStyle = gradient;
+colorContext.fillRect(0, 0, 400, 400);
+
+
+canvasLogicCancel.addEventListener('click', () => {
+    colorPickerBackground.style.visibility = "hidden";
+    colorCanvasContainer.style.visibility = "hidden";
+}, true);
+
+colorCanvas.addEventListener('mouseover', function(e) {
+    pickedColor.style.background = 'black';
+}, true);
+
+colorCanvas.addEventListener('mouseleave', () => {
+    pickedColor.style.background = 'white';
+}, true);
+
+//#endregion
 
 //#region CLICK HANDLING
 
@@ -89,14 +117,7 @@ deleteConnectionAtom.addEventListener('click', () => {
 
 changeColor.addEventListener('click', () => {
     colorPickerBackground.style.visibility = "visible";
-    colorCanvas.style.visibility = "visible";
-    bodyStyle.cursor = "crosshair";
-}, true);
-
-colorPickerBackground.addEventListener('click', () => {
-    colorPickerBackground.style.visibility = "hidden";
-    colorCanvas.style.visibility = "hidden";
-    bodyStyle.cursor = "default";
+    colorCanvasContainer.style.visibility = "visible";
 }, true);
 
 //#endregion
@@ -205,10 +226,10 @@ function reduceAtomIndices()
 
 function movedFewPixels(position1, position2)
 {
-    if(position2.offsetLeft <= position1.positionLeft + 2
-        && position2.offsetLeft >= position1.positionLeft - 2
-        && position2.offsetTop <= position1.positionTop + 2
-        && position2.offsetTop >= position1.positionTop - 2)
+    if(position2.offsetLeft <= position1.positionLeft + 1
+        && position2.offsetLeft >= position1.positionLeft - 1
+        && position2.offsetTop <= position1.positionTop + 1
+        && position2.offsetTop >= position1.positionTop - 1)
         return true;
     else return false;
 }

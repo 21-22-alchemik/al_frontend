@@ -147,7 +147,14 @@
 
 		<!-- Wybór customowego koloru -->
 		<div class="colorPickerBackground" id="colorPickerBackground"></div>
-		<canvas class="colorCanvas" id="colorCanvas"></canvas>
+		<div class="colorCanvasContainer" id="colorCanvasContainer">
+			<div class="colorCanvasUtil">
+				<button id = "canvasLogicConfirm" class = "canvasLogicButton canvasButtonLeft">ZATWIERDŹ</button>
+				<div id = "pickedColor" class = "pickedColor"></div>
+				<button id = "canvasLogicCancel" class = "canvasLogicButton canvasButtonRight">ANULUJ</button>
+			</div>
+			<canvas class="colorCanvas" id="colorCanvas"></canvas>
+		</div>
 
 	<!-- Skrypty -->
 		<script type="text/javascript" src="./js/polaczenia.js"></script>

@@ -23,6 +23,16 @@
   position: absolute;
 }
 
+sub{
+  font-size: 12px;
+  pointer-events: none;
+}
+
+sup{
+  font-size: 12px;
+  pointer-events: none;
+}
+
 /* wiązania */
 .connection1 {
   height: 5px;
