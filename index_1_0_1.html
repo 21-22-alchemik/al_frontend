@@ -8,12 +8,16 @@
 	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/walidacjaStyle.css">
+	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
 </head>
 
 <body onload="checkSize()">
-	<div id="atomsHolder" class="atomsHolder">
-	</div>
-	<div id="connsHolder" class="connsHolder">
+	<!-- pomocniczy div dla exportu danych do pdf -->
+	<div id="wizualizacjaDanych">
+		<div id="atomsHolder" class="atomsHolder">
+		</div>
+		<div id="connsHolder" class="connsHolder">
+		</div>
 	</div>
 
 	<div class="panelDolny">
@@ -40,7 +44,7 @@
 		</div>
 		<div class="menu_panel">
 			<div class="zakladkaMenu" id="zakladkaMenu">
-				<div class="pdf przyciski_menu">
+				<div class="pdf przyciski_menu" onClick='CreatePDFfromHTML()'>
 					<button class="pdfBtn zakladkaMenu_btn" id="pdfBtn">
 						<p>Konwertuj do PDF</p>
 						<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
@@ -96,4 +100,10 @@
 <script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
 <script type="text/javascript" src="./js/periodicTable.js"></script>
 <script type="text/javascript" src="./js/walidacja.js"></script>
+<script type="text/javascript" src="./js/pdfExport.js"></script>
+<!-- eksport wiązania do pdf -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
 </html>

@@ -145,6 +145,9 @@ body {
 	background-color: #C0E5FB;
 	border-radius: 10px;
 }
+.zakladkaMenu_btn:hover {
+	cursor: pointer;
+}
 .zakladkaMenu_btn>p{
 	float: left;
 	width: 60%;
