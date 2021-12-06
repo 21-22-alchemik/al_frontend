@@ -1,7 +1,13 @@
 /* pomocnicze */
 #wizualizacjaDanych{
+    position: fixed;
     margin: 50px;
+    padding: 100px;
     width: 1000px;
     height: 700px;
-    border: 1px solid black;
+    border: 10px solid rgb(85, 66, 194);
+    border-radius: 20px;
+}
+#wizualizacjaDanych>div{
+    position: relative;
 }
