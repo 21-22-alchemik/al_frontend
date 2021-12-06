@@ -2,10 +2,12 @@
 
 function CreatePDFfromHTML() {
     var HTML_Width = $("#wizualizacjaDanych").width();
+    console.log(HTML_Width);
     var HTML_Height = $("#wizualizacjaDanych").height();
+    console.log(HTML_Height);
     var top_left_margin = 15;
     var PDF_Width = HTML_Width + (top_left_margin * 2);
-    var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+    var PDF_Height = (PDF_Width * 1.5) + (top_left_margin);
     var canvas_image_width = HTML_Width;
     var canvas_image_height = HTML_Height;
 
@@ -20,6 +22,6 @@ function CreatePDFfromHTML() {
             pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
         }
         pdf.save("wiazaniaPDF.pdf");
-        $("#wizualizacjaDanych").hide();
+        // $("#wizualizacjaDanych").hide();
     });
 }
