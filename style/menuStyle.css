@@ -195,8 +195,8 @@
 /* SPRAWDŹ ZADANIE - STYL */
 .sprawdzZadanie {
   float: right;
-  margin: 10px 40px 10px 20px;
-  width: 200px;
+  margin: 10px 20px 10px 10px;
+  width: 150px;
   height: 55px;
   border-radius: 10px;
   border: 2px solid white;

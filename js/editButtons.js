@@ -1,7 +1,10 @@
 var addConnection = document.getElementById("addConnection");
 var deleteConnectionAtom = document.getElementById("deleteConnectionAtom");
-var changeColor = document.getElementById("changeColor");
-var bodyStyle = document.getElementsByTagName('body')[0].style;
+var changeColorForAll = document.getElementById("changeColorForAll");
+var changeColorForOne = document.getElementById("changeColorForOne");
+var colorPicker = document.getElementById("colorPicker");
+var body = document.getElementsByTagName('body')[0];
+var bodyStyle = body.style;
 var pickedAtomStartingPosition = {};
 var panelEnabled = true;
 var firstElementPicked = false;
@@ -14,52 +17,6 @@ connection(atomsList[0], atomsList[1]);
 connection(atomsList[1], atomsList[2]);
 connection(atomsList[1], atomsList[2]);
 connection(atomsList[1], atomsList[2]);
-
-//#region COLOR PICKER
-
-var pickedColor = document.getElementById('pickedColor');
-var canvasLogicConfirm = document.getElementById('canvasLogicConfirm');
-var canvasLogicCancel = document.getElementById('canvasLogicCancel');
-var colorPickerBackground = document.getElementById('colorPickerBackground');
-var colorCanvasContainer = document.getElementById('colorCanvasContainer');
-var colorCanvas = document.getElementById('colorCanvas');
-
-var colorContext = colorCanvas.getContext('2d');
-var color = 'rgba(0, 0, 255, 0.5)';
-var gradient = colorContext.createLinearGradient(0, 0, 400, 0);
-gradient.addColorStop(0, "rgb(255, 0, 0)");
-gradient.addColorStop(0.15, "rgb(255, 0, 255)");
-gradient.addColorStop(0.33, "rgb(0, 0, 255)");
-gradient.addColorStop(0.49, "rgb(0, 255, 255)");
-gradient.addColorStop(0.67, "rgb(0, 255, 0)");
-gradient.addColorStop(0.84, "rgb(255, 255, 0)");
-gradient.addColorStop(1, "rgb(255, 0, 0)");
-colorContext.fillStyle = gradient;
-colorContext.fillRect(0, 0, 400, 400);
-
-gradient = colorContext.createLinearGradient(0, 0, 0, 400);
-gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-gradient.addColorStop(0.18, "rgba(255, 255, 255, 0)");
-gradient.addColorStop(0.18, "rgba(0, 0, 0, 0)");
-gradient.addColorStop(0.37, "rgba(0, 0, 0, 1)");
-colorContext.fillStyle = gradient;
-colorContext.fillRect(0, 0, 400, 400);
-
-
-canvasLogicCancel.addEventListener('click', () => {
-    colorPickerBackground.style.visibility = "hidden";
-    colorCanvasContainer.style.visibility = "hidden";
-}, true);
-
-colorCanvas.addEventListener('mouseover', function(e) {
-    pickedColor.style.background = 'black';
-}, true);
-
-colorCanvas.addEventListener('mouseleave', () => {
-    pickedColor.style.background = 'white';
-}, true);
-
-//#endregion
 
 //#region CLICK HANDLING
 
@@ -115,9 +72,54 @@ deleteConnectionAtom.addEventListener('click', () => {
     }
 }, true);
 
-changeColor.addEventListener('click', () => {
-    colorPickerBackground.style.visibility = "visible";
-    colorCanvasContainer.style.visibility = "visible";
+changeColorForAll.addEventListener('click', () => {
+    if(panelEnabled)
+    {
+        atomsList.forEach(item => {
+            item.DOM.addEventListener('mousedown', getItemStartingPosition);
+            item.DOM.addEventListener('mouseup', changeColorForAllHandler);
+        });
+        bodyStyle.cursor = "crosshair";
+        disablePanel(changeColorForAll);
+    }
+    else
+    {
+        atomsList.forEach(item => {
+            if(item.DOM.classList.contains("pickedElement"))
+                item.DOM.classList = "";
+                item.DOM.removeEventListener('mousedown', getItemStartingPosition);
+                item.DOM.removeEventListener('mouseup', changeColorForAllHandler);
+        });
+        firstElementPicked = false;
+        firstElementPicked = false;
+        bodyStyle.cursor = "default";
+        enablePanel(changeColorForAll);
+    }
+}, true);
+
+changeColorForOne.addEventListener('click', () => {
+    if(panelEnabled)
+    {
+        atomsList.forEach(item => {
+            item.DOM.addEventListener('mousedown', getItemStartingPosition);
+            item.DOM.addEventListener('mouseup', changeColorForOneHandler);
+        });
+        bodyStyle.cursor = "crosshair";
+        disablePanel(changeColorForOne);
+    }
+    else
+    {
+        atomsList.forEach(item => {
+            if(item.DOM.classList.contains("pickedElement"))
+                item.DOM.classList = "";
+                item.DOM.removeEventListener('mousedown', getItemStartingPosition);
+                item.DOM.removeEventListener('mouseup', changeColorForOneHandler);
+        });
+        firstElementPicked = false;
+        firstElementPicked = false;
+        bodyStyle.cursor = "default";
+        enablePanel(changeColorForOne);
+    }
 }, true);
 
 //#endregion
@@ -198,6 +200,23 @@ function deleteConnectionHandler(e)
     else connectionToCheck.changeCount(-1);
 }
 
+function changeColorForAllHandler(e)
+{
+
+}
+
+function changeColorForOneHandler(e)
+{
+    let thisAtom = e.target;
+    let thisAtomObject = getAtomById(thisAtom).atom;
+
+    if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
+    {
+        thisAtom.style.background = colorPicker.value;
+        thisAtomObject.color = colorPicker.value;
+    }
+}
+
 //#endregion
 
 //#region UTIL
@@ -269,7 +288,8 @@ function enablePanel(clickedButton)
     //document.getElementById('sprawdzZadanie').style.pointerEvents = 'auto';
     addConnection.style.pointerEvents = 'auto';
     deleteConnectionAtom.style.pointerEvents = 'auto';
-    changeColor.style.pointerEvents = 'auto';
+    changeColorForAll.style.pointerEvents = 'auto';
+    changeColorForOne.style.pointerEvents = 'auto';
     clickedButton.style.borderColor = "white";
     panelEnabled = true;
 }
@@ -280,7 +300,8 @@ function disablePanel(clickedButton)
     //document.getElementById('sprawdzZadanie').style.pointerEvents = 'none';
     addConnection.style.pointerEvents = 'none';
     deleteConnectionAtom.style.pointerEvents = 'none';
-    changeColor.style.pointerEvents = 'none';
+    changeColorForAll.style.pointerEvents = 'none';
+    changeColorForOne.style.pointerEvents = 'none';
     clickedButton.style.pointerEvents = 'auto';
     clickedButton.style.borderColor = "black";
     panelEnabled = false;
