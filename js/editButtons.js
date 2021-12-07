@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 var addConnection = document.getElementById("addConnection");
 var deleteConnectionAtom = document.getElementById("deleteConnectionAtom");
-var changeColorForAll = document.getElementById("changeColorForAll");
+var getAtomColor = document.getElementById("getAtomColor");
 var changeColorForOne = document.getElementById("changeColorForOne");
 var colorPicker = document.getElementById("colorPicker");
-var body = document.getElementsByTagName('body')[0];
+var body = document.getElementsByTagName("body")[0];
 var bodyStyle = body.style;
 var pickedAtomStartingPosition = {};
 var panelEnabled = true;
@@ -20,12 +22,12 @@ connection(atomsList[1], atomsList[2]);
 
 //#region CLICK HANDLING
 
-addConnection.addEventListener('click', () => {
+addConnection.addEventListener("click", () => {
     if(panelEnabled)
     {
         atomsList.forEach(item => {
-            item.DOM.addEventListener('mousedown', getItemStartingPosition);
-            item.DOM.addEventListener('mouseup', addConnectionHandler);
+            item.DOM.addEventListener("mousedown", getItemStartingPosition);
+            item.DOM.addEventListener("mouseup", addConnectionHandler);
         });
         bodyStyle.cursor = "cell";
         disablePanel(addConnection);
@@ -35,8 +37,8 @@ addConnection.addEventListener('click', () => {
         atomsList.forEach(item => {
             if(item.DOM.classList.contains("pickedElement"))
                 item.DOM.classList = "";
-                item.DOM.removeEventListener('mousedown', getItemStartingPosition);
-                item.DOM.removeEventListener('mouseup', addConnectionHandler);
+            item.DOM.removeEventListener("mousedown", getItemStartingPosition);
+            item.DOM.removeEventListener("mouseup", addConnectionHandler);
         });
         firstElementPicked = false;
         firstElementPicked = false;
@@ -45,15 +47,15 @@ addConnection.addEventListener('click', () => {
     }
 }, true);
 
-deleteConnectionAtom.addEventListener('click', () => {
+deleteConnectionAtom.addEventListener("click", () => {
     if(panelEnabled)
     {
         atomsList.forEach(item => {
-            item.DOM.addEventListener('mousedown', getItemStartingPosition);
-            item.DOM.addEventListener('mouseup', deleteAtomHandler);
+            item.DOM.addEventListener("mousedown", getItemStartingPosition);
+            item.DOM.addEventListener("mouseup", deleteAtomHandler);
         });
         connsList.forEach(item => {
-            item.DOM.addEventListener('click', deleteConnectionHandler);
+            item.DOM.addEventListener("click", deleteConnectionHandler);
         });
         bodyStyle.cursor = "no-drop";
         disablePanel(deleteConnectionAtom);
@@ -61,48 +63,48 @@ deleteConnectionAtom.addEventListener('click', () => {
     else
     {
         atomsList.forEach(item => {
-            item.DOM.removeEventListener('mousedown', getItemStartingPosition);
-            item.DOM.removeEventListener('mouseup', deleteAtomHandler);
+            item.DOM.removeEventListener("mousedown", getItemStartingPosition);
+            item.DOM.removeEventListener("mouseup", deleteAtomHandler);
         });
         connsList.forEach(item => {
-            item.DOM.removeEventListener('click', deleteConnectionHandler);
+            item.DOM.removeEventListener("click", deleteConnectionHandler);
         });
         bodyStyle.cursor = "default";
         enablePanel(deleteConnectionAtom);
     }
 }, true);
 
-changeColorForAll.addEventListener('click', () => {
+getAtomColor.addEventListener("click", () => {
     if(panelEnabled)
     {
         atomsList.forEach(item => {
-            item.DOM.addEventListener('mousedown', getItemStartingPosition);
-            item.DOM.addEventListener('mouseup', changeColorForAllHandler);
+            item.DOM.addEventListener("mousedown", getItemStartingPosition);
+            item.DOM.addEventListener("mouseup", setPickerToAtomColor);
         });
         bodyStyle.cursor = "crosshair";
-        disablePanel(changeColorForAll);
+        disablePanel(getAtomColor);
     }
     else
     {
         atomsList.forEach(item => {
             if(item.DOM.classList.contains("pickedElement"))
                 item.DOM.classList = "";
-                item.DOM.removeEventListener('mousedown', getItemStartingPosition);
-                item.DOM.removeEventListener('mouseup', changeColorForAllHandler);
+            item.DOM.removeEventListener("mousedown", getItemStartingPosition);
+            item.DOM.removeEventListener("mouseup", setPickerToAtomColor);
         });
         firstElementPicked = false;
         firstElementPicked = false;
         bodyStyle.cursor = "default";
-        enablePanel(changeColorForAll);
+        enablePanel(getAtomColor);
     }
 }, true);
 
-changeColorForOne.addEventListener('click', () => {
+changeColorForOne.addEventListener("click", () => {
     if(panelEnabled)
     {
         atomsList.forEach(item => {
-            item.DOM.addEventListener('mousedown', getItemStartingPosition);
-            item.DOM.addEventListener('mouseup', changeColorForOneHandler);
+            item.DOM.addEventListener("mousedown", getItemStartingPosition);
+            item.DOM.addEventListener("mouseup", changeColorForOneHandler);
         });
         bodyStyle.cursor = "crosshair";
         disablePanel(changeColorForOne);
@@ -112,8 +114,8 @@ changeColorForOne.addEventListener('click', () => {
         atomsList.forEach(item => {
             if(item.DOM.classList.contains("pickedElement"))
                 item.DOM.classList = "";
-                item.DOM.removeEventListener('mousedown', getItemStartingPosition);
-                item.DOM.removeEventListener('mouseup', changeColorForOneHandler);
+            item.DOM.removeEventListener("mousedown", getItemStartingPosition);
+            item.DOM.removeEventListener("mouseup", changeColorForOneHandler);
         });
         firstElementPicked = false;
         firstElementPicked = false;
@@ -200,9 +202,15 @@ function deleteConnectionHandler(e)
     else connectionToCheck.changeCount(-1);
 }
 
-function changeColorForAllHandler(e)
+function setPickerToAtomColor(e)
 {
+    let thisAtom = e.target;
+    let thisAtomObject = getAtomById(thisAtom).atom;
 
+    if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
+    {
+        colorPicker.value = thisAtomObject.color;
+    }
 }
 
 function changeColorForOneHandler(e)
@@ -284,25 +292,25 @@ function getConnectionById(connection)
 
 function enablePanel(clickedButton)
 {
-    document.getElementById('menuWrapper').style.pointerEvents = 'auto';
+    document.getElementById("menuWrapper").style.pointerEvents = "auto";
     //document.getElementById('sprawdzZadanie').style.pointerEvents = 'auto';
-    addConnection.style.pointerEvents = 'auto';
-    deleteConnectionAtom.style.pointerEvents = 'auto';
-    changeColorForAll.style.pointerEvents = 'auto';
-    changeColorForOne.style.pointerEvents = 'auto';
+    addConnection.style.pointerEvents = "auto";
+    deleteConnectionAtom.style.pointerEvents = "auto";
+    getAtomColor.style.pointerEvents = "auto";
+    changeColorForOne.style.pointerEvents = "auto";
     clickedButton.style.borderColor = "white";
     panelEnabled = true;
 }
 
 function disablePanel(clickedButton)
 {
-    document.getElementById('menuWrapper').style.pointerEvents = 'none';
+    document.getElementById("menuWrapper").style.pointerEvents = "none";
     //document.getElementById('sprawdzZadanie').style.pointerEvents = 'none';
-    addConnection.style.pointerEvents = 'none';
-    deleteConnectionAtom.style.pointerEvents = 'none';
-    changeColorForAll.style.pointerEvents = 'none';
-    changeColorForOne.style.pointerEvents = 'none';
-    clickedButton.style.pointerEvents = 'auto';
+    addConnection.style.pointerEvents = "none";
+    deleteConnectionAtom.style.pointerEvents = "none";
+    getAtomColor.style.pointerEvents = "none";
+    changeColorForOne.style.pointerEvents = "none";
+    clickedButton.style.pointerEvents = "auto";
     clickedButton.style.borderColor = "black";
     panelEnabled = false;
 }
