@@ -29,5 +29,9 @@
     },
     "eslint.validate": [
         "javascript"
-    ]
+    ],
+
+    "stylelint": {
+        "extends": "@company/stylelint-config"
+    }
 }

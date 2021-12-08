@@ -3,10 +3,10 @@
 var addConnection = document.getElementById("addConnection");
 var deleteConnectionAtom = document.getElementById("deleteConnectionAtom");
 var getAtomColor = document.getElementById("getAtomColor");
-var changeColorForOne = document.getElementById("changeColorForOne");
+var changeAtomColor = document.getElementById("changeAtomColor");
 var colorPicker = document.getElementById("colorPicker");
-var body = document.getElementsByTagName("body")[0];
-var bodyStyle = body.style;
+
+var bodyStyle = document.getElementsByTagName("body")[0].style;
 var pickedAtomStartingPosition = {};
 var panelEnabled = true;
 var firstElementPicked = false;
@@ -21,7 +21,6 @@ connection(atomsList[1], atomsList[2]);
 connection(atomsList[1], atomsList[2]);
 
 //#region CLICK HANDLING
-
 addConnection.addEventListener("click", () => {
     if(panelEnabled)
     {
@@ -40,7 +39,6 @@ addConnection.addEventListener("click", () => {
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", addConnectionHandler);
         });
-        firstElementPicked = false;
         firstElementPicked = false;
         bodyStyle.cursor = "default";
         enablePanel(addConnection);
@@ -87,47 +85,37 @@ getAtomColor.addEventListener("click", () => {
     else
     {
         atomsList.forEach(item => {
-            if(item.DOM.classList.contains("pickedElement"))
-                item.DOM.classList = "";
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", setPickerToAtomColor);
         });
-        firstElementPicked = false;
-        firstElementPicked = false;
         bodyStyle.cursor = "default";
         enablePanel(getAtomColor);
     }
 }, true);
 
-changeColorForOne.addEventListener("click", () => {
+changeAtomColor.addEventListener("click", () => {
     if(panelEnabled)
     {
         atomsList.forEach(item => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
-            item.DOM.addEventListener("mouseup", changeColorForOneHandler);
+            item.DOM.addEventListener("mouseup", changeAtomColorHandler);
         });
         bodyStyle.cursor = "crosshair";
-        disablePanel(changeColorForOne);
+        disablePanel(changeAtomColor);
     }
     else
     {
         atomsList.forEach(item => {
-            if(item.DOM.classList.contains("pickedElement"))
-                item.DOM.classList = "";
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
-            item.DOM.removeEventListener("mouseup", changeColorForOneHandler);
+            item.DOM.removeEventListener("mouseup", changeAtomColorHandler);
         });
-        firstElementPicked = false;
-        firstElementPicked = false;
         bodyStyle.cursor = "default";
-        enablePanel(changeColorForOne);
+        enablePanel(changeAtomColor);
     }
 }, true);
-
 //#endregion
 
 //#region HANDLER FUNCTIONS
-
 function getItemStartingPosition(e)
 {
     let thisAtom = e.target;
@@ -149,10 +137,11 @@ function addConnectionHandler(e)
         {
             if (thisAtom.classList.contains("pickedElement"))
                 thisAtom.classList = "";
-            else 
+            else
             {
+                if(getAtomById(lastPicked).atom.check() < 0 && getAtomById(thisAtom).atom.check() < 0)
+                    connection(getAtomById(lastPicked).atom, getAtomById(thisAtom).atom);
                 lastPicked.classList = "";
-                connection(getAtomById(lastPicked).atom, getAtomById(thisAtom).atom);
             }
             lastPicked = null;
         }
@@ -208,12 +197,10 @@ function setPickerToAtomColor(e)
     let thisAtomObject = getAtomById(thisAtom).atom;
 
     if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
-    {
         colorPicker.value = thisAtomObject.color;
-    }
 }
 
-function changeColorForOneHandler(e)
+function changeAtomColorHandler(e)
 {
     let thisAtom = e.target;
     let thisAtomObject = getAtomById(thisAtom).atom;
@@ -224,11 +211,9 @@ function changeColorForOneHandler(e)
         thisAtomObject.color = colorPicker.value;
     }
 }
-
 //#endregion
 
 //#region UTIL
-
 function reduceConnectionIndices()
 {
     connsList.forEach(function(item, index) {
@@ -289,15 +274,13 @@ function getConnectionById(connection)
     return {connection: resultConnection, index: resultIndex};
 }
 
-
 function enablePanel(clickedButton)
 {
     document.getElementById("menuWrapper").style.pointerEvents = "auto";
-    //document.getElementById('sprawdzZadanie').style.pointerEvents = 'auto';
     addConnection.style.pointerEvents = "auto";
     deleteConnectionAtom.style.pointerEvents = "auto";
     getAtomColor.style.pointerEvents = "auto";
-    changeColorForOne.style.pointerEvents = "auto";
+    changeAtomColor.style.pointerEvents = "auto";
     clickedButton.style.borderColor = "white";
     panelEnabled = true;
 }
@@ -305,14 +288,12 @@ function enablePanel(clickedButton)
 function disablePanel(clickedButton)
 {
     document.getElementById("menuWrapper").style.pointerEvents = "none";
-    //document.getElementById('sprawdzZadanie').style.pointerEvents = 'none';
     addConnection.style.pointerEvents = "none";
     deleteConnectionAtom.style.pointerEvents = "none";
     getAtomColor.style.pointerEvents = "none";
-    changeColorForOne.style.pointerEvents = "none";
+    changeAtomColor.style.pointerEvents = "none";
     clickedButton.style.pointerEvents = "auto";
     clickedButton.style.borderColor = "black";
     panelEnabled = false;
 }
-
 //#endregion

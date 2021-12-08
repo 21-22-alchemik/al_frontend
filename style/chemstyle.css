@@ -23,12 +23,12 @@
   position: absolute;
 }
 
-sub{
+sub {
   font-size: 12px;
   pointer-events: none;
 }
 
-sup{
+sup {
   font-size: 12px;
   pointer-events: none;
 }

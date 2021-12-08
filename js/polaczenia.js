@@ -37,14 +37,14 @@ class Atom {
     removeConnection(conn){
         //console.log(conn);
         //console.log(this.connections);
-        this.connections.splice(this.connections.indexOf(conn));
+        this.connections.splice(this.connections.indexOf(conn), 1);
         //console.log(this.connections);
     }
     //generowanie obiektu
     generate(){
         var atom = document.createElement("DIV");
         atom.style.backgroundColor = this.color;
-        atom.innerHTML = this.name + "<sub>" + this.valence + "</sub>";
+        atom.innerHTML = `${this.name}<sub>${this.valence}</sub>`;
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
         atom.id = "atom_" + this.atomId;
