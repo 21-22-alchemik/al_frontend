@@ -27,6 +27,7 @@
     },
     "eslint.validate": [
         "javascript",
-        "html"
+        "html",
+        "css"
     ]
 }
