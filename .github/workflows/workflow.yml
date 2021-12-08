@@ -23,6 +23,7 @@ jobs:
 
   test:
     name: Jest automatic test
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -36,3 +37,4 @@ env:
   CSS_FILE_NAMEL: .stylelintrc.json
   VALIDATE_JAVASCRIPT_STANDARD: false
   VALIDATE_HTML: false
+  VALIDATE_JSON: false
