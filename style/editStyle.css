@@ -11,7 +11,7 @@
   background: transparent;
   transition: 0.3s;
 }
-  
+
 .przyciskEdycji:hover {
   cursor: pointer;
   font-size: 8px;
