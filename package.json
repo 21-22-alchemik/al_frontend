@@ -21,6 +21,7 @@
         "jest": "^25.1.0"
     },
     "devDependencies": {
+        "eslint": "^8.4.1",
         "htmlhintrc": "^1.0.1",
         "stylelint": "^14.1.0",
         "stylelint-config-standard": "^24.0.0"
