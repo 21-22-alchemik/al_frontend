@@ -17,5 +17,5 @@ connectionList.push([ 3, 4 ]);
 
 
 test('O1OC21(OO2)', () => {
-  expect(al_smiles(atomsList,connectionList)).toBe("O1OC21(OO2)");
+  expect(functions.al_smiles(atomsList,connectionList)).toBe("O1OC21(OO2)");
 });
