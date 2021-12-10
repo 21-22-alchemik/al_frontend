@@ -1,7 +1,3 @@
-// Atomy
-
-//  o=c=nc
-
 function al_smiles(atomsList, connectionList) {// eslint-disable-line no-unused-vars
     var atomsGraph = new Array();
     var signs = [ "", "=", "#" ];
@@ -98,7 +94,3 @@ function al_smiles(atomsList, connectionList) {// eslint-disable-line no-unused-
     current_to_next(current, current);
     return smiles;
 }
-
-//O(=C=NC)(=O)
-
-//console.log(atomsGraph);
