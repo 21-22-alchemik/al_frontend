@@ -1,4 +1,4 @@
-const functions = require('../../algorytm/al_smiles.js')
+const functions = require('../../js/al_smiles.js')
 
 
 atomsList = new Array();
