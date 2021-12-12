@@ -6,64 +6,120 @@ function checkSize() {
     var newDivMessage = document.getElementById("newDivMessage");
     //min 1000px, sprawdzenie
     if(width < 1000){
-        newDivMessage.classList.remove("active_badSize");
+        newDivMessage.classList.remove("activeBadSize");
     } else {
-        newDivMessage.classList.add("active_badSize");
+        newDivMessage.classList.add("activeBadSize");
     }
 }
+
 //sprawdzenie co zmiane szerokosci okna przegladarki
 window.addEventListener("resize", checkSize);
 
 // MENU
+
 //wczytanie elementów
 var menuWrapper = document.getElementById("menuWrapper");
 var btnMenu = document.getElementById("menu_menu");
 var btnPierwiastki = document.getElementById("menu_pierwiastki");
 var btnZwiazki = document.getElementById("menu_zwiazki");
 var zakladkaMenu = document.getElementById("zakladkaMenu");
-//otwieranie menu, zarzadzanie zakladkami
-function showMenu(element) {
-    //wysuniecie menu
-    menuWrapper.style.right = "0";
-    //wybór zakładki
-    if (element === "menu_menu") {
-        btnMenu.classList.toggle("active_menu");
-        zakladkaMenu.classList.add("active_zakladka");
-    } else if (element === "menu_pierwiastki") {
-        btnPierwiastki.classList.toggle("active_menu");
-    } else if (element === "menu_zwiazki") {
-        btnZwiazki.classList.toggle("active_menu");
+var zakladkaPierwiastki = document.getElementById("zakladkaPierwiastki");
+var zakladkaZwiazki = document.getElementById("zakladkaZwiazki");
+var blockScreen = document.getElementById("blockScreen");
+
+//podpięcia akcji
+btnMenu.addEventListener("click", menuControl.bind(null,"menu_menu"));
+btnPierwiastki.addEventListener("click", menuControl.bind(null,"menu_pierwiastki"));
+btnZwiazki.addEventListener("click", menuControl.bind(null,"menu_zwiazki"));
+document.getElementById("wyjscie").addEventListener("click", closeMenu);
+blockScreen.addEventListener("click", closeMenu);
+
+function menuControl(element){
+    //jeśli menu jest zamknięte
+    if(menuWrapper.classList.contains("menuClosed")) {
+        changeTab(element);
+        openMenu();
+    }
+    //jeśli jest otwarte
+    else {
+        //jeśli jest otwarte i jest na obecnej zakładce
+        if(document.getElementById(element).classList.contains("activeMenu")) {
+            changeTab("close");
+        }
+        //jeśli zmieniamy karte
+        else{
+            changeTab(element);
+        }
     }
 }
-btnMenu.addEventListener("click", () => {
-    if (btnPierwiastki.classList.contains("active_menu") || btnZwiazki.classList.contains("active_menu")) {
-        btnMenu.classList.add("active_menu");
-        btnPierwiastki.classList.remove("active_menu");
-        btnZwiazki.classList.remove("active_menu");
-        zakladkaMenu.classList.add("active_zakladka");
+
+function changeTab(element){
+
+    if(element!="close"){
+        //czyszczenie 
+        btnMenu.classList.remove("activeMenu");
+        btnPierwiastki.classList.remove("activeMenu");
+        btnZwiazki.classList.remove("activeMenu");
+
+        zakladkaMenu.classList.remove("activeZakladka");
+        zakladkaPierwiastki.classList.remove("activeZakladka");
+        zakladkaZwiazki.classList.remove("activeZakladka");
     }
-});
-btnPierwiastki.addEventListener("click", () => {
-    if (btnMenu.classList.contains("active_menu") || btnZwiazki.classList.contains("active_menu")) {
-        btnPierwiastki.classList.add("active_menu");
-        btnMenu.classList.remove("active_menu");
-        btnZwiazki.classList.remove("active_menu");
-        zakladkaMenu.classList.remove("active_zakladka");
+
+    switch(element){
+
+    //menu Menu
+    case "menu_menu":{
+        btnMenu.classList.add("activeMenu");
+        zakladkaMenu.classList.add("activeZakladka");
+        break;
     }
-});
-btnZwiazki.addEventListener("click", () => {
-    if (btnPierwiastki.classList.contains("active_menu") || btnMenu.classList.contains("active_menu")) {
-        btnMenu.classList.remove("active_menu");
-        btnPierwiastki.classList.remove("active_menu");
-        btnZwiazki.classList.add("active_menu");
-        zakladkaMenu.classList.remove("active_zakladka");
+
+    //menu Pierwiastki
+    case "menu_pierwiastki":{
+        btnPierwiastki.classList.add("activeMenu");
+        zakladkaPierwiastki.classList.add("activeZakladka");
+        break;
     }
-});
+
+    //menu Związki
+    case "menu_zwiazki":{
+        btnZwiazki.classList.add("activeMenu");
+        zakladkaZwiazki.classList.add("activeZakladka");
+        break;
+    }
+
+    //jeśli zamykamy menu niezależnie od otwartej karty, albo wydarzy sie dziwny błąd i bedzie miało otworzyć zakładke której nie ma, to zamknie menu
+    default:{
+        closeMenu();
+    }
+
+    }
+}
+
+function openMenu(){
+    menuWrapper.classList.remove("menuClosed");
+    blockScreen.classList.remove("hidden");
+    setTimeout(function(){ blockScreen.classList.remove("hiddenV"); },10);
+}
+
+// .activeMenu -> kolor zakładki
+
 //zamykanie menu - przycisk
 function closeMenu() {
-    menuWrapper.style.right = "-384px";
-    btnMenu.classList.remove("active_menu");
-    btnPierwiastki.classList.remove("active_menu");
-    btnZwiazki.classList.remove("active_menu");
-    zakladkaMenu.classList.remove("active_zakladka");
+    menuWrapper.classList.add("menuClosed");
+
+    btnMenu.classList.remove("activeMenu");
+    btnPierwiastki.classList.remove("activeMenu");
+    btnZwiazki.classList.remove("activeMenu");
+    blockScreen.classList.add("hiddenV");
+
+    //zniknij po schowaniu menu
+    setTimeout(function(){
+        zakladkaMenu.classList.remove("activeZakladka");
+        zakladkaPierwiastki.classList.remove("activeZakladka");
+        zakladkaZwiazki.classList.remove("activeZakladka");
+        blockScreen.classList.add("hidden");
+    },500);
+    
 }
