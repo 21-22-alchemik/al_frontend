@@ -163,6 +163,10 @@
   border-radius: 10px;
 }
 
+.zakladkaMenuBtn:hover {
+  cursor: pointer;
+}
+
 .zakladkaMenuBtn > span {
   float: left;
   width: 60%;

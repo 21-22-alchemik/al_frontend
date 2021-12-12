@@ -30,42 +30,6 @@
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
 		</div>
-		<div class="menu_pierwiastki" id="menu_pierwiastki" onClick='showMenu("menu_pierwiastki")'>
-			<div class="zakladka">
-				<h1 class="menu_tytul_pierwiastki">PIERWIASTKI</h1>
-			</div>
-		</div>
-		<div class="menu_zwiazki" id="menu_zwiazki" onClick='showMenu("menu_zwiazki")'>
-			<div class="zakladka">
-				<h1 class="menu_tytul_zwiazki">ZWIĄZKI</h1>
-			</div>
-		</div>
-		<div class="menu_panel">
-			<div class="zakladkaMenu" id="zakladkaMenu">
-				<div class="pdf przyciski_menu" onClick='CreatePDFfromHTML()'>
-					<button class="pdfBtn zakladkaMenu_btn" id="pdfBtn">
-						<p>Konwertuj do PDF</p>
-						<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
-					</button>
-				</div>
-				<div class="QA przyciski_menu">
-					<button class="QABtn zakladkaMenu_btn" id="QABtn">
-						<p>Q&A</p>
-						<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
-					</button>
-				</div>
-				<div class="save przyciski_menu">
-					<button class="saveBtn zakladkaMenu_btn" id="saveBtn">
-						<p>Zapisz</p>
-						<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
-					</button>
-				</div>
-				<div class="save przyciski_menu">
-					<button class="saveBtn zakladkaMenu_btn" id="saveBtn">
-						<p>Kontakt</p>
-						<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
-					</button>
-
 		<!-- Menu -->
 		<div class="wrapper menuClosed" id="menuWrapper">
 			<div class="menuMenu" id="menu_menu">
@@ -85,7 +49,7 @@
 			</div>
 			<div class="menuPanel">
 				<div class="zakladkaMenu" id="zakladkaMenu">
-					<div class="pdf przyciskiMenu">
+					<div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()">
 						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn">
 							<span>Konwertuj do PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
@@ -143,7 +107,6 @@
 	</div>
 	
 	<!-- Prompty (pełno ekranowe obiekty) -->
-
 		<!-- Block Screen dla menu-->
 		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
 
