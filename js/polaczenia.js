@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 class Counter {
     constructor() {
         this.atoms = 0;
@@ -15,7 +16,7 @@ const counter = new Counter();
 
 class Atom {
     constructor(Name, Color, Valence = 0, X = 5, Y = 5) {
-        this.id = counter.atom();
+        this.atomId = counter.atom();
         this.name = Name;
         this.color = Color;
         this.x = X;
@@ -29,43 +30,44 @@ class Atom {
     //dodawanie połączenia
     newConnection(conn) {
         /*if(this.connections.includes(conn))
-            this.connections[this.connections.indexOf(conn)].changeCount(1);
-        else*/
+			this.connections[this.connections.indexOf(conn)].changeCount(1);
+		else*/
         this.connections.push(conn);
     }
-    /*removeConnection(conn){
-        console.log(conn);
-        console.log(this.connections);
-        this.connections.pop(this.connections.indexOf(conn));
-        console.log(this.connections);
-    }*/
+    removeConnection(conn){
+        //console.log(conn);
+        //console.log(this.connections);
+        this.connections.splice(this.connections.indexOf(conn), 1);
+        //console.log(this.connections);
+    }
     //generowanie obiektu
-    generate() {
+    generate(){
         var atom = document.createElement("DIV");
         atom.style.backgroundColor = this.color;
-        atom.innerHTML = this.name;
-        atom.style.top = this.y + "px";
-        atom.style.left = this.x + "px";
+        atom.innerHTML = `${this.name}<sub>${this.valence}</sub>`;
+        atom.style.top = this.y+"px";
+        atom.style.left = this.x+"px";
+        atom.id = "atom_" + this.atomId;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);
     }
-    check() {
+    check(){
         var sum = 0;
         this.connections.forEach(elem => {
             sum += elem.count;
         });
         //ten if else jest tylko informacyjny, później sie go usunie bo on i tak nic nie zmienia
         //zbyt dużo wiązań
-        if (sum > this.valence) {
+        if(sum > this.valence){
             console.log("ZA DUŻO!!!");
         }
         //zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
-        else if (sum < this.valence) {
+        else if(sum < this.valence){
             console.log("ZA MAŁO!!!");
         }
         //jest dobrze
-        else {
+        else{
             console.log("jakby to powiedział Paweł, jest git");
         }
         //zwracana wartość
@@ -78,40 +80,40 @@ class Atom {
 
 class Connection {
     constructor(Parent1, Parent2, Count = 1) {
-        this.id = counter.connection();
+        this.connectionId = counter.connection();
         this.DOM = null;
         this.parent1 = Parent1;
         this.parent2 = Parent2;
         this.count = Count;
-        //podpięcie pod rodziców
+        // podpięcie pod rodziców
         Parent1.newConnection(this);
         Parent2.newConnection(this);
-        //wygenerowanie w DOM
+        // wygenerowanie w DOM
         this.generate();
-
     }
     generate() {
-        //wygenerowanie obiektu DOM
+    // wygenerowanie obiektu DOM
         var conn = document.createElement("DIV");
         conn.className = "connection" + this.count;
+        conn.id = "connection_" + this.connectionId;
         connsHolder.appendChild(conn);
-        //podpięcie odnośnika do obiektu DOM
+        // podpięcie odnośnika do obiektu DOM
         this.DOM = conn;
-        //utworzenie fizycznego połączenia
+        // utworzenie fizycznego połączenia
         connectionMove(this);
     }
     delete() {
-        this.changeCount(-100);
-        //usunięcie wpisu w rodzicach
-        //this.parent1.removeConnection(this);
-        //this.parent2.removeConnection(this);
-        //usunięcie obiektu DOM
-        //connsHolder.removeChild(this.DOM);
+        //this.changeCount(-100);
+        // usunięcie wpisu w rodzicach
+        this.parent1.removeConnection(this);
+        this.parent2.removeConnection(this);
+        // usunięcie obiektu DOM
+        // connsHolder.removeChild(this.DOM);
 
-        //destroy(this);
+    // destroy(this);
     }
     changeCount(value) {
-        //zmiana rodzaju połączenia
+    // zmiana rodzaju połączenia
         this.count += value;
         if (this.count > 9) {
             console.log("zbyt potężne wiązanie!");
@@ -125,15 +127,15 @@ class Connection {
 }
 
 //funkcja dodawania wiązania między atomami
-function connection(Parent1, Parent2) {
+function connection(Parent1, Parent2){
     var checker = false;
-    Parent1.connections.forEach(elem => {
-        if (elem.parent1 == Parent2 || elem.parent2 == Parent2) {
+    Parent1.connections.forEach(elem => { 
+        if(elem.parent1 == Parent2 || elem.parent2 == Parent2) {
             elem.changeCount(1);
             checker = true;
         }
     });
-    if (!checker)
+    if(!checker)
         connsList.push(new Connection(Parent1, Parent2));
 }
 
@@ -142,15 +144,15 @@ var connsHolder = document.getElementById("connsHolder");
 var atomsList = new Array();
 var connsList = new Array();
 
-//Atomy
-atomsList.push(new Atom("H", "rebeccapurple", 1));
-atomsList.push(new Atom("O", "forestgreen", 2, 85, 5));
-atomsList.push(new Atom("H", "rebeccapurple", 1, 5, 85));
+// Atomy
+//atomsList.push(new Atom("H", "rebeccapurple", 1));
+//atomsList.push(new Atom("O", "forestgreen", 2, 85, 5));
+//atomsList.push(new Atom("H", "rebeccapurple", 1, 5, 85));
 
-//wiązania
-connection(atomsList[0], atomsList[1]);
-connection(atomsList[0], atomsList[1]);
-connection(atomsList[1], atomsList[2]);
+// wiązania
+//connection(atomsList[0], atomsList[1]);
+//connection(atomsList[0], atomsList[1]);
+//connection(atomsList[1], atomsList[2]);
 
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA
