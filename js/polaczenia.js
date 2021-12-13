@@ -206,6 +206,11 @@ function dragElement(atom) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 
+        //zapisz x i y
+        atom.y = parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2));
+        atom.x = parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2));
+        //console.log(elmnt.x + " - "+elmnt.y);
+
         // zmiana wyświetlania wiązania
         atom.connections.forEach(conn => connectionMove(conn));
     }
