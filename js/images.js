@@ -34,7 +34,7 @@ function generateCanvas(){
             maxH = sy + 43;
 
     }
-
+    //zoptymalizować żeby było też minimum i ogólnie był związek 
     canvas.width=maxW;
     canvas.height=maxH;
     for (let i = 0; i < connectionsArray.length; i++) {
