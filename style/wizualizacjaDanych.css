@@ -1,0 +1,17 @@
+/* stylelint-disable selector-id-pattern */
+
+/* pomocnicze */
+#wizualizacjaDanych {
+  position: fixed;
+  margin: 100px;
+  padding: 100px;
+  width: 80%;
+  min-width: 720px;
+  height: 800px;
+  border: 10px solid rgb(85 66 194);
+  border-radius: 20px;
+}
+
+#wizualizacjaDanych > div {
+  position: relative;
+}
