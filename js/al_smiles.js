@@ -1,8 +1,7 @@
 export function al_smiles(atomsList, connectionList) {
     var is_cycle = false;
     var atomsGraph = new Array();
-    var signs = [ "", "=", "#" ];
-
+    var signs = ["", "=", "#"];
     // create an aggregate list off all features of components of graph(molecule), like their relations
     for (var i = 0; i < atomsList.length; i++) {
         var lst_connections = [];
@@ -12,7 +11,7 @@ export function al_smiles(atomsList, connectionList) {
             }
         });
         //var atm = new Atom(i,atomsList[i][0],atomsList[i][2],lst_connections)
-        atomsGraph.push([ i, atomsList[i][1], atomsList[i][2], connectionListToCount(lst_connections) ]);
+        atomsGraph.push([i, atomsList[i][1], atomsList[i][2], connectionListToCount(lst_connections)]);
     }
 
     //sort elements of molcule by amount of connections to later get element with leat conections
@@ -105,3 +104,5 @@ export function al_smiles(atomsList, connectionList) {
 
     return smiles;
 }
+
+module.exports = al_smiles; // eslint-disable-line no-undef
