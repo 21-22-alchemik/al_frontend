@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="./style/walidacjaStyle.css">
 	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
 	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
+	<link rel="stylesheet" type="text/css" href="./style/editStyle.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
@@ -29,6 +30,12 @@
 		<div class="panelDolny">
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
+			<button class="przyciskEdycji" id="addConnection">DODAJ WIĄZANIA</button>
+			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ ELEMENT</button>
+			<!-- Wybór customowego koloru -->
+			<button class="przyciskEdycji" id="getAtomColor">POBIERZ KOLOR ATOMU</button>
+			<button class="przyciskEdycji" id="changeAtomColor">NADAJ KOLOR ATOMOWI</button>
+			<input class="przyciskEdycji" type="color" id="colorPicker">
 		</div>
 		<!-- Menu -->
 		<div class="wrapper menuClosed" id="menuWrapper">
@@ -50,7 +57,7 @@
 			<div class="menuPanel">
 				<div class="zakladkaMenu" id="zakladkaMenu">
 					<div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()">
-						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn">
+						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="CreatePDFfromHTML()">
 							<span>Konwertuj do PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
@@ -172,7 +179,9 @@
 		<script type="text/javascript" src="./js/average.js"></script>
 		<script type="text/javascript" src="./js/hard.js"></script>
 		<script type="text/javascript" src="./js/extreme.js"></script>
-        <script type="text/javascript" src="./js/walidacja.js"></script>
+		<script type="text/javascript" src="./js/editButtons.js"></script>
+		<script type="text/javascript" src="./js/walidacja.js"></script>
         <script type="text/javascript" src="./js/pdfExport.js"></script>
+
 </body>
 </html>

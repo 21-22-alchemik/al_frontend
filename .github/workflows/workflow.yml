@@ -37,4 +37,3 @@ env:
   VALIDATE_JAVASCRIPT_STANDARD: false
   VALIDATE_HTML: false
   VALIDATE_JSON: false
-  
