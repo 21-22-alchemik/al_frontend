@@ -1,4 +1,5 @@
-function al_smiles(atomsList, connectionList) {// eslint-disable-line no-unused-vars
+export function al_smiles(atomsList, connectionList) {
+    var is_cycle = false;
     var atomsGraph = new Array();
     var signs = [ "", "=", "#" ];
 
@@ -51,6 +52,7 @@ function al_smiles(atomsList, connectionList) {// eslint-disable-line no-unused-
     var current_cycle_id = 0;
 
     function getCycleId(el_id) {
+        is_cycle = true;
         current_cycle_id++;
         var position = smiles_ghost.search(el_id);
         var new_smiles = smiles.slice(0, position + 1) + current_cycle_id + smiles.slice(position + 1);
@@ -92,5 +94,14 @@ function al_smiles(atomsList, connectionList) {// eslint-disable-line no-unused-
     console.log(atomsGraph);
 
     current_to_next(current, current);
+
+    if (is_cycle) {
+        var smiles_copy = smiles;
+        for(var ij = current_cycle_id/2;i<current_cycle_id;i++){
+            smiles_copy = smiles_copy.replace(ij,"");
+        }
+        return smiles_copy;
+    }
+
     return smiles;
 }
