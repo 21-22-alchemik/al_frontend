@@ -1,3 +1,4 @@
+
 {
     "liveServer.settings.port": 5501,
     "eslint.probe": [
@@ -9,5 +10,6 @@
         "vue",
         "markdown",
         "css"
-    ]
+    ],
+    "files.eol": "\n",
 }
