@@ -26,8 +26,8 @@ connectionList.push([1, 3]);
 connectionList.push([4, 1]);
 connectionList.push([3, 4]);
 
-test('O1OC21(OO2)', () => {
-    expect(al_smiles(atomsList, connectionList)).toBe("O1OC21(OO2)");
+test('O1C2(O1)(O(O2))', () => {
+    expect(al_smiles(atomsList, connectionList)).toBe("O1C2(O1)(O(O2))");
 });
 
 
@@ -67,8 +67,8 @@ connectionList2.push([7, 6]);
 
 
 
-test('C(C(=O)(O))', () => {
-    expect(al_smiles(atomsList2, connectionList2)).toBe("C(C(=O)(O))");
+test('CC(=O)(O)', () => {
+    expect(al_smiles(atomsList2, connectionList2)).toBe("CC(=O)(O)");
 });
 
 
@@ -112,6 +112,6 @@ connectionList3.push([6, 1]);
 
 
 
-test('O(S(O)(=O)(=O))', () => {
-    expect(al_smiles(atomsList3, connectionList3)).toBe("O(S(O)(=O)(=O))");
+test('OS(O)(=O)(=O)', () => {
+    expect(al_smiles(atomsList3, connectionList3)).toBe("OS(O)(=O)(=O)");
 });
