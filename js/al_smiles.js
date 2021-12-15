@@ -1,3 +1,33 @@
+//credit: https://codereview.stackexchange.com/a/179484, thanks!
+
+function find_closing_bracket_match_index(str) { 
+
+    let depth = 0;
+    for (let i = str.length-1; i > 0; i--) {
+        switch (str[i]) {
+        case ")":
+            depth++;
+            break;
+        case "(":
+            if (--depth == 0) {
+                return i;
+            }
+            break;
+        }
+    }
+    return -1;    // No matching closing parenthesis
+}
+
+function remove_redundant_brackets(smiles) {
+    var index = find_closing_bracket_match_index(smiles);
+    if(index!=-1){
+        var smiles_substr = smiles.substring(index+1, smiles.length-1);
+        return smiles.substring(0, index)+smiles_substr;
+    }
+    return smiles;
+}
+
+
 function al_smiles(atomsList, connectionList) {
     var is_cyclic = false;
     var atomsGraph = new Array();
@@ -92,19 +122,20 @@ function al_smiles(atomsList, connectionList) {
     }
 
     current_to_next(current, current);
-    console.log(is_cyclic);
 
     if (is_cyclic) {
         var smiles_copy = smiles;
-        for (var ij = current_cycle_id / 2; i < current_cycle_id; i++) {
+
+        for (var ij = current_cycle_id / 2+1; ij < current_cycle_id+1; ij++) {
             var ij_str = ij.toString();
-            console.log(ij);
             smiles_copy = smiles_copy.replace(new RegExp(ij_str,"g","i","m"), "");
         }
         return smiles_copy;
     }
+    else{
 
-    return smiles;
+        return smiles;
+    }
 }
 
 module.exports = al_smiles; // eslint-disable-line no-undef
