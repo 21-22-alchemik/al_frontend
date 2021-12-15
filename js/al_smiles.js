@@ -99,7 +99,7 @@ function al_smiles(atomsList, connectionList) {
         for (var ij = current_cycle_id / 2; i < current_cycle_id; i++) {
             var ij_str = ij.toString();
             console.log(ij);
-            smiles_copy = smiles_copy.replace(new RegExp(ij_str,'g','i','m'), "");
+            smiles_copy = smiles_copy.replace(new RegExp(ij_str,"g","i","m"), "");
         }
         return smiles_copy;
     }
