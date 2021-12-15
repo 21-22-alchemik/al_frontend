@@ -130,11 +130,11 @@ function al_smiles(atomsList, connectionList) {
             var ij_str = ij.toString();
             smiles_copy = smiles_copy.replace(new RegExp(ij_str,"g","i","m"), "");
         }
-        return smiles_copy;
+        return remove_redundant_brackets(smiles_copy);
     }
     else{
 
-        return smiles;
+        return remove_redundant_brackets(smiles);
     }
 }
 
