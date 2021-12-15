@@ -1,5 +1,5 @@
-export function al_smiles(atomsList, connectionList) {
-    var is_cycle = false;
+function al_smiles(atomsList, connectionList) {
+    var is_cyclic = false;
     var atomsGraph = new Array();
     var signs = ["", "=", "#"];
     // create an aggregate list off all features of components of graph(molecule), like their relations
@@ -51,7 +51,7 @@ export function al_smiles(atomsList, connectionList) {
     var current_cycle_id = 0;
 
     function getCycleId(el_id) {
-        is_cycle = true;
+        is_cyclic = true;
         current_cycle_id++;
         var position = smiles_ghost.search(el_id);
         var new_smiles = smiles.slice(0, position + 1) + current_cycle_id + smiles.slice(position + 1);
@@ -90,14 +90,16 @@ export function al_smiles(atomsList, connectionList) {
             }
         });
     }
-    console.log(atomsGraph);
 
     current_to_next(current, current);
+    console.log(is_cyclic);
 
-    if (is_cycle) {
+    if (is_cyclic) {
         var smiles_copy = smiles;
-        for(var ij = current_cycle_id/2;i<current_cycle_id;i++){
-            smiles_copy = smiles_copy.replace(ij,"");
+        for (var ij = current_cycle_id / 2; i < current_cycle_id; i++) {
+            var ij_str = ij.toString();
+            console.log(ij);
+            smiles_copy = smiles_copy.replace(ij_str, "");
         }
         return smiles_copy;
     }
