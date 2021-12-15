@@ -67,7 +67,7 @@ connectionList2.push([7, 6]);
 
 
 
-test('OCC(=O)O', () => {
+test('C(C(=O)(O))', () => {
     expect(al_smiles(atomsList2, connectionList2)).toBe("C(C(=O)(O))");
 });
 
@@ -112,6 +112,6 @@ connectionList3.push([6, 1]);
 
 
 
-test('OCC(=O)O', () => {
+test('O(S(O)(=O)(=O))', () => {
     expect(al_smiles(atomsList3, connectionList3)).toBe("O(S(O)(=O)(=O))");
 });
