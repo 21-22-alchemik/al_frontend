@@ -29,5 +29,7 @@
     },
     "eslint.validate": [
         "javascript"
-    ]
+    ],
+    "engines": { "node": ">=0.12.22.7" }
+
 }
