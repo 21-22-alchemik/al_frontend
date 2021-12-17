@@ -14,9 +14,9 @@ class Counter {
 
 const counter = new Counter();
 
-class Atom{
-    constructor(Name, Color, Valence=0, X=5, Y=5){
-        this.id = counter.atom();
+class Atom {
+    constructor(Name, Color, Valence = 0, X = 5, Y = 5) {
+        this.atomId = counter.atom();
         this.name = Name;
         this.color = Color;
         this.x = X;
@@ -28,25 +28,26 @@ class Atom{
         this.generate();
     }
     //dodawanie połączenia
-    newConnection(conn){
+    newConnection(conn) {
         /*if(this.connections.includes(conn))
 			this.connections[this.connections.indexOf(conn)].changeCount(1);
 		else*/
         this.connections.push(conn);
     }
-    /*removeConnection(conn){
-		console.log(conn);
-		console.log(this.connections);
-		this.connections.pop(this.connections.indexOf(conn));
-		console.log(this.connections);
-	}*/
+    removeConnection(conn){
+        //console.log(conn);
+        //console.log(this.connections);
+        this.connections.splice(this.connections.indexOf(conn), 1);
+        //console.log(this.connections);
+    }
     //generowanie obiektu
     generate(){
         var atom = document.createElement("DIV");
         atom.style.backgroundColor = this.color;
-        atom.innerHTML = this.name;
+        atom.innerHTML = `${this.name}<sub>${this.valence}</sub>`;
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
+        atom.id = "atom_" + this.atomId;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);
@@ -79,7 +80,7 @@ class Atom{
 
 class Connection {
     constructor(Parent1, Parent2, Count = 1) {
-        this.id = counter.connection();
+        this.connectionId = counter.connection();
         this.DOM = null;
         this.parent1 = Parent1;
         this.parent2 = Parent2;
@@ -94,6 +95,7 @@ class Connection {
     // wygenerowanie obiektu DOM
         var conn = document.createElement("DIV");
         conn.className = "connection" + this.count;
+        conn.id = "connection_" + this.connectionId;
         connsHolder.appendChild(conn);
         // podpięcie odnośnika do obiektu DOM
         this.DOM = conn;
@@ -101,10 +103,10 @@ class Connection {
         connectionMove(this);
     }
     delete() {
-        this.changeCount(-100);
+        //this.changeCount(-100);
         // usunięcie wpisu w rodzicach
-        // this.parent1.removeConnection(this);
-        // this.parent2.removeConnection(this);
+        this.parent1.removeConnection(this);
+        this.parent2.removeConnection(this);
         // usunięcie obiektu DOM
         // connsHolder.removeChild(this.DOM);
 
@@ -155,7 +157,7 @@ var connsList = new Array();
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA
 var btnCheck = document.getElementById("sprawdzZadanie");
-btnCheck.addEventListener("click", ()=> {
+btnCheck.addEventListener("click", () => {
     atomsList.forEach(elem => elem.check());
 });
 
@@ -168,28 +170,29 @@ var zIndexVal = 3;
 
 function dragElement(atom) {
     var elmnt = atom.DOM;
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    // przypisanie funkcji naciśnięcia klawisza myszki
+    var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+    //przypisanie funkcji naciśnięcia klawisza myszki
     elmnt.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
 
-        // z index +1
+        //z index +1
         if (elmnt.style.zIndex == "")
             elmnt.style.zIndex = zIndexVal++;
         else
-            elmnt.style.zIndex = parseInt(elmnt.style.zIndex) + 1 == zIndexVal ?
-                elmnt.style.zIndex :
-                zIndexVal++;
+            elmnt.style.zIndex = parseInt(elmnt.style.zIndex) + 1 == zIndexVal ? elmnt.style.zIndex : zIndexVal++;
 
-        // pozycja startowa myszy
+        //pozycja startowa myszy
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // funkcja przy puszczeniu klawisza myszki
+        //funkcja przy puszczeniu klawisza myszki
         document.onmouseup = closeDragElement;
-        // funkcja przy ruszaniu myszką
+        //funkcja przy ruszaniu myszką 
         document.onmousemove = elementDrag;
     }
 
@@ -197,7 +200,7 @@ function dragElement(atom) {
         e = e || window.event;
         e.preventDefault();
 
-        // stara i nowa pozycja myszki
+        //stara i nowa pozycja myszki
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
@@ -206,7 +209,7 @@ function dragElement(atom) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 
-        // zmiana wyświetlania wiązania
+        //zmiana wyświetlania wiązania
         atom.connections.forEach(conn => connectionMove(conn));
     }
 
@@ -215,62 +218,48 @@ function dragElement(atom) {
         document.onmouseup = null;
         document.onmousemove = null;
         //czy div jest w przestrzeni planszy
-        var restartNeeded = false;
-        if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2))<0){
-            elmnt.style.top="5px";
-            restartNeeded = true;
-        }
-        if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2)) > (window.innerHeight - 75 - 75)) {
-            elmnt.style.top = (window.innerHeight - 75 - 5 - 75) + "px";
-            restartNeeded = true;
-        }
-        if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2))<0){
-            elmnt.style.left="5px";
-            restartNeeded = true;
-        }
-        if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (window.innerWidth - 58 - 75)) {
-            elmnt.style.left = (window.innerWidth - 58 - 5 - 75) + "px";
-            restartNeeded = true;
-        }
-
-        if(restartNeeded){
+        if (parseInt(elmnt.style.top.substr(0, elmnt.style.top.length - 2)) < 0) {
+            elmnt.style.top = "5px";
             atom.connections.forEach(conn => connectionMove(conn));
         }
-
+        if (parseInt(elmnt.style.left.substr(0, elmnt.style.left.length - 2)) < 0) {
+            elmnt.style.left = "5px";
+            atom.connections.forEach(conn => connectionMove(conn));
+        }
         //popraw z-indexy
         zIndexReduction();
-    }  
+    }
 }
 
-function zIndexReduction(){
+function zIndexReduction() {
     var tab = new Array();
-    atomsList.forEach(elem => tab.push([elem.DOM.style.zIndex,elem]));
+    atomsList.forEach(elem => tab.push([elem.DOM.style.zIndex, elem]));
     tab = tab.sort();
-    for(var i = 3; i < tab.length+3;i++){
-        tab[i-3][1].DOM.style.zIndex=i;
+    for (var i = 3; i < tab.length + 3; i++) {
+        tab[i - 3][1].DOM.style.zIndex = i;
     }
     zIndexVal = i;
 }
 
-function connectionMove(elem){
-    if(elem.count>0){
+function connectionMove(elem) {
+    if (elem.count > 0) {
         var x1, x2, y1, y2;
         var div1 = elem.parent1;
         var div2 = elem.parent2;
 
-        y1 = parseInt(div1.DOM.style.top.substr(0, div1.DOM.style.top.length-2))+37;
-        x1 = parseInt(div1.DOM.style.left.substr(0, div1.DOM.style.left.length-2))+37;
-        y2 = parseInt(div2.DOM.style.top.substr(0, div2.DOM.style.top.length-2))+37;
-        x2 = parseInt(div2.DOM.style.left.substr(0, div2.DOM.style.left.length-2))+37;
-	
-        var angle = Math.atan2((y1-y2),(x1-x2))*(180/Math.PI);
-        var length = Math.sqrt(((x2-x1) * (x2-x1)) + ((y2-y1) * (y2-y1)));
+        y1 = parseInt(div1.DOM.style.top.substr(0, div1.DOM.style.top.length - 2)) + 37;
+        x1 = parseInt(div1.DOM.style.left.substr(0, div1.DOM.style.left.length - 2)) + 37;
+        y2 = parseInt(div2.DOM.style.top.substr(0, div2.DOM.style.top.length - 2)) + 37;
+        x2 = parseInt(div2.DOM.style.left.substr(0, div2.DOM.style.left.length - 2)) + 37;
+
+        var angle = Math.atan2((y1 - y2), (x1 - x2)) * (180 / Math.PI);
+        var length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
         var cx = ((x1 + x2) / 2) - (length / 2);
         var cy = ((y1 + y2) / 2) - (elem.DOM.offsetHeight / 2);
 
         elem.DOM.style.top = cy + "px";
         elem.DOM.style.left = cx + "px";
-        elem.DOM.style.width = length +"px"; 
-        elem.DOM.style.transform="rotate(" + angle + "deg)";
+        elem.DOM.style.width = length + "px";
+        elem.DOM.style.transform = "rotate(" + angle + "deg)";
     }
 }

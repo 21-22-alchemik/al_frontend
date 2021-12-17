@@ -53,7 +53,7 @@ function checkMendelejew(){
 
     if(width < 1600 || height < 830)
         hold.style.transform = "scale("+Math.min(width/1600,height/830)+")";
-    else if(holder.style.transform != "scale(1)")
+    else if(hold.style.transform != "scale(1)")
         hold.style.transform = "scale(1)";
 }
 

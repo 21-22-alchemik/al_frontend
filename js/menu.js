@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 //sprawdzanie rozmiaru okan przegladarki
 function checkSize() {
     //wczytanie wartosci okna przegladarki

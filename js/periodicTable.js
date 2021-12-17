@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const periodicTable = [
-    {"atomicNumber":1,"symbol":"H","name":"Wodór","atomicMass":"1.00794(4)","hexColor":"#000000","valences":[1],"placement":[1, 1]},
+    {"atomicNumber":1,"symbol":"H","name":"Wodór","atomicMass":"1.00794(4)","hexColor":"#404040","valences":[1],"placement":[1, 1]},
     {"atomicNumber":2,"symbol":"He","name":"Hel","atomicMass":"4.002602(2)","hexColor":"#D9FFFF","valences":[0],"placement":[1, 18]},
     {"atomicNumber":3,"symbol":"Li","name":"Lit","atomicMass":"6.941(2)","hexColor":"#CC80FF","valences":[1],"placement":[2, 1]},
     {"atomicNumber":4,"symbol":"Be","name":"Beryl","atomicMass":"9.012182(3)","hexColor":"#C2FF00","valences":[2],"placement":[2, 2]},
@@ -108,14 +108,14 @@ const periodicTable = [
     {"atomicNumber":106,"symbol":"Sg","name":"Seaborg","atomicMass":"271","hexColor":"#D90045","valences":[6],"placement":[7, 6]},
     {"atomicNumber":107,"symbol":"Bh","name":"Bohr","atomicMass":"272","hexColor":"#E00038","valences":[7],"placement":[7, 7]},
     {"atomicNumber":108,"symbol":"Hs","name":"Has","atomicMass":"270","hexColor":"#E6002E","valences":[8],"placement":[7, 8]},
-    {"atomicNumber":109,"symbol":"Mt","name":"Meitner","atomicMass":"276","hexColor":"#EB0026","valences":[-1],"placement":[7, 9]},
-    {"atomicNumber":110,"symbol":"Ds","name":"Darmsztadt","atomicMass":"281","hexColor":"#AF60F4","valences":[-1],"placement":[7, 10]},
-    {"atomicNumber":111,"symbol":"Rg","name":"Roentgen","atomicMass":"280","hexColor":"#802BD3","valences":[-1],"placement":[7, 11]},
-    {"atomicNumber":112,"symbol":"Cn","name":"Kopernik","atomicMass":"285","hexColor":"#7200BB","valences":[-1],"placement":[7, 12]},
-    {"atomicNumber":113,"symbol":"Nh","name":"Nihon","atomicMass":"284","hexColor":"#5A8E90","valences":[-1],"placement":[7, 13]},
-    {"atomicNumber":114,"symbol":"Fl","name":"Flerow","atomicMass":"289","hexColor":"#22C2F1","valences":[-1],"placement":[7, 14]},
-    {"atomicNumber":115,"symbol":"Mc","name":"Moskow","atomicMass":"289","hexColor":"#C42213","valences":[-1],"placement":[7, 15]},
-    {"atomicNumber":116,"symbol":"Lv","name":"Liwermor","atomicMass":"293","hexColor":"#252CBC","valences":[-1],"placement":[7, 16]},
-    {"atomicNumber":117,"symbol":"Ts","name":"Tenes","atomicMass":"294","hexColor":"#823A7C","valences":[-1],"placement":[7, 17]},
-    {"atomicNumber":118,"symbol":"Og","name":"Oganeson","atomicMass":"294","hexColor":"#FFFFFF","valences":[-1],"placement":[7, 18]}
+    {"atomicNumber":109,"symbol":"Mt","name":"Meitner","atomicMass":"276","hexColor":"#EB0026","valences":[0],"placement":[7, 9]},
+    {"atomicNumber":110,"symbol":"Ds","name":"Darmsztadt","atomicMass":"281","hexColor":"#AF60F4","valences":[0],"placement":[7, 10]},
+    {"atomicNumber":111,"symbol":"Rg","name":"Roentgen","atomicMass":"280","hexColor":"#802BD3","valences":[0],"placement":[7, 11]},
+    {"atomicNumber":112,"symbol":"Cn","name":"Kopernik","atomicMass":"285","hexColor":"#7200BB","valences":[0],"placement":[7, 12]},
+    {"atomicNumber":113,"symbol":"Nh","name":"Nihon","atomicMass":"284","hexColor":"#5A8E90","valences":[0],"placement":[7, 13]},
+    {"atomicNumber":114,"symbol":"Fl","name":"Flerow","atomicMass":"289","hexColor":"#22C2F1","valences":[0],"placement":[7, 14]},
+    {"atomicNumber":115,"symbol":"Mc","name":"Moskow","atomicMass":"289","hexColor":"#C42213","valences":[0],"placement":[7, 15]},
+    {"atomicNumber":116,"symbol":"Lv","name":"Liwermor","atomicMass":"293","hexColor":"#252CBC","valences":[0],"placement":[7, 16]},
+    {"atomicNumber":117,"symbol":"Ts","name":"Tenes","atomicMass":"294","hexColor":"#823A7C","valences":[0],"placement":[7, 17]},
+    {"atomicNumber":118,"symbol":"Og","name":"Oganeson","atomicMass":"294","hexColor":"#FFFF80","valences":[0],"placement":[7, 18]}
 ];
