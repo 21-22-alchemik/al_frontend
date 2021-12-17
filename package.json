@@ -30,9 +30,8 @@
     "eslint.validate": [
         "javascript"
     ],
-    "engines": { "node": ">=0.12.22.7" }
+    "engines": { "node": ">=0.12.22.7" },
 
-}
     "stylelint": {
         "extends": "@company/stylelint-config"
     }
