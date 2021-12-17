@@ -1,5 +1,7 @@
 //credit: https://codereview.stackexchange.com/a/179484, thanks!
 
+import periodicTable from "./periodicTable.js";
+
 function find_closing_bracket_match_index(str) { 
 
     let depth = 0;
@@ -28,7 +30,7 @@ function remove_redundant_brackets(smiles) {
 }
 
 
-function al_smiles(atomsList, connectionList) {
+function molecule_to_smiles(atomsList, connectionList) {
     var is_cyclic = false;
     var atomsGraph = new Array();
     var signs = ["", "=", "#"];
@@ -138,4 +140,11 @@ function al_smiles(atomsList, connectionList) {
     }
 }
 
-module.exports = al_smiles; // eslint-disable-line no-undef
+function smiles_to_molecule(smiles){
+    for(var i=0;i<smiles.length;i++){
+        if(smiles[i])
+    }   
+}
+
+
+export default {molecule_to_smiles, smiles_to_molecule}; // eslint-disable-line no-undef

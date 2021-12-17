@@ -119,3 +119,5 @@ const periodicTable = [
     {"atomicNumber":117,"symbol":"Ts","name":"Tenes","atomicMass":"294","hexColor":"#823A7C","valences":[0],"placement":[7, 17]},
     {"atomicNumber":118,"symbol":"Og","name":"Oganeson","atomicMass":"294","hexColor":"#FFFF80","valences":[0],"placement":[7, 18]}
 ];
+
+module.exports = periodicTable; //eslint-disable-line no-undef
