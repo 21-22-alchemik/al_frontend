@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.3
+        uses: 21-22-alchemik/jest-action@fcbd4d6221ff21066040c2a8f11b5ed1b790a97c
         with:
           jestArgs: .github/tests/my.test.js
 env:
