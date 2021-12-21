@@ -223,8 +223,8 @@ test('AtomDOM', () => {
     connsList = new Array();
     //comment
     atomsList.push(new Atom("H9", "black", 1));
-    expect(atomsList[0].DOM.style.left).toBe(5);
-    expect(atomsList[0].DOM.style.top).toBe(5);
+    expect(atomsList[0].DOM.style.left).toBe("5px");
+    expect(atomsList[0].DOM.style.top).toBe("5px");
 });
 
 //custom position
@@ -233,6 +233,6 @@ test('CustomAtomDOM', () => {
     //comment
     connsList = new Array();
     atomsList.push(new Atom("H10","black",1,10,20));
-    expect(atomsList[0].DOM.style.left).toBe(10);
-    expect(atomsList[0].DOM.style.top).toBe(20);
+    expect(atomsList[0].DOM.style.left).toBe("10px");
+    expect(atomsList[0].DOM.style.top).toBe("20px");
 });
