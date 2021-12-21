@@ -32,6 +32,10 @@ jobs:
         with:
           jestArgs: 
             - .github/tests/my.test.js
+      - name: Jest Atom and Connection check
+        uses: stefanoeb/jest-action@1.0.3
+        with:
+          jestArgs: 
             - .github/tests/atoms.test.js
 env:
   LINTER_RULES_PATH: /
