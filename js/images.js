@@ -9,12 +9,30 @@ function generateCanvas(){
     var ctx = canvas.getContext("2d");
     var maxW = 0;
     var maxH = 0;
-    var minW = connsList[0].parent1.x -5;
-    var minH = connsList[0].parent1.y -5;
-    var connectionsArray = new Array();
-
+    var minW = atomsList[0].x -5;
+    var minH = atomsList[0].y -5;
 
     //znalezienie maxa i mina żeby ustawić rozmiar
+    for (let i = 0; i < atomsList.length; i++) {
+        let element = atomsList[i];
+        let fx = element.x + 37;
+        let fy = element.y + 37;
+        let count = element.count;
+        
+        if(fx>maxW)
+            maxW = fx + 38 + 5;
+        else if(fx - 37 - 5 < minW)
+            minW = fx - 37 - 5;
+
+        if(fy>maxH)
+            maxH = fy + 38 + 5;
+        else if(fy - 37 - 5 < minH)
+            minH = fy - 37 - 5;
+
+    }
+    //zoptymalizować żeby było też minimum i ogólnie był związek 
+    canvas.width=maxW - minW;
+    canvas.height=maxH - minH;
     for (let i = 0; i < connsList.length; i++) {
         let element = connsList[i];
         let fx = element.parent1.x + 37;
@@ -22,39 +40,6 @@ function generateCanvas(){
         let sx = element.parent2.x + 37;
         let sy = element.parent2.y + 37;
         let count = element.count;
-        connectionsArray.push([fx,fy,sx,sy,count]);
-        
-        if(fx>maxW)
-            maxW = fx + 38 + 5;
-        else if(fx - 37 - 5 < minW)
-            minW = fx - 37 - 5;
-
-        if(sx>maxW)
-            maxW = sx + 38 + 5;
-        else if(sx - 37 - 5 < minW)
-            minW = sx - 37 - 5;
-
-        if(fy>maxH)
-            maxH = fy + 38 + 5;
-        else if(fy - 37 - 5 < minH)
-            minH = fy - 37 - 5;
-
-        if(sy>maxH)
-            maxH = sy + 38 + 5;
-        else if(sy - 37 - 5 < minH)
-            minH = sy - 37 - 5;
-
-    }
-    //zoptymalizować żeby było też minimum i ogólnie był związek 
-    canvas.width=maxW - minW;
-    canvas.height=maxH - minH;
-    for (let i = 0; i < connectionsArray.length; i++) {
-        let element = connectionsArray[i];
-        let fx = element[0];
-        let fy = element[1];
-        let sx = element[2];
-        let sy = element[3];
-        let count = element[4];
         ctx.beginPath();
 
 
