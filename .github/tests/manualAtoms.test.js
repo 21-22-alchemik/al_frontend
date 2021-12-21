@@ -134,10 +134,10 @@ var zIndexVal = 3;
 //testing adding atoms
 
 test('AtomAdd', () => {
-    atomsList.push(new Atom("H", "black", 1));
+    atomsList.push(new Atom("H1", "black", 1));
     expect(atomsList.length).toBe(1);
     expect(atomsHolder.children.length).toBe(1);
-    atomsList.push(new Atom("H", "black", 1));
+    atomsList.push(new Atom("H2", "black", 1));
     expect(atomsList.length).toBe(2);
     expect(atomsHolder.children.length).toBe(2);
 });
@@ -147,8 +147,8 @@ test('AtomAdd', () => {
 
 
 test('ConnectionAdd', () => {
-    atomsList.push(new Atom("H", "black", 1));
-    atomsList.push(new Atom("H", "black", 1));
+    atomsList.push(new Atom("H3", "black", 1));
+    atomsList.push(new Atom("H4", "black", 1));
     connection(atomsList[0],atomsList[1]);
 
     expect(connsList.length).toBe(1);
@@ -158,18 +158,48 @@ test('ConnectionAdd', () => {
     expect(atomsList[1].check()).toBe(0);
 });
 
+//second connection
+
+test('SecondConnectionAdd', () => {
+    atomsList.push(new Atom("H5", "black", 1));
+    atomsList.push(new Atom("H6", "black", 1));
+    connection(atomsList[0],atomsList[1]);
+    connection(atomsList[0],atomsList[1]);
+
+    expect(connsList.length).toBe(1);
+    expect(connsHolder.children.length).toBe(1);
+    expect(connsList[0].count).toBe(2);
+    expect(atomsList[0].check()).toBe(1);
+    expect(atomsList[1].check()).toBe(1);
+});
+
+//third connection - reversed
+test('SecondConnectionAdd', () => {
+    atomsList.push(new Atom("H7", "black", 1));
+    atomsList.push(new Atom("H8", "black", 1));
+    connection(atomsList[0],atomsList[1]);
+    connection(atomsList[0],atomsList[1]);
+    connection(atomsList[1],atomsList[0]);
+
+    expect(connsList.length).toBe(1);
+    expect(connsHolder.children.length).toBe(1);
+    expect(connsList[0].count).toBe(3);
+    expect(atomsList[0].check()).toBe(2);
+    expect(atomsList[1].check()).toBe(2);
+});
+
 
 //atoms position test
 //default position
 test('AtomDOM', () => {
-    atomsList.push(new Atom("H", "black", 1));
-    expect(atomsList[0].DOM.offsetLeft).toBe(5);
-    expect(atomsList[0].DOM.offsetTop).toBe(5);
+    atomsList.push(new Atom("H9", "black", 1));
+    expect(atomsList[0].DOM.style.left).toBe(5);
+    expect(atomsList[0].DOM.style.top).toBe(5);
 });
 
 //custom position
 test('CustomAtomDOM', () => {
-    atomsList.push(new Atom("H","black",1,10,20));
-    expect(atomsList[0].DOM.offsetLeft).toBe(10);
-    expect(atomsList[0].DOM.offsetTop).toBe(20);
+    atomsList.push(new Atom("H10","black",1,10,20));
+    expect(atomsList[0].DOM.style.left).toBe(10);
+    expect(atomsList[0].DOM.style.top).toBe(20);
 });
