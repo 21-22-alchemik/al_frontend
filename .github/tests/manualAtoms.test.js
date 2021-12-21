@@ -132,20 +132,15 @@ var connsList = new Array();
 var zIndexVal = 3;
 
 
-atomsHolder.innerHTML="";
-atomsList = new Array();
-connsHolder.innerHTML="";
-connsList = new Array();
-
 //testing adding atoms
 atomsList.push(new Atom("H", "black", 1));
 
 test('AtomAdd', () => {
-    expect(atomsList.length).toBe(1);
+    expect(atomsList.length).toEqual(1);
 });
 
 test('AtomAddDOM', () => {
-    expect(atomsHolder.children.length).toBe(1);
+    expect(atomsHolder.children.length).toEqual(1);
 });
 
 atomsList.push(new Atom("H", "black", 1));
