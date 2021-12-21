@@ -138,8 +138,11 @@ test('AtomAdd', () => {
     expect(atomsList.length).toBe(1);
     expect(atomsHolder.children.length).toBe(1);
     atomsList.push(new Atom("H2", "black", 1));
+    //comment
     expect(atomsList.length).toBe(2);
+    //comment
     expect(atomsHolder.children.length).toBe(2);
+    //comment
 });
 
 
@@ -152,8 +155,11 @@ test('ConnectionAdd', () => {
     connection(atomsList[0],atomsList[1]);
 
     expect(connsList.length).toBe(1);
+    //comment
     expect(connsHolder.children.length).toBe(1);
+    //comment
     expect(connsList[0].count).toBe(1);
+    //comment
     expect(atomsList[0].check()).toBe(0);
     expect(atomsList[1].check()).toBe(0);
 });
@@ -167,8 +173,10 @@ test('SecondConnectionAdd', () => {
     connection(atomsList[0],atomsList[1]);
 
     expect(connsList.length).toBe(1);
+    //comment
     expect(connsHolder.children.length).toBe(1);
     expect(connsList[0].count).toBe(2);
+    //comment
     expect(atomsList[0].check()).toBe(1);
     expect(atomsList[1].check()).toBe(1);
 });
@@ -178,13 +186,18 @@ test('SecondConnectionAdd', () => {
     atomsList.push(new Atom("H7", "black", 1));
     atomsList.push(new Atom("H8", "black", 1));
     connection(atomsList[0],atomsList[1]);
+    //comment
     connection(atomsList[0],atomsList[1]);
+    //comment
     connection(atomsList[1],atomsList[0]);
+    //comment
 
     expect(connsList.length).toBe(1);
     expect(connsHolder.children.length).toBe(1);
+    //comment
     expect(connsList[0].count).toBe(3);
     expect(atomsList[0].check()).toBe(2);
+    //comment
     expect(atomsList[1].check()).toBe(2);
 });
 
