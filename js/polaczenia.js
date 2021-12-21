@@ -143,27 +143,6 @@ var connsHolder = document.getElementById("connsHolder");
 var atomsList = new Array();
 var connsList = new Array();
 
-// Atomy
-//atomsList.push(new Atom("H", "rebeccapurple", 1));
-//atomsList.push(new Atom("O", "forestgreen", 2, 85, 5));
-//atomsList.push(new Atom("H", "rebeccapurple", 1, 5, 85));
-
-// wiązania
-//connection(atomsList[0], atomsList[1]);
-//connection(atomsList[0], atomsList[1]);
-//connection(atomsList[1], atomsList[2]);
-
-// atomsList.forEach(elem => elem.check());
-//WALIDACJA
-var btnCheck = document.getElementById("sprawdzZadanie");
-btnCheck.addEventListener("click", ()=> {
-    atomsList.forEach(elem => elem.check());
-});
-
-//tryb usuwania połączeń
-//conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
-//connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
-
 
 var zIndexVal = 3;
 

@@ -30,7 +30,9 @@ jobs:
       - name: Run Jest
         uses: stefanoeb/jest-action@1.0.3
         with:
-          jestArgs: .github/tests/atoms.test.js
+          jestArgs: 
+            - .github/tests/my.test.js
+            - .github/tests/atoms.test.js
 env:
   LINTER_RULES_PATH: /
   JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.yml

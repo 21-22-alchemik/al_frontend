@@ -161,5 +161,11 @@
 		<script type="text/javascript" src="./js/extreme.js"></script>
 		<script type="text/javascript" src="./js/images.js"></script>
 
+		<script>
+			var btnCheck = document.getElementById("sprawdzZadanie");
+			btnCheck.addEventListener("click", ()=> {
+				atomsList.forEach(elem => elem.check());
+			});
+		</script>
 </body>
 </html>
