@@ -1,5 +1,5 @@
 document.body.innerHTML = '<div id="atomsHolder" class="atomsHolder"></div><div id="connsHolder" class="connsHolder"></div>';
-var Classes = require("../../js/modules/classes");
+var Classes = require("../../js/polaczenia");
 //import {counter, Atom, Connection, connection, atomsList, atomsHolder, connsList, connsHolder, zIndexVal} from '../../js/modules/classes';
 
 Classes.atomsHolder.innerHTML="";
