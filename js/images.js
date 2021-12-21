@@ -9,11 +9,12 @@ function generateCanvas(){
     var ctx = canvas.getContext("2d");
     var maxW = 0;
     var maxH = 0;
-
+    var minW = 0;
+    var minH = 0;
     var connectionsArray = new Array();
 
 
-    //znalezienie maxa żeby ustawić rozmiar
+    //znalezienie maxa i mina żeby ustawić rozmiar
     for (let i = 0; i < connsList.length; i++) {
         let element = connsList[i];
         let fx = element.parent1.x + 37;
@@ -25,6 +26,8 @@ function generateCanvas(){
         
         if(fx>maxW)
             maxW = fx + 43;
+        else if(fx < minW)
+            minW = fx - 5;
         if(sx>maxW)
             maxW = sx + 43;
 
@@ -166,5 +169,12 @@ function generateCanvas(){
         ctx.lineWidth=1;
         ctx.strokeText(symbol, x-ctx.measureText(symbol).width/2, y+10);        
     }
-    document.getElementById("canvas").appendChild(canvas);
+
+    return canvas;
 }
+
+function getPNG(){
+    var canvas = generateCanvas();
+}
+
+function getJPG(){}
