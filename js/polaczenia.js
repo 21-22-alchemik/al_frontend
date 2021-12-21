@@ -47,6 +47,7 @@ class Atom{
         atom.innerHTML = this.name;
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
+        atom.style.zIndex = zIndexVal++;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);

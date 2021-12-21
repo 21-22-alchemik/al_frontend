@@ -9,8 +9,8 @@ function generateCanvas(){
     var ctx = canvas.getContext("2d");
     var maxW = 0;
     var maxH = 0;
-    var minW = 0;
-    var minH = 0;
+    var minW = connsList[0].parent1.x -5;
+    var minH = connsList[0].parent1.y -5;
     var connectionsArray = new Array();
 
 
@@ -25,21 +25,29 @@ function generateCanvas(){
         connectionsArray.push([fx,fy,sx,sy,count]);
         
         if(fx>maxW)
-            maxW = fx + 43;
-        else if(fx < minW)
-            minW = fx - 5;
+            maxW = fx + 38 + 5;
+        else if(fx - 37 - 5 < minW)
+            minW = fx - 37 - 5;
+
         if(sx>maxW)
-            maxW = sx + 43;
+            maxW = sx + 38 + 5;
+        else if(sx - 37 - 5 < minW)
+            minW = sx - 37 - 5;
 
         if(fy>maxH)
-            maxH = fy + 43;
+            maxH = fy + 38 + 5;
+        else if(fy - 37 - 5 < minH)
+            minH = fy - 37 - 5;
+
         if(sy>maxH)
-            maxH = sy + 43;
+            maxH = sy + 38 + 5;
+        else if(sy - 37 - 5 < minH)
+            minH = sy - 37 - 5;
 
     }
     //zoptymalizować żeby było też minimum i ogólnie był związek 
-    canvas.width=maxW;
-    canvas.height=maxH;
+    canvas.width=maxW - minW;
+    canvas.height=maxH - minH;
     for (let i = 0; i < connectionsArray.length; i++) {
         let element = connectionsArray[i];
         let fx = element[0];
@@ -49,17 +57,17 @@ function generateCanvas(){
         let count = element[4];
         ctx.beginPath();
 
+
+        ctx.moveTo(fx - minW,fy - minH);
+        ctx.lineTo(sx - minW,sy - minH);
+
         switch(count){
         case 1:
             ctx.lineWidth=5;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke();
             break;
         case 2:
             ctx.lineWidth=15;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             ctx.lineWidth = 5;
@@ -68,8 +76,6 @@ function generateCanvas(){
             break;
         case 3:
             ctx.lineWidth=25;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = 15; j>0; j-=10){
@@ -79,8 +85,6 @@ function generateCanvas(){
             break;
         case 4:
             ctx.lineWidth=35;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = 25; j>0; j-=10){
@@ -90,8 +94,6 @@ function generateCanvas(){
             break;
         case 5:
             ctx.lineWidth=45;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = 35; j>0; j-=10){
@@ -101,8 +103,6 @@ function generateCanvas(){
             break;
         case 6:
             ctx.lineWidth=55;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = 45; j>0; j-=10){
@@ -112,8 +112,6 @@ function generateCanvas(){
             break;
         case 7:
             ctx.lineWidth=65;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = 55; j>0; j-=10){
@@ -123,8 +121,6 @@ function generateCanvas(){
             break;
         case 8:
             ctx.lineWidth=70;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = (70-(140/15)); j>0; j-=(140/15)){
@@ -134,8 +130,6 @@ function generateCanvas(){
             break;
         case 9:
             ctx.lineWidth=70;
-            ctx.moveTo(fx,fy);
-            ctx.lineTo(sx,sy);
             ctx.stroke(); 
             ctx.globalCompositeOperation="xor";
             for(var j = (70-(140/17)); j>0; j-=(140/17)){
@@ -154,8 +148,8 @@ function generateCanvas(){
 
     for (let i = 0; i < atomsList.length; i++) {
         let element = atomsList[i];
-        let x = element.x + 37.5;
-        let y = element.y + 37.5;
+        let x = element.x + 37.5 - minW;
+        let y = element.y + 37.5 - minH;
         let color = element.color;
         ctx.beginPath();
         ctx.arc(x,y,37.5,0,2 * Math.PI);
@@ -173,8 +167,10 @@ function generateCanvas(){
     return canvas;
 }
 
-function getPNG(){
+function getImage(type){
     var canvas = generateCanvas();
+    var link = document.createElement("a");
+    link.download = "structure."+type;
+    link.href = canvas.toDataURL();
+    link.click();
 }
-
-function getJPG(){}

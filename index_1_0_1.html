@@ -44,8 +44,6 @@
 			</div>
 			<div class="menuPanel">
 				<div class="zakladkaMenu" id="zakladkaMenu">
-					
-					<button onclick="generateCanvas()">CANVAS</button>
 					<div class="pdf przyciskiMenu">
 						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn">
 							<span>Konwertuj do PDF</span>
@@ -59,8 +57,14 @@
 						</button>
 					</div>
 					<div class="save przyciskiMenu">
-						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
-							<span>Zapisz</span>
+						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('jpg')">
+							<span>Zapisz jako JPG</span>
+							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
+						</button>
+					</div>
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('png')">
+							<span>Zapisz jako PNG</span>
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
