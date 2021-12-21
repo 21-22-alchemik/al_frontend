@@ -1,5 +1,5 @@
-const polaczenia = require('../../js/polaczenia.js')
 document.body.innerHTML = '<div id="atomsHolder" class="atomsHolder"></div><div id="connsHolder" class="connsHolder"></div>';
+const polaczenia = require('../../js/polaczenia.js')
 
 atomsHolder.innerHTML="";
 atomsList = new Array();
