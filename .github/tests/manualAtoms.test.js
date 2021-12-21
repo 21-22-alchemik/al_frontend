@@ -134,6 +134,8 @@ var zIndexVal = 3;
 //testing adding atoms
 
 test('AtomAdd', () => {
+    atomsList = new Array();
+    connsList = new Array();
     atomsList.push(new Atom("H1", "black", 1));
     expect(atomsList.length).toBe(1);
     expect(atomsHolder.children.length).toBe(1);
@@ -150,6 +152,10 @@ test('AtomAdd', () => {
 
 
 test('ConnectionAdd', () => {
+    atomsList = new Array();
+    //comment
+    //comment
+    connsList = new Array();
     atomsList.push(new Atom("H3", "black", 1));
     atomsList.push(new Atom("H4", "black", 1));
     connection(atomsList[0],atomsList[1]);
@@ -167,6 +173,10 @@ test('ConnectionAdd', () => {
 //second connection
 
 test('SecondConnectionAdd', () => {
+    atomsList = new Array();
+    //comment
+    connsList = new Array();
+    //comment
     atomsList.push(new Atom("H5", "black", 1));
     atomsList.push(new Atom("H6", "black", 1));
     connection(atomsList[0],atomsList[1]);
@@ -183,6 +193,10 @@ test('SecondConnectionAdd', () => {
 
 //third connection - reversed
 test('SecondConnectionAdd', () => {
+    //comment
+    atomsList = new Array();
+    //comment
+    connsList = new Array();
     atomsList.push(new Atom("H7", "black", 1));
     atomsList.push(new Atom("H8", "black", 1));
     connection(atomsList[0],atomsList[1]);
@@ -205,6 +219,9 @@ test('SecondConnectionAdd', () => {
 //atoms position test
 //default position
 test('AtomDOM', () => {
+    atomsList = new Array();
+    connsList = new Array();
+    //comment
     atomsList.push(new Atom("H9", "black", 1));
     expect(atomsList[0].DOM.style.left).toBe(5);
     expect(atomsList[0].DOM.style.top).toBe(5);
@@ -212,6 +229,9 @@ test('AtomDOM', () => {
 
 //custom position
 test('CustomAtomDOM', () => {
+    atomsList = new Array();
+    //comment
+    connsList = new Array();
     atomsList.push(new Atom("H10","black",1,10,20));
     expect(atomsList[0].DOM.style.left).toBe(10);
     expect(atomsList[0].DOM.style.top).toBe(20);
