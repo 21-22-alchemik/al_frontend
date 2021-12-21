@@ -91,7 +91,7 @@ class Connection {
         // podpięcie odnośnika do obiektu DOM
         this.DOM = conn;
         // utworzenie fizycznego połączenia
-        connectionMove(this);
+        //connectionMove(this);
     }
     delete() {
         this.changeCount(-100);
