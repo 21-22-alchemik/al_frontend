@@ -106,7 +106,7 @@ class Connection {
             this.delete();
         else
             this.DOM.classList = "connection" + this.count;
-        connectionMove(this);
+        //connectionMove(this);
     }
 }
 
