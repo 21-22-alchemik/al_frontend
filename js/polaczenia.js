@@ -160,9 +160,9 @@ btnCheck.addEventListener("click", ()=> {
     atomsList.forEach(elem => elem.check());
 });
 
-// tryb usuwania połączeń
-// conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
-// connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
+//tryb usuwania połączeń
+//conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
+//connection(document.getElementById("moving1"),document.getElementById("connection1"),document.getElementById("moving2"));
 
 
 var zIndexVal = 3;
