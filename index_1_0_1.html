@@ -17,13 +17,12 @@
 </head>
 
 <body onload="checkSize()">
-	<!-- pomocniczy div dla exportu danych do pdf -->
-	<div id="wizualizacjaDanych">
-		<div id="atomsHolder" class="atomsHolder">
-		</div>
-		<div id="connsHolder" class="connsHolder">
-		</div>
-	</div>
+
+	<!-- Holdery atomów i wiązań -->
+	<div id="atomsHolder" class="atomsHolder"></div>
+	<div id="connsHolder" class="connsHolder"></div>
+	<div id="canvas"></div>
+
 	<!-- Menu i panel dolny-->
 	<div>
 		<!-- Panel dolny -->
@@ -69,8 +68,14 @@
 						</button>
 					</div>
 					<div class="save przyciskiMenu">
-						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
-							<span>Zapisz</span>
+						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('jpg')">
+							<span>Zapisz jako JPG</span>
+							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
+						</button>
+					</div>
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('png')">
+							<span>Zapisz jako PNG</span>
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
@@ -182,6 +187,6 @@
 		<script type="text/javascript" src="./js/editButtons.js"></script>
 		<script type="text/javascript" src="./js/walidacja.js"></script>
         <script type="text/javascript" src="./js/pdfExport.js"></script>
-
+		<script type="text/javascript" src="./js/images.js"></script>
 </body>
 </html>
