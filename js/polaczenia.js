@@ -48,6 +48,7 @@ class Atom {
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
         atom.id = "atom_" + this.atomId;
+        atom.style.zIndex = zIndexVal;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);
@@ -234,7 +235,7 @@ function dragElement(atom) {
 function zIndexReduction() {
     var tab = new Array();
     atomsList.forEach(elem => tab.push([elem.DOM.style.zIndex, elem]));
-    tab = tab.sort();
+    tab = tab.sort(function(a,b) { return parseInt(a) - parseInt(b); });
     for (var i = 3; i < tab.length + 3; i++) {
         tab[i - 3][1].DOM.style.zIndex = i;
     }

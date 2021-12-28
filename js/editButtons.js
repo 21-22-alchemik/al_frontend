@@ -12,14 +12,6 @@ var panelEnabled = true;
 var firstElementPicked = false;
 var lastPicked = null;
 
-atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 165, 5));
-atomsList.push(new Atom("C", getColorBySymbol("C"), 4, 250, 120));
-atomsList.push(new Atom("N", getColorBySymbol("N"), 3, 85, 165));
-connection(atomsList[0], atomsList[1]);
-connection(atomsList[1], atomsList[2]);
-connection(atomsList[1], atomsList[2]);
-connection(atomsList[1], atomsList[2]);
-
 //#region CLICK HANDLING
 addConnection.addEventListener("click", () => {
     if(panelEnabled)
@@ -234,6 +226,8 @@ function reduceAtomIndices()
             item.atomId = index;
         }
     });
+
+    zIndexReduction();
 }
 
 function movedFewPixels(position1, position2)
