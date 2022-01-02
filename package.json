@@ -18,20 +18,16 @@
     },
     "homepage": "https://github.com/21-22-alchemik/al_frontend#readme",
     "dependencies": {
-        "eslint-plugin-css-modules": "^2.11.0",
-        "jest": "^25.1.0"
+        "eslint-plugin-css-modules": "^2.11.0"
     },
     "devDependencies": {
         "eslint": "^8.3.0",
         "htmlhintrc": "^1.0.1",
+        "jest": "^25.5.4",
         "stylelint": "^14.1.0",
         "stylelint-config-standard": "^24.0.0"
     },
     "eslint.validate": [
         "javascript"
-    ],
-
-    "stylelint": {
-        "extends": "@company/stylelint-config"
-    }
+    ]
 }
