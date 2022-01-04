@@ -48,7 +48,7 @@ class Atom {
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
         atom.id = "atom_" + this.atomId;
-        atom.style.zIndex = zIndexVal;
+        atom.style.zIndex = zIndexVal++;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);
@@ -269,3 +269,9 @@ function connectionMove(elem) {
         elem.DOM.style.transform = "rotate(" + angle + "deg)";
     }
 }
+
+module.exports.TestAtom = Atom; // eslint-disable-line no-undef
+module.exports.TestConnection = Connection; // eslint-disable-line no-undef
+module.exports.connection = connection; // eslint-disable-line no-undef
+module.exports.atomsList = atomsList; // eslint-disable-line no-undef
+module.exports.connsList = connsList; // eslint-disable-line no-undef

@@ -35,5 +35,8 @@
     },
     "stylelint": {
         "extends": "@company/stylelint-config"
+    },
+    "jest": {
+        "testEnvironment": "jsdom"
     }
 }
