@@ -1,4 +1,4 @@
-const al_smiles = require('../../js/al_smiles.js')
+const al_smiles = require('../../js/al_smiles.js').default
 
 
 atomsList = new Array();

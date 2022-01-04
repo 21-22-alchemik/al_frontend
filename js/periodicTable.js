@@ -120,4 +120,6 @@ const periodicTable = [
     {"atomicNumber":118,"symbol":"Og","name":"Oganeson","atomicMass":"294","hexColor":"#FFFF80","valences":[0],"placement":[7, 18]}
 ];
 
-module.exports = periodicTable; //eslint-disable-line no-undef
+//module.exports = periodicTable; //eslint-disable-line no-undef
+// export default periodicTable; //eslint-disable-line no-undef
+export  default periodicTable ;
