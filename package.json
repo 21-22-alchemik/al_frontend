@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/21-22-alchemik/al_frontend#readme",
     "dependencies": {
+        "@babel/highlight": "^7.16.7",
         "eslint-plugin-css-modules": "^2.11.0"
     },
     "devDependencies": {
