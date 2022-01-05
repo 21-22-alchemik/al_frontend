@@ -62,7 +62,7 @@ function chooseValence(symbol){
     //czy można wybrać wartościowość
     if(valence.length == 1){
         //utwórz atom z podaną walencją
-        toDo(symbol,valence[0]);
+        toDo(symbol,valence[0],false);
     }
     else{
         document.getElementById("valInp").innerHTML = "Wybierz wartościowość dla "+symbol;
@@ -78,10 +78,10 @@ function chooseValence(symbol){
     }
 }
 
-function toDo(symbol,valence){
-    console.log(symbol+"["+valence+"]");
+function toDo(symbol,valence,hide=true){
     atomsList.push(new Atom(symbol, getColorBySymbol(symbol), valence, 5, 5));
-    //document.getElementById("valence").classList.toggle("hidden");
+    if(hide)
+        document.getElementById("valence").classList.toggle("hidden");
 }
 
 function lookFor(atom){
