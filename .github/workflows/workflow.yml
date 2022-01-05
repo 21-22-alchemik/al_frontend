@@ -30,6 +30,10 @@ jobs:
         uses: 21-22-alchemik/jest-action@fcbd4d6221ff21066040c2a8f11b5ed1b790a97c
         with:
           jestArgs: .github/tests/my.test.js
+      - name: editButtons Jest Test
+        uses: 21-22-alchemik/jest-action@fcbd4d6221ff21066040c2a8f11b5ed1b790a97c
+        with:
+          jestArgs: .github/tests/editButtons.test.js
 env:
   LINTER_RULES_PATH: /
   JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.yml

@@ -48,6 +48,7 @@ class Atom {
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
         atom.id = "atom_" + this.atomId;
+        atom.style.zIndex = zIndexVal++;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
         dragElement(this);
@@ -209,7 +210,12 @@ function dragElement(atom) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 
-        //zmiana wyświetlania wiązania
+        //zapisz x i y
+        atom.y = parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2));
+        atom.x = parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2));
+        //console.log(elmnt.x + " - "+elmnt.y);
+
+        // zmiana wyświetlania wiązania
         atom.connections.forEach(conn => connectionMove(conn));
     }
 
@@ -234,7 +240,7 @@ function dragElement(atom) {
 function zIndexReduction() {
     var tab = new Array();
     atomsList.forEach(elem => tab.push([elem.DOM.style.zIndex, elem]));
-    tab = tab.sort();
+    tab = tab.sort(function(a,b) { return parseInt(a) - parseInt(b); });
     for (var i = 3; i < tab.length + 3; i++) {
         tab[i - 3][1].DOM.style.zIndex = i;
     }
@@ -263,3 +269,9 @@ function connectionMove(elem) {
         elem.DOM.style.transform = "rotate(" + angle + "deg)";
     }
 }
+
+module.exports.TestAtom = Atom; // eslint-disable-line no-undef
+module.exports.TestConnection = Connection; // eslint-disable-line no-undef
+module.exports.connection = connection; // eslint-disable-line no-undef
+module.exports.atomsList = atomsList; // eslint-disable-line no-undef
+module.exports.connsList = connsList; // eslint-disable-line no-undef
