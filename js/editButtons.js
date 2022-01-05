@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 var addConnection = document.getElementById("addConnection");
 var deleteConnectionAtom = document.getElementById("deleteConnectionAtom");
@@ -6,19 +5,10 @@ var getAtomColor = document.getElementById("getAtomColor");
 var changeAtomColor = document.getElementById("changeAtomColor");
 var colorPicker = document.getElementById("colorPicker");
 
-var bodyStyle = document.getElementsByTagName("body")[0].style;
 var pickedAtomStartingPosition = {};
 var panelEnabled = true;
 var firstElementPicked = false;
 var lastPicked = null;
-
-atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 165, 5));
-atomsList.push(new Atom("C", getColorBySymbol("C"), 4, 250, 120));
-atomsList.push(new Atom("N", getColorBySymbol("N"), 3, 85, 165));
-connection(atomsList[0], atomsList[1]);
-connection(atomsList[1], atomsList[2]);
-connection(atomsList[1], atomsList[2]);
-connection(atomsList[1], atomsList[2]);
 
 //#region CLICK HANDLING
 addConnection.addEventListener("click", () => {
@@ -28,7 +18,7 @@ addConnection.addEventListener("click", () => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", addConnectionHandler);
         });
-        bodyStyle.cursor = "cell";
+        document.body.style.cursor = "cell";
         disablePanel(addConnection);
     }
     else
@@ -40,7 +30,7 @@ addConnection.addEventListener("click", () => {
             item.DOM.removeEventListener("mouseup", addConnectionHandler);
         });
         firstElementPicked = false;
-        bodyStyle.cursor = "default";
+        document.body.style.cursor = "default";
         enablePanel(addConnection);
     }
 }, true);
@@ -55,7 +45,7 @@ deleteConnectionAtom.addEventListener("click", () => {
         connsList.forEach(item => {
             item.DOM.addEventListener("click", deleteConnectionHandler);
         });
-        bodyStyle.cursor = "no-drop";
+        document.body.style.cursor = "no-drop";
         disablePanel(deleteConnectionAtom);
     }
     else
@@ -67,7 +57,7 @@ deleteConnectionAtom.addEventListener("click", () => {
         connsList.forEach(item => {
             item.DOM.removeEventListener("click", deleteConnectionHandler);
         });
-        bodyStyle.cursor = "default";
+        document.body.style.cursor = "default";
         enablePanel(deleteConnectionAtom);
     }
 }, true);
@@ -79,7 +69,7 @@ getAtomColor.addEventListener("click", () => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", setPickerToAtomColor);
         });
-        bodyStyle.cursor = "crosshair";
+        document.body.style.cursor = "crosshair";
         disablePanel(getAtomColor);
     }
     else
@@ -88,7 +78,7 @@ getAtomColor.addEventListener("click", () => {
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", setPickerToAtomColor);
         });
-        bodyStyle.cursor = "default";
+        document.body.style.cursor = "default";
         enablePanel(getAtomColor);
     }
 }, true);
@@ -100,7 +90,7 @@ changeAtomColor.addEventListener("click", () => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", changeAtomColorHandler);
         });
-        bodyStyle.cursor = "crosshair";
+        document.body.style.cursor = "crosshair";
         disablePanel(changeAtomColor);
     }
     else
@@ -109,7 +99,7 @@ changeAtomColor.addEventListener("click", () => {
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", changeAtomColorHandler);
         });
-        bodyStyle.cursor = "default";
+        document.body.style.cursor = "default";
         enablePanel(changeAtomColor);
     }
 }, true);
@@ -139,8 +129,8 @@ function addConnectionHandler(e)
                 thisAtom.classList = "";
             else
             {
-                if(getAtomById(lastPicked).atom.check() < 0 && getAtomById(thisAtom).atom.check() < 0)
-                    connection(getAtomById(lastPicked).atom, getAtomById(thisAtom).atom);
+                if(getAtomById(lastPicked, atomsList).atom.check() < 0 && getAtomById(thisAtom, atomsList).atom.check() < 0)
+                    connection(getAtomById(lastPicked, atomsList).atom, getAtomById(thisAtom, atomsList).atom);
                 lastPicked.classList = "";
             }
             lastPicked = null;
@@ -155,7 +145,7 @@ function deleteAtomHandler(e)
 
     if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
     {
-        let deletedAtom = atomsList.splice(getAtomById(thisAtom).index, 1)[0];
+        let deletedAtom = atomsList.splice(getAtomById(thisAtom, atomsList).index, 1)[0];
         thisAtom.remove();
 
         for(i = 0; i < connsList.length; i++)
@@ -178,11 +168,11 @@ function deleteAtomHandler(e)
 function deleteConnectionHandler(e)
 {
     let thisConnection = e.target;
-    let connectionToCheck = getConnectionById(thisConnection).connection;
+    let connectionToCheck = getConnectionById(thisConnection, connsList).connection;
 
     if(connectionToCheck.count == 1)
     {
-        let deletedConnection = connsList.splice(getConnectionById(thisConnection).index, 1)[0];
+        let deletedConnection = connsList.splice(getConnectionById(thisConnection, connsList).index, 1)[0];
         deletedConnection.delete();
         thisConnection.remove();
         reduceConnectionIndices();
@@ -194,7 +184,7 @@ function deleteConnectionHandler(e)
 function setPickerToAtomColor(e)
 {
     let thisAtom = e.target;
-    let thisAtomObject = getAtomById(thisAtom).atom;
+    let thisAtomObject = getAtomById(thisAtom, atomsList).atom;
 
     if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
         colorPicker.value = thisAtomObject.color;
@@ -203,7 +193,7 @@ function setPickerToAtomColor(e)
 function changeAtomColorHandler(e)
 {
     let thisAtom = e.target;
-    let thisAtomObject = getAtomById(thisAtom).atom;
+    let thisAtomObject = getAtomById(thisAtom, atomsList).atom;
 
     if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
     {
@@ -234,6 +224,8 @@ function reduceAtomIndices()
             item.atomId = index;
         }
     });
+
+    zIndexReduction();
 }
 
 function movedFewPixels(position1, position2)
@@ -246,11 +238,11 @@ function movedFewPixels(position1, position2)
     else return false;
 }
 
-function getAtomById(atom)
+function getAtomById(atom, listOfAtoms)
 {
     let resultAtom;
     let resultIndex;
-    atomsList.forEach(function(item, index) {
+    listOfAtoms.forEach(function(item, index) {
         if(item.DOM.id == atom.id)
         {
             resultAtom = item;
@@ -260,11 +252,11 @@ function getAtomById(atom)
     return {atom: resultAtom, index: resultIndex};
 }
 
-function getConnectionById(connection)
+function getConnectionById(connection, listOfConnections)
 {
     let resultConnection;
     let resultIndex;
-    connsList.forEach(function(item, index) {
+    listOfConnections.forEach(function(item, index) {
         if(item.DOM.id == connection.id)
         {
             resultConnection = item;
@@ -297,3 +289,8 @@ function disablePanel(clickedButton)
     panelEnabled = false;
 }
 //#endregion
+
+module.exports.enablePanel = enablePanel;
+module.exports.disablePanel = disablePanel;
+module.exports.getConnectionById = getConnectionById;
+module.exports.getAtomById = getAtomById;
