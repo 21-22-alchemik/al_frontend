@@ -3,15 +3,16 @@
 /* pomocnicze */
 #wizualizacjaDanych {
   position: fixed;
-  width: calc(100% - 60px); 
-  height: calc(100% - 80px); 
+  width: calc(100% - 60px);
+  height: calc(100% - 80px);
+
   /* margin: 50px;
   padding: 100px;
   width: 80%;
   min-width: 620px;
   height: 700px;
   border: 10px solid rgb(85 66 194);
-  border-radius: 20px;*/
+  border-radius: 20px; */
 }
 
 #wizualizacjaDanych > div {

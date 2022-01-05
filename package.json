@@ -33,9 +33,6 @@
     "engines": {
         "node": ">=0.12.22.7"
     },
-    "stylelint": {
-        "extends": "@company/stylelint-config"
-    },
     "jest": {
         "testEnvironment": "jsdom"
     }
