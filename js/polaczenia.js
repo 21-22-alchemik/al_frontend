@@ -157,10 +157,10 @@ var connsList = new Array();
 
 // atomsList.forEach(elem => elem.check());
 //WALIDACJA
-var btnCheck = document.getElementById("sprawdzZadanie");
-btnCheck.addEventListener("click", () => {
-    atomsList.forEach(elem => elem.check());
-});
+// var btnCheck = document.getElementById("sprawdzZadanie");
+// btnCheck.addEventListener("click", () => {
+//     atomsList.forEach(elem => elem.check());
+// });
 
 // tryb usuwania połączeń
 // conn1.addEventListener("click", event => {connsHolder.removeChild(conn1);});
