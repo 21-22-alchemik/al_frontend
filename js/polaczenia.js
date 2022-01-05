@@ -203,17 +203,31 @@ function dragElement(atom) {
         document.onmouseup = null;
         document.onmousemove = null;
         //czy div jest w przestrzeni planszy
-        if (parseInt(elmnt.style.top.substr(0, elmnt.style.top.length - 2)) < 0) {
-            elmnt.style.top = "5px";
+        var restartNeeded = false;
+        if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2))<0){
+            elmnt.style.top="5px";
+            restartNeeded = true;
+        }
+        if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2)) > (window.innerHeight - 75 - 75)) {
+            elmnt.style.top = (window.innerHeight - 75 - 5 - 75) + "px";
+            restartNeeded = true;
+        }
+        if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2))<0){
+            elmnt.style.left="5px";
+            restartNeeded = true;
+        }
+        if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (window.innerWidth - 58 - 75)) {
+            elmnt.style.left = (window.innerWidth - 58 - 5 - 75) + "px";
+            restartNeeded = true;
+        }
+
+        if(restartNeeded){
             atom.connections.forEach(conn => connectionMove(conn));
         }
-        if (parseInt(elmnt.style.left.substr(0, elmnt.style.left.length - 2)) < 0) {
-            elmnt.style.left = "5px";
-            atom.connections.forEach(conn => connectionMove(conn));
-        }
+
         //popraw z-indexy
         zIndexReduction();
-    }
+    }  
 }
 
 function zIndexReduction() {
