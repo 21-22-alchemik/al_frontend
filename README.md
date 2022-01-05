@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # ALCHEMIK
 
 <div id="top"></div>
