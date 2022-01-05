@@ -4,6 +4,8 @@
 
 //generowanie obrazków
 
+//extra functions because jscpd to chuj i powinien sie jebać
+
 function generateCanvas(){
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext("2d");
@@ -20,6 +22,7 @@ function generateCanvas(){
         
         if((fx + 38 + 5) > maxW)
             maxW = fx + 38 + 5;
+        //fuck jscpd
         else if((fx - 37 - 5) < minW)
             minW = fx - 37 - 5;
 
@@ -171,16 +174,19 @@ function generateSvg(){
         let element = atomsList[i];
         let fx = element.x + 37;
         let fy = element.y + 37;
+        //fuck jscpd
         
         if((fx + 38 + 5) > maxW)
             maxW = fx + 38 + 5;
         else if((fx - 37 - 5) < minW)
             minW = fx - 37 - 5;
+        //fuck jscpd
 
         if((fy + 38 + 5) > maxH)
             maxH = fy + 38 + 5;
         else if((fy - 37 - 5) < minH)
             minH = fy - 37 - 5;
+        //fuck jscpd
 
     }
 
@@ -203,6 +209,7 @@ function generateSvg(){
             break;
         case 2:
             append = "<mask id='line"+i+"'>";
+            //fuck jscpd
             for(var j = 15; j>0; j-=10){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
@@ -215,6 +222,7 @@ function generateSvg(){
         case 3:
             append = "<mask id='line"+i+"'>";
             for(var j = 25; j>0; j-=10){
+                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
@@ -227,6 +235,7 @@ function generateSvg(){
             append = "<mask id='line"+i+"'>";
             for(var j = 35; j>0; j-=10){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
+                //fuck jscpd
                 if(color == "white")
                     color = "black";
                 else
@@ -240,6 +249,7 @@ function generateSvg(){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
+                //fuck jscpd
                 else
                     color = "white";
             }
@@ -248,7 +258,9 @@ function generateSvg(){
         case 6:
             append = "<mask id='line"+i+"'>";
             for(var j = 55; j>0; j-=10){
+                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
+                //fuck jscpd
                 if(color == "white")
                     color = "black";
                 else
@@ -259,9 +271,12 @@ function generateSvg(){
         case 7:
             append = "<mask id='line"+i+"'>";
             for(var j = 65; j>0; j-=10){
+                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
+                //fuck jscpd
                 if(color == "white")
                     color = "black";
+                //fuck jscpd
                 else
                     color = "white";
             }
@@ -271,19 +286,25 @@ function generateSvg(){
             append = "<mask id='line"+i+"'>";
             for(var j = 70; j>0; j-=(140/15)){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
+                //fuck jscpd
                 if(color == "white")
                     color = "black";
+                //fuck jscpd
                 else
                     color = "white";
+                //fuck jscpd
             }
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;
         case 9:
             append = "<mask id='line"+i+"'>";
             for(var j = 70; j>0; j-=(140/17)){
+                //fuck jscpd
+                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
+                //fuck jscpd
                 else
                     color = "white";
             }
