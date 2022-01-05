@@ -1,0 +1,26 @@
+.przyciskEdycji {
+  float: right;
+  margin: 10px;
+  width: 110px;
+  height: 55px;
+  border-radius: 10px;
+  border: 2px solid white;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.przyciskEdycji:hover {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: white;
+  color: #7467e1;
+}
+
+.pickedElement {
+  border: 2px solid black;
+  box-shadow: inset 0 0 3px 3px white;
+}
