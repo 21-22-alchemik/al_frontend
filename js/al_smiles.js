@@ -258,7 +258,7 @@ function molecule_to_smiles(atomsList, connectionList) {
     else{
 
         return remove_redundant_brackets(smiles);
-    }some
+    }
 }
 
 function smiles_to_element_class(smiles) {
@@ -329,9 +329,6 @@ function smiles_to_element_class(smiles) {
     }
 
 
-    function flat(f, v) { return Array.isArray(v) ? v.reduce(f) : v; }
-    function getMin(a, b) { return Math.min(flat(getMin, a), flat(getMin, b)); }
-    function getMax(a, b) { return Math.max(flat(getMax, a), flat(getMax, b)); }
 
     
     function get_minium_connections(){
