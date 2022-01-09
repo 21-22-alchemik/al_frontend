@@ -258,7 +258,7 @@ function molecule_to_smiles(atomsList, connectionList) {
     else{
 
         return remove_redundant_brackets(smiles);
-    }
+    }some
 }
 
 function smiles_to_element_class(smiles) {
@@ -270,18 +270,27 @@ function smiles_to_element_class(smiles) {
     function add_connection(a,b,x=1){
         for(var i=0;i<x;i++){
             connection_list.push([a ,b]);
-            for(var j=atoms_list.length-1;j>=0;j--){
-                console.log(a);
-
-                if(Number(atoms_list[j][0])==Number(a)){
-                    atoms_list[j][2]++;
-                }
-                if(atoms_list[j][0]==b){
-                    atoms_list[j][2]++;
-                }
-            }
+            
         }
     }
+
+        
+    function add_connection_info_to_atoms(){
+        connection_list.forEach((element) => {
+            var a = element[0];
+            var b = element[1];
+            atoms_list.forEach((el) => {
+                if(el[0]==a){
+                    el[2] +=1 ;
+                }
+                if(el[0]==b){
+                    el[2] +=1 ;
+                }
+            });
+        });
+    }
+
+    
 
     
     
@@ -320,29 +329,44 @@ function smiles_to_element_class(smiles) {
     }
 
 
-    // var callback = function(el,element,index,arrray){
-    //     if(el[2]<=element[2]){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }
-    // };
-
+    function flat(f, v) { return Array.isArray(v) ? v.reduce(f) : v; }
+    function getMin(a, b) { return Math.min(flat(getMin, a), flat(getMin, b)); }
+    function getMax(a, b) { return Math.max(flat(getMax, a), flat(getMax, b)); }
 
     
-    // function get_minium_connections(){
-    //     atoms_list.forEach(el=>{
-    //         callback=callback.bind(null,el);
-    //         periodicTable.some(callback);
+    function get_minium_connections(){
+        atoms_list.forEach(el=>{
+            
+            periodicTable.forEach((element) => {
+                console.log(el[1]);
+                if(el[1]==element["symbol"]){
+                    element["valences"].some((valence) => {if(valence>=el[2]){
+                        for(var i=0;i<valence-el[2];i++){
+                            var x = atoms_list.slice(-1)[0][0]+1;
+                            atoms_list.push([x,"H",1]);
+                            connection_list.push([el[0],x]);
+                        }
 
-    //     });
-    // }
-    // get_minium_connections();
+                        el[2] = valence;
+                        return true;
+                    }});
+                }
+            });
+            
+        });
+    }
+    
+
+
+
+    add_connection_info_to_atoms();
+    get_minium_connections();
+
+
     console.log(atoms_list);
     console.log(connection_list);
 }
 
 
-smiles_to_element_class("CC(=O)O");
+smiles_to_element_class("CCC(=O)O");
 //export default {molecule_to_smiles, smiles_to_molecule}; // eslint-disable-line no-undef
