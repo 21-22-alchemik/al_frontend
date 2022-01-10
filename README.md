@@ -128,9 +128,9 @@ Licencja MIT (Licencja X11) –  Daje użytkownikom nieograniczone prawo do uży
 <!-- CONTACT -->
 ## Kontakt
 Kontakt z autorami projektu dostępny jest za pomocą wiadomości mailowych dla podanych adresów: <br><br>
-Jakub Figler - jakub.figler@gmail.com <br>
-Paweł Habrzyk -  <br>
-Mateusz Kowalski -  <br>
-Marek Jonczyk -  <br>
+Jakub Figler - jakufig344@student.polsl.pl <br>
+Paweł Habrzyk<br>
+Mateusz Kowalski<br>
+Marek Jonczyk<br>
 
 <p align="right"><a href="#top">POWRÓT</a></p>
