@@ -9,8 +9,6 @@
   line-height: 75px;
   font-size: 25px;
   user-select: none;
-
-  /* font-family: Verdana; */
 }
 
 .connsHolder div {
@@ -33,7 +31,7 @@ sup {
   pointer-events: none;
 }
 
-/* wiązania */
+/* bindings */
 .connection1 {
   height: 5px;
 }

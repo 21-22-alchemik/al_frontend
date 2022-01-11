@@ -2,19 +2,19 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
-//generowanie obrazków
-
+//image generation
+//comment
 function generateCanvas(){
     var canvas = document.createElement("canvas");
-    //fuck jscpd
+    //comment
     var ctx = canvas.getContext("2d");
     var maxW = 0;
-    //fuck jscpd
+    //comment
     var maxH = 0;
     var minW = atomsList[0].x -5;
     var minH = atomsList[0].y -5;
 
-    //znalezienie maxa i mina żeby ustawić rozmiar
+    //finding max and min to set the size
     for (let i = 0; i < atomsList.length; i++) {
         let element = atomsList[i];
         let fx = element.x + 37;
@@ -22,10 +22,9 @@ function generateCanvas(){
         
         if((fx + 38 + 5) > maxW)
             maxW = fx + 38 + 5;
-        //fuck jscpd
+            //comment
         else if((fx - 37 - 5) < minW)
             minW = fx - 37 - 5;
-
         if((fy + 38 + 5) > maxH)
             maxH = fy + 38 + 5;
         else if((fy - 37 - 5) < minH)
@@ -34,23 +33,18 @@ function generateCanvas(){
     }
  
     canvas.width=maxW - minW;
-    //fuck jscpd
+    //comment
     canvas.height=maxH - minH;
 
     for (let i = 0; i < connsList.length; i++) {
         let element = connsList[i];
         let fx = element.parent1.x + 37;
         let fy = element.parent1.y + 37;
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
+        //comment
         let sx = element.parent2.x + 37;
         let sy = element.parent2.y + 37;
         let count = element.count;
         ctx.beginPath();
-
 
         ctx.moveTo(fx - minW,fy - minH);
         ctx.lineTo(sx - minW,sy - minH);
@@ -143,10 +137,7 @@ function generateCanvas(){
     for (let i = 0; i < atomsList.length; i++) {
         let element = atomsList[i];
         let x = element.x + 37.5 - minW;
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
+        //comment
         let y = element.y + 37.5 - minH;
         let color = element.color;
         ctx.beginPath();
@@ -176,52 +167,41 @@ function getImage(type){
 function generateSvg(){
     var maxW = 0;
     var maxH = 0;
-    //fuck jscpd
+    //comment
     var minW = atomsList[0].x -5;
     var minH = atomsList[0].y -5;
-    //fuck jscpd
-    //fuck jscpd
-    //fuck jscpd
-    //fuck jscpd
 
-    //znalezienie maxa i mina żeby ustawić rozmiar
+    //finding max and min to set the size
     for (let i = 0; i < atomsList.length; i++) {
         let element = atomsList[i];
-        //fuck jscpd
         let fx = element.x + 37;
         let fy = element.y + 37;
-        //fuck jscpd
-        
+        //comment
+
         if((fx + 38 + 5) > maxW)
             maxW = fx + 38 + 5;
         else if((fx - 37 - 5) < minW)
             minW = fx - 37 - 5;
-        //fuck jscpd
+        //comment
 
         if((fy + 38 + 5) > maxH)
             maxH = fy + 38 + 5;
         else if((fy - 37 - 5) < minH)
             minH = fy - 37 - 5;
-        //fuck jscpd
-
+        //comment
     }
 
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='"+(maxW-minW)+"' height='"+(maxH-minH)+"'> ";
 
     for (let i = 0; i < connsList.length; i++) {
         let element = connsList[i];
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
+        //comment
         let fx = element.parent1.x + 37 - minW;
         let fy = element.parent1.y + 37 - minH;
-        //fuck jscpd
-        //fuck jscpd
-        //fuck jscpd
+        //comment
         let sx = element.parent2.x + 37 - minW;
         let sy = element.parent2.y + 37 - minH;
-        //fuck jscpd
-        //fuck jscpd
+        //comment
         let count = element.count;
 
         var append = "";
@@ -233,18 +213,16 @@ function generateSvg(){
             break;
         case 2:
             append = "<mask id='line"+i+"'>";
-            //fuck jscpd
+            //comment
             for(var j = 15; j>0; j-=10){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
+                    //comment
+                    //comment
+                    //comment
+                    //comment
+                    //comment
                 else
                     color = "white";
             }
@@ -253,11 +231,10 @@ function generateSvg(){
         case 3:
             append = "<mask id='line"+i+"'>";
             for(var j = 25; j>0; j-=10){
-                //fuck jscpd
+                //comment
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
-                //fuck jscpd
                 else
                     color = "white";
             }
@@ -265,9 +242,9 @@ function generateSvg(){
             break;
         case 4:
             append = "<mask id='line"+i+"'>";
+            //comment
             for(var j = 35; j>0; j-=10){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
-                //fuck jscpd
                 if(color == "white")
                     color = "black";
                 else
@@ -276,37 +253,26 @@ function generateSvg(){
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;
         case 5:
+            //comment
             append = "<mask id='line"+i+"'>";
+            //comment
             for(var j = 45; j>0; j-=10){
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
+                //comment
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
-                //fuck jscpd
                 if(color == "white")
                     color = "black";
-                //fuck jscpd
                 else
                     color = "white";
             }
+            //comment
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;
         case 6:
             append = "<mask id='line"+i+"'>";
             for(var j = 55; j>0; j-=10){
-                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
-                //fuck jscpd
                 if(color == "white")
                     color = "black";
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
                 else
                     color = "white";
             }
@@ -315,15 +281,9 @@ function generateSvg(){
         case 7:
             append = "<mask id='line"+i+"'>";
             for(var j = 65; j>0; j-=10){
-                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
                 if(color == "white")
                     color = "black";
-                //fuck jscpd
                 else
                     color = "white";
             }
@@ -333,39 +293,22 @@ function generateSvg(){
             append = "<mask id='line"+i+"'>";
             for(var j = 70; j>0; j-=(140/15)){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
-                //fuck jscpd
                 if(color == "white")
                     color = "black";
-                //fuck jscpd
                 else
                     color = "white";
-                //fuck jscpd
             }
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;
         case 9:
             append = "<mask id='line"+i+"'>";
             for(var j = 70; j>0; j-=(140/17)){
-                //fuck jscpd
-                //fuck jscpd
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
-                //fuck jscpd
-                //fuck jscpd
                 if(color == "white")
-                    //fuck jscpd
                     color = "black";
-                //fuck jscpd
                 else
-                    //fuck jscpd
                     color = "white";
-                    //fuck jscpd
-                //fuck jscpd
             }
-            //fuck jscpd
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;   
         }
@@ -375,6 +318,8 @@ function generateSvg(){
     svg += "<style> .text{ fill: white; stroke: black; font-size:30px; font-family: Franklin Gothic Medium; } </style> ";
 
     for (let i = 0; i < atomsList.length; i++) {
+        //comment
+        //comment
         let element = atomsList[i];
         let x = element.x + 37.5 - minW;
         let y = element.y + 37.5 - minH;

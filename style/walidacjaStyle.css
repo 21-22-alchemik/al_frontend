@@ -2,7 +2,7 @@
 /* stylelint-disable alpha-value-notation */
 /* stylelint-disable selector-class-pattern */
 
-/* GLOBALNE */
+/* GLOBAL */
 * {
   margin: 0;
   padding: 0;
@@ -71,7 +71,6 @@ body {
   font-size: 15px;
 }
 
-/* wyjscie */
 .lista_wyjscie {
   width: 100%;
   height: 7vh;

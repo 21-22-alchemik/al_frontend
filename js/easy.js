@@ -5,7 +5,7 @@
 
 function easyExample(){
     clearAll();
-    // Atomy
+    // Atoms
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1));
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 85, 5));
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 165, 5));
@@ -14,7 +14,7 @@ function easyExample(){
     atomsList.push(new Atom("C", getColorBySymbol("C"), 4, 85, 245));
     atomsList.push(new Atom("O", getColorBySymbol("O"), 2, 85, 325));
 
-    // wiązania
+    // bindings
     connection(atomsList[0], atomsList[3]);
     connection(atomsList[1], atomsList[3]);
     connection(atomsList[2], atomsList[3]);

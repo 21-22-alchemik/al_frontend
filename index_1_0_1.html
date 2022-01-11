@@ -18,22 +18,22 @@
 
 <body onload="checkSize()">
 
-	<!-- Holdery atomów i wiązań -->
+	<!-- Holder of atoms and bonds -->
 	<div id="wizualizacjaDanych">
 		<div id="atomsHolder" class="atomsHolder"></div>
 		<div id="connsHolder" class="connsHolder"></div>
 	</div>
 	
 
-	<!-- Menu i panel dolny-->
+	<!-- Menu and toolbar-->
 	<div>
-		<!-- Panel dolny -->
+		<!-- toolbar -->
 		<div class="panelDolny">
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
 			<button class="przyciskEdycji" id="addConnection">DODAJ WIĄZANIA</button>
 			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ ELEMENT</button>
-			<!-- Wybór customowego koloru -->
+			<!-- color choose -->
 			<button class="przyciskEdycji" id="getAtomColor">POBIERZ KOLOR ATOMU</button>
 			<button class="przyciskEdycji" id="changeAtomColor">NADAJ KOLOR ATOMOWI</button>
 			<input class="przyciskEdycji" type="color" id="colorPicker">
@@ -59,7 +59,7 @@
 				<div class="zakladkaMenu" id="zakladkaMenu">
 					<div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()">
 						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="CreatePDFfromHTML()">
-							<span>Konwertuj do PDF</span>
+							<span>Zapisz jako PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
 					</div>
@@ -129,18 +129,18 @@
 		</div>
 	</div>
 	
-	<!-- Prompty (pełno ekranowe obiekty) -->
-		<!-- Block Screen dla menu-->
+	<!-- Prompts -->
+		<!-- Block Screen for menu-->
 		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
 
-		<!-- div na za maly ekran -->
+		<!-- div with information about too small window -->
 		<div class="newDivMessage" id="newDivMessage">
 			<div class="messageToSmall">
 				<h1>Zwiększ rozmiar okna przeglądarki!</h1>
 			</div>
 		</div>
 	</div>
-	<!-- komunikat o bledach sprawdzenia -->
+	<!-- check error message -->
 	<div class="wynikSprawdzeniaCheck" id="wynikSprawdzeniaCheck">
 		<div id="wyniksprawdzaniaBox" class="wyniksprawdzaniaBox">
 			<h1 id="listaBledow" class="listaBledow">Lista błędów w Twoim działaniu:</h1>
@@ -155,7 +155,7 @@
 	</div>
 
 
-		<!-- Tablica Mendelejewa -->
+		<!-- Periodic table -->
 		<div class="mendelejew hidden" id="mendelejew">
 			<div class="mGrid" id="grid">
 				<div style="grid-area: 2 / 7 / 3 / 9;" class="noHover" onclick="document.getElementById('mendelejew').classList.toggle('hidden');"><h3>Zamknij</h3></div>
@@ -170,7 +170,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Wybór walencji -->
+		<!-- Choice of valence -->
 		<div class="valence hidden" id="valence">
 			<div class="vHolder">
 				<h3 id="valInp">none</h3>
@@ -184,7 +184,7 @@
 			
 		</div>
 
-	<!-- Skrypty -->
+	<!-- Scripts -->
 		<script type="text/javascript" src="./js/polaczenia.js"></script>
 		<script type="text/javascript" src="./js/menu.js"></script>
 		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>

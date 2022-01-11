@@ -53,12 +53,12 @@ Celem projektu jest stworzenie narzędzia, które sprawi, że nauka chemii będz
 
 Aplikacja w bardzo prosty i intuicyjny sposób daje możliwość tworzenia, sprawdza oraz dodawania wiązań chemicznych. Główne miejsa obsługi aplikacji to: 
 * PASEK NARZĘDZI<br>
-  <img src="IMAGES/readme/pasek_narzedzi.png" alt="Logo" width="800" height="40">
+  <img src="IMAGES/readme/toolbar.png" alt="Logo" width="800" height="40">
 <br>
 * MENU BOCZNE<br>
-  <img src="IMAGES/readme/menu_boczne.png" alt="Logo" width="800" height="340"><br>
-  <img src="IMAGES/readme/menu_boczne_pierwiastki.png" alt="Logo" width="800" height="340"><br>
-  <img src="IMAGES/readme/menu_boczne_zwiazki.png" alt="Logo" width="800" height="340"><br>
+  <img src="IMAGES/readme/side_menu.png" alt="Logo" width="800" height="340"><br>
+  <img src="IMAGES/readme/menu_side_elements.png" alt="Logo" width="800" height="340"><br>
+  <img src="IMAGES/readme/menu_side_relations.png" alt="Logo" width="800" height="340"><br>
 
 Dzięki prostej obsłudze, można w relatywnie szybki czasie osiągnąć zamierzone cele, jakimi moga byc m. in.:
 * sprawdzanie poprawności wiązań

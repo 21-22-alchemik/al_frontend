@@ -1,40 +1,45 @@
 /* eslint-disable no-undef */
-//WALIDACJA
+//validation
 
 var btnCheck = document.getElementById("sprawdzZadanie");
 var divSprawdzenie = document.getElementById("wynikSprawdzeniaCheck");
 var messageFailed = document.getElementById("messageFailed");
 var btnWyjscieLista = document.getElementById("wyjscieLista");
 var listaBledowH1 = document.getElementById("listaBledow");
-var wyniksprawdzaniaBox = document.getElementById("wyniksprawdzaniaBox");
 
 var wynik = [];
 var sprawdzenieWiazania = 0;
+var isError = false;
 
-//sprawdzanie wiazan
+//checking bindings
 btnCheck.addEventListener("click", () => {
+    isError = false;
     atomsList.forEach(elem => {
         sprawdzenieWiazania = elem.check();
         wynik = [elem.name, sprawdzenieWiazania];
         console.log(wynik);
 
         if (sprawdzenieWiazania > 0) {
+            isError = true;
             createMessage(elem.name, sprawdzenieWiazania);
         }
         else if (sprawdzenieWiazania < 0) {
+            isError = true;
             createMessage(elem.name, sprawdzenieWiazania);
         }
         else {
-            createMessageAllGood();
+            if(!isError) createMessageAllGood();
         }
     });
 });
-//tworzenie div'ow z powiadomienia o bledach
+
+//creating divs with error notifications
 function createMessage(jakiPierwiastek, jakiBlad) {
     divSprawdzenie.classList.add("wynikSprawdzeniaActive");
-    //generowanie diva z wynikiem(błędem)
+    //generate div with error
     var bladWiazaniaKomunikat = document.createElement("div");
     var tekstWiadomosciBledu = document.createElement("h1");
+    listaBledowH1.innerHTML = "Lista błędów w Twoim działaniu:"; 
     tekstWiadomosciBledu.innerHTML += `Złe wiązania dla pierwiastka "${jakiPierwiastek}", `;
     tekstWiadomosciBledu.innerHTML += ` ilość złych wiązań w liczbie: ${jakiBlad}`;
     bladWiazaniaKomunikat.classList.add("bladSprawdzenia");   
@@ -44,16 +49,14 @@ function createMessage(jakiPierwiastek, jakiBlad) {
 
 function createMessageAllGood() {
     divSprawdzenie.classList.add("wynikSprawdzeniaActive");
-    wyniksprawdzaniaBox.style.height="120px";
     listaBledowH1.innerHTML = "Brawo! Wszystko Dobrze!!!"; 
-    wyniksprawdzaniaBox.removeChild(messageFailed);
 }
 
-//wyjscie z listy blędów
+//button close from list of errors
 btnWyjscieLista.addEventListener("click", ()=> {
     divSprawdzenie.classList.remove("wynikSprawdzeniaActive");
     var listaBledow = document.getElementsByClassName("bladSprawdzenia");
-    //usuwanie divów przy kazdym wylaczeniu okna z bledami
+    //remove elements after click the button
     while(listaBledow.length > 0) {
         listaBledow[0].remove();
     }

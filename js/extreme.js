@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-//Cyprofloksacyna
+//Ciprofloxacin
 
 function extremeExample(){
     clearAll();
 
-    // Atomy
+    // Atoms
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 5, 405)); //0
     atomsList.push(new Atom("N", getColorBySymbol("N"), 4, 85, 365)); //1
     atomsList.push(new Atom("C", getColorBySymbol("C"), 4, 165, 405)); //2
@@ -50,7 +50,7 @@ function extremeExample(){
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 5, 285)); //40
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 85, 205)); //41
 
-    // wiązania
+    // bindings
     connection(atomsList[0], atomsList[1]);
     connection(atomsList[1], atomsList[2]);
     connection(atomsList[1], atomsList[6]);
