@@ -19,9 +19,11 @@
 <body onload="checkSize()">
 
 	<!-- Holdery atomów i wiązań -->
-	<div id="atomsHolder" class="atomsHolder"></div>
-	<div id="connsHolder" class="connsHolder"></div>
-	<div id="canvas"></div>
+	<div id="wizualizacjaDanych">
+		<div id="atomsHolder" class="atomsHolder"></div>
+		<div id="connsHolder" class="connsHolder"></div>
+	</div>
+	
 
 	<!-- Menu i panel dolny-->
 	<div>
@@ -67,15 +69,24 @@
 							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
 						</button>
 					</div>
+					<!-- saving as JPG --> 
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('jpg')">
 							<span>Zapisz jako JPG</span>
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
+					<!-- saving as PNG --> 
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('png')">
 							<span>Zapisz jako PNG</span>
+							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
+						</button>
+					</div>
+					<!-- saving as SVG --> 
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" onclick="saveSvg()">
+							<span>Zapisz jako SVG</span>
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>

@@ -23,7 +23,7 @@ btnCheck.addEventListener("click", () => {
             createMessage(elem.name, sprawdzenieWiazania);
         }
         else {
-            console.log("Jest DOBRZE!");
+            alert("Wszystko dobrze! Brawo!!!");
         }
     });
 });
