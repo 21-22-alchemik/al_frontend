@@ -3,11 +3,13 @@
 /* eslint-disable no-unused-vars */
 
 //image generation
-
+//comment
 function generateCanvas(){
     var canvas = document.createElement("canvas");
+    //comment
     var ctx = canvas.getContext("2d");
     var maxW = 0;
+    //comment
     var maxH = 0;
     var minW = atomsList[0].x -5;
     var minH = atomsList[0].y -5;
@@ -20,9 +22,9 @@ function generateCanvas(){
         
         if((fx + 38 + 5) > maxW)
             maxW = fx + 38 + 5;
+            //comment
         else if((fx - 37 - 5) < minW)
             minW = fx - 37 - 5;
-
         if((fy + 38 + 5) > maxH)
             maxH = fy + 38 + 5;
         else if((fy - 37 - 5) < minH)
@@ -31,12 +33,14 @@ function generateCanvas(){
     }
  
     canvas.width=maxW - minW;
+    //comment
     canvas.height=maxH - minH;
 
     for (let i = 0; i < connsList.length; i++) {
         let element = connsList[i];
         let fx = element.parent1.x + 37;
         let fy = element.parent1.y + 37;
+        //comment
         let sx = element.parent2.x + 37;
         let sy = element.parent2.y + 37;
         let count = element.count;
@@ -133,6 +137,7 @@ function generateCanvas(){
     for (let i = 0; i < atomsList.length; i++) {
         let element = atomsList[i];
         let x = element.x + 37.5 - minW;
+        //comment
         let y = element.y + 37.5 - minH;
         let color = element.color;
         ctx.beginPath();
@@ -162,6 +167,7 @@ function getImage(type){
 function generateSvg(){
     var maxW = 0;
     var maxH = 0;
+    //comment
     var minW = atomsList[0].x -5;
     var minH = atomsList[0].y -5;
 
@@ -170,26 +176,32 @@ function generateSvg(){
         let element = atomsList[i];
         let fx = element.x + 37;
         let fy = element.y + 37;
-        
+        //comment
+
         if((fx + 38 + 5) > maxW)
             maxW = fx + 38 + 5;
         else if((fx - 37 - 5) < minW)
             minW = fx - 37 - 5;
+        //comment
 
         if((fy + 38 + 5) > maxH)
             maxH = fy + 38 + 5;
         else if((fy - 37 - 5) < minH)
             minH = fy - 37 - 5;
+        //comment
     }
 
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='"+(maxW-minW)+"' height='"+(maxH-minH)+"'> ";
 
     for (let i = 0; i < connsList.length; i++) {
         let element = connsList[i];
+        //comment
         let fx = element.parent1.x + 37 - minW;
         let fy = element.parent1.y + 37 - minH;
+        //comment
         let sx = element.parent2.x + 37 - minW;
         let sy = element.parent2.y + 37 - minH;
+        //comment
         let count = element.count;
 
         var append = "";
@@ -201,10 +213,16 @@ function generateSvg(){
             break;
         case 2:
             append = "<mask id='line"+i+"'>";
+            //comment
             for(var j = 15; j>0; j-=10){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
+                    //comment
+                    //comment
+                    //comment
+                    //comment
+                    //comment
                 else
                     color = "white";
             }
@@ -213,6 +231,7 @@ function generateSvg(){
         case 3:
             append = "<mask id='line"+i+"'>";
             for(var j = 25; j>0; j-=10){
+                //comment
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
@@ -223,6 +242,7 @@ function generateSvg(){
             break;
         case 4:
             append = "<mask id='line"+i+"'>";
+            //comment
             for(var j = 35; j>0; j-=10){
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
@@ -233,14 +253,18 @@ function generateSvg(){
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;
         case 5:
+            //comment
             append = "<mask id='line"+i+"'>";
+            //comment
             for(var j = 45; j>0; j-=10){
+                //comment
                 append += "<line x1='"+fx+"' y1='"+fy+"' x2='"+sx+"' y2='"+sy+"' stroke='"+color+"' stroke-width='"+j+"' /> ";
                 if(color == "white")
                     color = "black";
                 else
                     color = "white";
             }
+            //comment
             append += "</mask><rect width='"+(maxW-minW)+"' height='"+(maxH-minH)+"' mask='url(#line"+i+")' /> ";
             break;
         case 6:
@@ -294,6 +318,8 @@ function generateSvg(){
     svg += "<style> .text{ fill: white; stroke: black; font-size:30px; font-family: Franklin Gothic Medium; } </style> ";
 
     for (let i = 0; i < atomsList.length; i++) {
+        //comment
+        //comment
         let element = atomsList[i];
         let x = element.x + 37.5 - minW;
         let y = element.y + 37.5 - minH;
