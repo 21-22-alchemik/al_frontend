@@ -5,6 +5,8 @@ var btnCheck = document.getElementById("sprawdzZadanie");
 var divSprawdzenie = document.getElementById("wynikSprawdzeniaCheck");
 var messageFailed = document.getElementById("messageFailed");
 var btnWyjscieLista = document.getElementById("wyjscieLista");
+var listaBledowH1 = document.getElementById("listaBledow");
+var wyniksprawdzaniaBox = document.getElementById("wyniksprawdzaniaBox");
 
 var wynik = [];
 var sprawdzenieWiazania = 0;
@@ -23,16 +25,13 @@ btnCheck.addEventListener("click", () => {
             createMessage(elem.name, sprawdzenieWiazania);
         }
         else {
-            alert("Wszystko dobrze! Brawo!!!");
+            createMessageAllGood();
         }
     });
 });
 //tworzenie div'ow z powiadomienia o bledach
 function createMessage(jakiPierwiastek, jakiBlad) {
     divSprawdzenie.classList.add("wynikSprawdzeniaActive");
-    console.log(jakiPierwiastek);
-    console.log(jakiBlad);
-
     //generowanie diva z wynikiem(błędem)
     var bladWiazaniaKomunikat = document.createElement("div");
     var tekstWiadomosciBledu = document.createElement("h1");
@@ -41,8 +40,15 @@ function createMessage(jakiPierwiastek, jakiBlad) {
     bladWiazaniaKomunikat.classList.add("bladSprawdzenia");   
     bladWiazaniaKomunikat.appendChild(tekstWiadomosciBledu);    
     messageFailed.appendChild(bladWiazaniaKomunikat);
-
 }
+
+function createMessageAllGood() {
+    divSprawdzenie.classList.add("wynikSprawdzeniaActive");
+    wyniksprawdzaniaBox.style.height="120px";
+    listaBledowH1.innerHTML = "Brawo! Wszystko Dobrze!!!"; 
+    wyniksprawdzaniaBox.removeChild(messageFailed);
+}
+
 //wyjscie z listy blędów
 btnWyjscieLista.addEventListener("click", ()=> {
     divSprawdzenie.classList.remove("wynikSprawdzeniaActive");
