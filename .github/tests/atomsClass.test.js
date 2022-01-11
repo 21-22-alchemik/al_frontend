@@ -28,11 +28,11 @@ class Atom{
 
         this.generate();
     }
-    //dodawanie połączenia
+    //adding a connection
     newConnection(conn){
         this.connections.push(conn);
     }
-    //generowanie obiektu
+    //object generation
     generate(){
         var atom = document.createElement("DIV");
         atom.style.backgroundColor = this.color;
@@ -42,7 +42,6 @@ class Atom{
         atom.style.zIndex = zIndexVal++;
         atomsHolder.appendChild(atom);
         this.DOM = atom;
-        //dragElement(this);
     }
     check(){
         var sum = 0;
@@ -50,10 +49,10 @@ class Atom{
             sum += elem.count;
         });
 
-        //zwracana wartość
-        // 0 - git
-        //ujemna - za mało wiązań
-        //dodatnia - zbyt dużo wiązań
+        //returned value
+        // 0 - good
+        //negative - not enough bindings
+        //positive - too many bonds
         return sum - this.valence;
     }
 }
@@ -65,27 +64,27 @@ class Connection {
         this.parent1 = Parent1;
         this.parent2 = Parent2;
         this.count = Count;
-        // podpięcie pod rodziców
+        // connected with parents
         Parent1.newConnection(this);
         Parent2.newConnection(this);
-        // wygenerowanie w DOM
+        // DOM generation
         this.generate();
     }
     generate() {
-    // wygenerowanie obiektu DOM
+    // DOM object generation
         var conn = document.createElement("DIV");
         conn.className = "connection" + this.count;
         connsHolder.appendChild(conn);
-        // podpięcie odnośnika do obiektu DOM
+        // connection to the DOM object
         this.DOM = conn;
-        // utworzenie fizycznego połączenia
+        // 'creation of a physical connection'
         //connectionMove(this);
     }
     delete() {
         this.changeCount(-100);
     }
     changeCount(value) {
-    // zmiana rodzaju połączenia
+    // changing the connection type
         this.count += value;
         if (this.count > 9) {
             console.log("zbyt potężne wiązanie!");
@@ -98,7 +97,7 @@ class Connection {
     }
 }
 
-//funkcja dodawania wiązania między atomami
+//function of adding a bond between atoms
 function connection(Parent1, Parent2){
     var checker = false;
     Parent1.connections.forEach(elem => { 

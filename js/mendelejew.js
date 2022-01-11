@@ -8,9 +8,9 @@ var mendelejewHolder = document.getElementById("grid");
 var lantanHolder = document.getElementById("lantan");
 var aktynHolder = document.getElementById("aktyn");
 
-//generowanie tablicy mendelejewa
+//generation of the mendeleyev table
 for (var i = 0; i < periodicTable.length; i++) {
-    //generowanie tablicy mendelejewa
+    //generation of the mendeleyev table
     var div = document.createElement("DIV");
 
     div.innerHTML = "<h3>" + periodicTable[i].symbol+"</h3><p>"+periodicTable[i].name+"</p>";
@@ -31,7 +31,7 @@ for (var i = 0; i < periodicTable.length; i++) {
         mendelejewHolder.appendChild(div);
     }
 
-    //generowanie menu szybkiego dostępu do pierwiastków
+    //generating a quick access menu of elements
     var div2 = document.createElement("DIV");
 
     div2.innerHTML = "<h3>" + periodicTable[i].symbol+"</h3><p>"+periodicTable[i].name+"</p>";
@@ -40,9 +40,6 @@ for (var i = 0; i < periodicTable.length; i++) {
 
     miniMendelejewHolder.appendChild(div2);
 }
-
-
-
 
 window.addEventListener("resize",checkMendelejew);
 
@@ -59,9 +56,9 @@ function checkMendelejew(){
 
 function chooseValence(symbol){
     let valence = periodicTable[periodicTable.findIndex(lookFor,symbol)].valences;
-    //czy można wybrać wartościowość
+    //is it possible to choose value?
     if(valence.length == 1){
-        //utwórz atom z podaną walencją
+        //create an atom with the given valence
         toDo(symbol,valence[0],false);
     }
     else{

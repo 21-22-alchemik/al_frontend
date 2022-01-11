@@ -4,7 +4,7 @@
 
 function averageExample(){
     clearAll();
-    // Atomy
+    // Atoms
     atomsList.push(new Atom("O", getColorBySymbol("O"), 2, 85, 5));
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 245, 5));
     atomsList.push(new Atom("C", getColorBySymbol("C"), 4, 165, 45));
@@ -25,7 +25,7 @@ function averageExample(){
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 5, 285));
     atomsList.push(new Atom("H", getColorBySymbol("H"), 1, 325, 125));
 
-    // wiązania
+    // bindings
     connection(atomsList[0], atomsList[2]);
     connection(atomsList[0], atomsList[2]);
     connection(atomsList[1], atomsList[2]);

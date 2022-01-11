@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-//WALIDACJA
+//validation
 
 var btnCheck = document.getElementById("sprawdzZadanie");
 var divSprawdzenie = document.getElementById("wynikSprawdzeniaCheck");
@@ -11,7 +11,7 @@ var wynik = [];
 var sprawdzenieWiazania = 0;
 var isError = false;
 
-//sprawdzanie wiazan
+//checking bindings
 btnCheck.addEventListener("click", () => {
     isError = false;
     atomsList.forEach(elem => {
@@ -21,24 +21,22 @@ btnCheck.addEventListener("click", () => {
 
         if (sprawdzenieWiazania > 0) {
             isError = true;
-            console.log("za duzo");
             createMessage(elem.name, sprawdzenieWiazania);
         }
         else if (sprawdzenieWiazania < 0) {
             isError = true;
-            console.log("za malo");
             createMessage(elem.name, sprawdzenieWiazania);
         }
         else {
-            console.log("za super");
             if(!isError) createMessageAllGood();
         }
     });
 });
-//tworzenie div'ow z powiadomienia o bledach
+
+//creating divs with error notifications
 function createMessage(jakiPierwiastek, jakiBlad) {
     divSprawdzenie.classList.add("wynikSprawdzeniaActive");
-    //generowanie diva z wynikiem(błędem)
+    //generate div with error
     var bladWiazaniaKomunikat = document.createElement("div");
     var tekstWiadomosciBledu = document.createElement("h1");
     listaBledowH1.innerHTML = "Lista błędów w Twoim działaniu:"; 
@@ -54,11 +52,11 @@ function createMessageAllGood() {
     listaBledowH1.innerHTML = "Brawo! Wszystko Dobrze!!!"; 
 }
 
-//wyjscie z listy blędów
+//button close from list of errors
 btnWyjscieLista.addEventListener("click", ()=> {
     divSprawdzenie.classList.remove("wynikSprawdzeniaActive");
     var listaBledow = document.getElementsByClassName("bladSprawdzenia");
-    //usuwanie divów przy kazdym wylaczeniu okna z bledami
+    //remove elements after click the button
     while(listaBledow.length > 0) {
         listaBledow[0].remove();
     }

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-//akcje z pierwiastkami i wiązaniami
+//actions with elements and bonds
 
-//usuwanie wszystkich pierwiastków i wiązań
+//remove of all elements and bonds
 function clearAll(){
     atomsHolder.innerHTML="";
     connsHolder.innerHTML="";
