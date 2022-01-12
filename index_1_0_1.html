@@ -4,17 +4,30 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Alchemik</title>
+	<!-- general style -->
 	<link rel="stylesheet" type="text/css" href="./style/main.css">
 	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/walidacjaStyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
 	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
-	<link rel="stylesheet" type="text/css" href="./style/editStyle.css">
+	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
+
+	<!-- style for computer -->
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/chemstyle.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/menuStyle.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/walidacjaStyle.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/editStyle.css">
+	
+	<!-- style for tablets portrait -->
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: portrait) and (max-width: 1024px)" href="./styleTabletPortrait/menuStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: portrait) and (max-width: 1024px)" href="./styleTabletPortrait/walidacjaStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: portrait) and (max-width: 1024px)" href="./styleTabletPortrait/editStyleTablet.css">
+	
+	<!-- style for tablets landscape -->
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: landscape) and (max-width: 1324px)" href="./styleTabletLandscape/menuStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: landscape) and (max-width: 1324px)" href="./styleTabletLandscape/walidacjaStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: landscape) and (max-width: 1324px)" href="./styleTabletLandscape/editStyleTablet.css">
 </head>
 
-<body onload="checkSize()">
-
+<body>
 	<!-- Holder of atoms and bonds -->
 	<div class="workspace">
 		<div id="wizualizacjaDanych" class="wizualizacjaDanych">
@@ -30,11 +43,11 @@
 		<div class="panelDolny">
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
-			<button class="przyciskEdycji" id="addConnection">DODAJ WIĄZANIA</button>
-			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ ELEMENT</button>
-			<!-- color choose -->
-			<button class="przyciskEdycji" id="getAtomColor">POBIERZ KOLOR ATOMU</button>
-			<button class="przyciskEdycji" id="changeAtomColor">NADAJ KOLOR ATOMOWI</button>
+			<button class="przyciskEdycji" id="addConnection">DODAJ</button>
+			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ</button>
+			<!-- Wybór customowego koloru -->
+			<button class="przyciskEdycji" id="getAtomColor">POBIERZ KOLOR</button>
+			<button class="przyciskEdycji" id="changeAtomColor">NADAJ KOLOR</button>
 			<input class="przyciskEdycji" type="color" id="colorPicker">
 		</div>
 		<!-- Menu -->
@@ -63,12 +76,6 @@
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
 					</div>
-					<!-- <div class="QA przyciskiMenu">
-						<button class="QABtn zakladkaMenuBtn" id="QABtn">
-							<span>Q&A</span>
-							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
-						</button>
-					</div> --> 
 					<!-- saving as JPG --> 
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('jpg')">
@@ -90,19 +97,6 @@
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
-					<!-- SMILES -->
-					<div class="save przyciskiMenu">
-						<button class="saveBtn zakladkaMenuBtn" onclick="smilesMenu()">
-							<span>Notacja SMILES</span>
-						</button>
-					</div>
-
-					<!-- <div class="save przyciskiMenu">
-						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
-							<span>Kontakt</span>
-							<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
-						</button>
-					</div> -->
 				</div>
 				<div class="zakladkaMenu" id="zakladkaPierwiastki">
 					<div>
@@ -113,7 +107,15 @@
 					</div>
 				</div>
 				<div class="zakladkaMenu" id="zakladkaZwiazki">
-					<button class="zakladkaMenuBtn" onclick="clearAll()">Wyczysć tablicę</button>
+					<!-- <button class="zakladkaMenuBtn" onclick="easyExample()">
+						Łatwy związek
+					</button>
+					<button class="zakladkaMenuBtn" onclick="averageExample()">
+						Średni związek
+					</button>
+					<button class="zakladkaMenuBtn" onclick="hardExample()">
+						Trudny związek
+					</button> -->
 				</div>
 				<!-- close button -->
 				<div class="menuWyjscie">
@@ -124,17 +126,10 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Prompts -->
-		<!-- Block Screen for menu-->
+	<!-- Prompty (pełno ekranowe obiekty) -->
+    <div>
+		<!-- Block Screen dla menu-->
 		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
-
-		<!-- div with information about too small window -->
-		<div class="newDivMessage" id="newDivMessage">
-			<div class="messageToSmall">
-				<h1>Zwiększ rozmiar okna przeglądarki!</h1>
-			</div>
-		</div>
 	</div>
 	<!-- check error message -->
 	<div class="wynikSprawdzeniaCheck" id="wynikSprawdzeniaCheck">
