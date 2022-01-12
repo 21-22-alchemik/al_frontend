@@ -90,6 +90,13 @@
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
+					<!-- SMILES -->
+					<div class="save przyciskiMenu">
+						<button class="saveBtn zakladkaMenuBtn" onclick="smilesMenu()">
+							<span>SMILES</span>
+						</button>
+					</div>
+
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
 							<span>Kontakt</span>
@@ -153,6 +160,24 @@
 			</div>
 		</div>
 	</div>
+	<!--SMILES-->
+	<div id="smilesInfoHolder" class="valence smilesInfoHolder hidden">
+		<div class="vHolder">
+			<div>
+				<h3>Podaj SMILES:</h3>
+				<div style="text-align: center;">
+					<input type="text" id="smilesInput" class="vBtn"/>
+					<button onclick="goSmiles()" class="vBtn">-></button>
+				</div>
+			</div>
+			<div id="smilesHolder" class="hidden" style="text-align: center;">
+				<h3>SMILES obecnego związku:</h3>
+				<h2 style="color: white;"></h2>
+			</div>
+			<div onclick="hideSmiles()" class="vBtn">Zamknij</div>
+		</div>
+		
+	</div>
 
 
 		<!-- Periodic table -->
@@ -185,7 +210,7 @@
 		</div>
 
 	<!-- Scripts -->
-		<script type="text/javascript" src="./js/polaczenia.js"></script>
+		<script type="text/javascript" src="./js/classes.js"></script>
 		<script type="text/javascript" src="./js/menu.js"></script>
 		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
 		<script type="text/javascript" src="./js/periodicTable.js"></script>
@@ -199,5 +224,6 @@
 		<script type="text/javascript" src="./js/walidacja.js"></script>
         <script type="text/javascript" src="./js/pdfExport.js"></script>
 		<script type="text/javascript" src="./js/images.js"></script>
+		<script type="text/javascript" src="./js/al_smiles.js"></script>
 </body>
 </html>
