@@ -1,19 +1,19 @@
 /* eslint-disable no-unused-vars */
 //sprawdzanie rozmiaru okan przegladarki
-function checkSize() {
-    //wczytanie wartosci okna przegladarki
-    var width = window.innerWidth;
-    var newDivMessage = document.getElementById("newDivMessage");
-    //min 1000px, sprawdzenie
-    if(width < 1000){
-        newDivMessage.classList.remove("activeBadSize");
-    } else {
-        newDivMessage.classList.add("activeBadSize");
-    }
-}
+// function checkSize() {
+//     //wczytanie wartosci okna przegladarki
+//     var width = window.innerWidth;
+//     var newDivMessage = document.getElementById("newDivMessage");
+//     //min 1000px, sprawdzenie
+//     if(width < 1000){
+//         newDivMessage.classList.remove("activeBadSize");
+//     } else {
+//         newDivMessage.classList.add("activeBadSize");
+//     }
+// }
 
-//sprawdzenie co zmiane szerokosci okna przegladarki
-window.addEventListener("resize", checkSize);
+// //sprawdzenie co zmiane szerokosci okna przegladarki
+// window.addEventListener("resize", checkSize);
 
 // MENU
 

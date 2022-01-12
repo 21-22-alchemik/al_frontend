@@ -1,0 +1,265 @@
+/* Menu */
+
+/* wersja web dla komputerów stacjonarnych */
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: 0.4s;
+  z-index: 10001;
+}
+
+.wrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.menuPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 384px;
+  z-index: 10003;
+  background-color: #4d42a7;
+  transition: 0.4s;
+}
+
+.menuMenu {
+  position: absolute;
+  top: 5vh;
+  right: 0;
+  height: 27vh;
+  width: 442px;
+  z-index: 10001;
+  background-color: #7467e1;
+  border-radius: 6px;
+  transition: 0.4s;
+}
+
+.menuPierwiastki {
+  position: absolute;
+  top: 37vh;
+  right: 0;
+  height: 28vh;
+  width: 442px;
+  z-index: 10001;
+  background-color: #7467e1;
+  border-radius: 6px;
+  transition: 0.4s;
+}
+
+.menuZwiazki {
+  position: absolute;
+  top: 70vh;
+  right: 0;
+  height: 27vh;
+  width: 442px;
+  z-index: 10001;
+  background-color: #7467e1;
+  border-radius: 6px;
+  transition: 0.4s;
+}
+
+.zakladka {
+  width: 58px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  text-align: center;
+}
+
+.zakladka h1 {
+  user-select: none;
+}
+
+.menuTytul {
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 10vh;
+  left: -15px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+}
+
+.menuTytulPierwiastki {
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 11vh;
+  left: -68px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+}
+
+.menuTytulZwiazki {
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 10vh;
+  left: -34px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+}
+
+.menuMenu:hover,
+.menuPierwiastki:hover,
+.menuZwiazki:hover {
+  background-color: #4d42a7;
+  cursor: pointer;
+}
+
+.activeMenu {
+  background-color: #4d42a7;
+}
+
+/* przycisk wyjscia z menu */
+.menuWyjscie {
+  width: 200px;
+  height: 40px;
+  position: absolute;
+  bottom: 5vh;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.wyjscie {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.wyjscie:hover {
+  cursor: pointer;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 5px;
+  color: #4d42a7;
+}
+
+/* zakladka menu_menu */
+.zakladkaMenu {
+  float: left;
+  width: 80%;
+  position: absolute;
+  top: 5vh;
+  left: 10%;
+  right: 10%;
+  text-align: center;
+  display: none;
+}
+
+.zakladkaMenuBtn {
+  float: left;
+  box-sizing: border-box;
+  width: 100%;
+  height: 5vh;
+  margin-bottom: 40px;
+  border: 1px solid #c0e5fb;
+  background-color: #c0e5fb;
+  border-radius: 10px;
+}
+
+.zakladkaMenuBtn:hover {
+  cursor: pointer;
+}
+
+.zakladkaMenuBtn > span {
+  float: left;
+  width: 60%;
+  line-height: 5vh;
+  text-align: center;
+  font-size: 15px;
+  user-select: none;
+}
+
+.logo {
+  height: 100%;
+}
+
+.activeZakladka {
+  display: block;
+}
+
+/* panel dolny */
+.panelDolny {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 75px;
+  width: 70vw;
+  background-color: #7467e1;
+  border-radius: 0 10px 0 0;
+  z-index: 9999;
+}
+
+/* SPRAWDŹ ZADANIE - STYL */
+.sprawdzZadanie {
+  float: right;
+  margin: 8px 15px 8px 8px;
+  width: 80px;
+  height: 45px;
+  border-radius: 10px;
+  border: 2px solid white;
+  color: white;
+  font-size: 10px;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.sprawdzZadanie:hover {
+  cursor: pointer;
+  font-size: 22px;
+  background-color: white;
+  color: #7467e1;
+}
+
+/* sprawdzenie rozmiaru - bląd */
+.newDivMessage {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 80%);
+  color: white;
+  text-align: center;
+  position: fixed;
+  z-index: 1000000;
+}
+
+.messageToSmall {
+  width: 100%;
+  height: 100%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.activeBadSize {
+  display: none;
+}
+
+.menuClosed {
+  right: -384px;
+}
+
+.blockScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 40%);
+  z-index: 10000;
+  transition-duration: 0.4s;
+  opacity: 1;
+}
+
+.hiddenV {
+  transition-duration: 0.4s;
+  opacity: 0;
+}
