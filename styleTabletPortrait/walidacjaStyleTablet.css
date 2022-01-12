@@ -22,6 +22,7 @@
   text-align: center;
   z-index: 10000000;
   position: fixed;
+  top: 0;
 }
 
 .wyniksprawdzaniaBox {
