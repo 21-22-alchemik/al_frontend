@@ -246,14 +246,14 @@ function smilesMenu(){
     if(connsList.length>0){
         var atoms = new Array();
         atomsList.forEach(atom =>{
-            atoms.push([atom.atomId,atom.name,atom.valence])
-        })
+            atoms.push([atom.atomId,atom.name,atom.valence]);
+        });
         var conns = new Array();
         connsList.forEach(conn =>{
             for(var i = 0; i<conn.count;i++){
-                conns.push([conn.parent1.atomId,conn.parent2.atomId])
+                conns.push([conn.parent1.atomId,conn.parent2.atomId]);
             }
-        })
+        });
         document.getElementById("smilesHolder").classList.remove("hidden");
         document.querySelector("#smilesHolder h2").textContent= molecule_to_smiles(atoms,conns);
     }
@@ -273,14 +273,12 @@ function generateResult(atoms, conns){
     clearAll();
 
     atoms.forEach(atom => {
-        console.log(atom)
-        atomsList.push(new Atom(atom[1],getColorBySymbol(atom[1]),atom[2]))
-    })
+        atomsList.push(new Atom(atom[1],getColorBySymbol(atom[1]),atom[2]));
+    });
 
     conns.forEach(conn =>{
-        console.log(conn)
-        connection(atomsList[conn[0]],atomsList[conn[1]])
-    })
+        connection(atomsList[conn[0]],atomsList[conn[1]]);
+    });
 }
 
 module.exports = al_smiles; // eslint-disable-line no-undef
