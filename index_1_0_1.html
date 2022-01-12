@@ -4,24 +4,36 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Alchemik</title>
+	<!-- general style -->
 	<link rel="stylesheet" type="text/css" href="./style/main.css">
 	<link rel="stylesheet" type="text/css" href="./style/chemstyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/menuStyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/walidacjaStyle.css">
-	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
 	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
-	<link rel="stylesheet" type="text/css" href="./style/editStyle.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
+
+	<!-- style for computer -->
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/chemstyle.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/menuStyle.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/walidacjaStyle.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(min-width: 1025px)" href="./style/editStyle.css">
+	
+	<!-- style for tablets portrait -->
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: portrait) and (max-width: 1024px)" href="./styleTabletPortrait/menuStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: portrait) and (max-width: 1024px)" href="./styleTabletPortrait/walidacjaStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: portrait) and (max-width: 1024px)" href="./styleTabletPortrait/editStyleTablet.css">
+	
+	<!-- style for tablets landscape -->
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: landscape) and (max-width: 1324px)" href="./styleTabletLandscape/menuStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: landscape) and (max-width: 1324px)" href="./styleTabletLandscape/walidacjaStyleTablet.css">
+	<link rel="stylesheet" type="text/css" MEDIA="(orientation: landscape) and (max-width: 1324px)" href="./styleTabletLandscape/editStyleTablet.css">
 </head>
 
-<body onload="checkSize()">
-
+<body>
 	<!-- Holder of atoms and bonds -->
-	<div id="wizualizacjaDanych">
-		<div id="atomsHolder" class="atomsHolder"></div>
-		<div id="connsHolder" class="connsHolder"></div>
+	<div class="workspace">
+		<div id="wizualizacjaDanych" class="wizualizacjaDanych">
+			<div id="atomsHolder" class="atomsHolder"></div>
+			<div id="connsHolder" class="connsHolder"></div>
+		</div>
 	</div>
 	
 
@@ -31,11 +43,11 @@
 		<div class="panelDolny">
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
-			<button class="przyciskEdycji" id="addConnection">DODAJ WIĄZANIA</button>
-			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ ELEMENT</button>
-			<!-- color choose -->
-			<button class="przyciskEdycji" id="getAtomColor">POBIERZ KOLOR ATOMU</button>
-			<button class="przyciskEdycji" id="changeAtomColor">NADAJ KOLOR ATOMOWI</button>
+			<button class="przyciskEdycji" id="addConnection">DODAJ</button>
+			<button class="przyciskEdycji" id="deleteConnectionAtom">USUŃ</button>
+			<!-- Wybór customowego koloru -->
+			<button class="przyciskEdycji" id="getAtomColor">POBIERZ KOLOR</button>
+			<button class="przyciskEdycji" id="changeAtomColor">NADAJ KOLOR</button>
 			<input class="przyciskEdycji" type="color" id="colorPicker">
 		</div>
 		<!-- Menu -->
@@ -57,16 +69,11 @@
 			</div>
 			<div class="menuPanel">
 				<div class="zakladkaMenu" id="zakladkaMenu">
-					<div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()">
-						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="CreatePDFfromHTML()">
+					<!-- <div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()"> --> 
+					<div class="pdf przyciskiMenu">
+						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="createPdf()">
 							<span>Zapisz jako PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
-						</button>
-					</div>
-					<div class="QA przyciskiMenu">
-						<button class="QABtn zakladkaMenuBtn" id="QABtn">
-							<span>Q&A</span>
-							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
 						</button>
 					</div>
 					<!-- saving as JPG --> 
@@ -90,10 +97,10 @@
 							<img src="IMAGES/menu/save.png" alt="saveImg" class="save logo">
 						</button>
 					</div>
+					<!-- SMILES -->
 					<div class="save przyciskiMenu">
-						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
-							<span>Kontakt</span>
-							<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
+						<button class="saveBtn zakladkaMenuBtn" onclick="smilesMenu()">
+							<span>SMILES</span>
 						</button>
 					</div>
 				</div>
@@ -106,7 +113,7 @@
 					</div>
 				</div>
 				<div class="zakladkaMenu" id="zakladkaZwiazki">
-					<button class="zakladkaMenuBtn" onclick="easyExample()">
+					<!-- <button class="zakladkaMenuBtn" onclick="easyExample()">
 						Łatwy związek
 					</button>
 					<button class="zakladkaMenuBtn" onclick="averageExample()">
@@ -114,10 +121,7 @@
 					</button>
 					<button class="zakladkaMenuBtn" onclick="hardExample()">
 						Trudny związek
-					</button>
-					<button class="zakladkaMenuBtn" onclick="extremeExample()">
-						Trudniejszy zwiąek
-					</button>
+					</button> -->
 				</div>
 				<!-- close button -->
 				<div class="menuWyjscie">
@@ -128,17 +132,10 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Prompts -->
-		<!-- Block Screen for menu-->
+	<!-- Prompty (pełno ekranowe obiekty) -->
+    <div>
+		<!-- Block Screen dla menu-->
 		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
-
-		<!-- div with information about too small window -->
-		<div class="newDivMessage" id="newDivMessage">
-			<div class="messageToSmall">
-				<h1>Zwiększ rozmiar okna przeglądarki!</h1>
-			</div>
-		</div>
 	</div>
 	<!-- check error message -->
 	<div class="wynikSprawdzeniaCheck" id="wynikSprawdzeniaCheck">
@@ -152,6 +149,24 @@
 				</button>
 			</div>
 		</div>
+	</div>
+	<!--SMILES-->
+	<div id="smilesInfoHolder" class="valence smilesInfoHolder hidden">
+		<div class="vHolder">
+			<div>
+				<h3>Podaj SMILES:</h3>
+				<div style="text-align: center;">
+					<input type="text" id="smilesInput" class="vBtn"/>
+					<button onclick="goSmiles()" class="vBtn">-></button>
+				</div>
+			</div>
+			<div id="smilesHolder" class="hidden" style="text-align: center;">
+				<h3>SMILES obecnego związku:</h3>
+				<h2 style="color: white;"></h2>
+			</div>
+			<div onclick="hideSmiles()" class="vBtn">Zamknij</div>
+		</div>
+		
 	</div>
 
 
@@ -185,19 +200,34 @@
 		</div>
 
 	<!-- Scripts -->
-		<script type="text/javascript" src="./js/polaczenia.js"></script>
+		<script type="text/javascript" src="./js/classes.js"></script>
 		<script type="text/javascript" src="./js/menu.js"></script>
 		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
 		<script type="text/javascript" src="./js/periodicTable.js"></script>
 		<script type="text/javascript" src="./js/mendelejew.js"></script>
 		<script type="text/javascript" src="./js/actions.js"></script>
-		<script type="text/javascript" src="./js/easy.js"></script>
-		<script type="text/javascript" src="./js/average.js"></script>
-		<script type="text/javascript" src="./js/hard.js"></script>
-		<script type="text/javascript" src="./js/extreme.js"></script>
+		<script type="text/javascript" src="./js/examples.js"></script>
 		<script type="text/javascript" src="./js/editButtons.js"></script>
 		<script type="text/javascript" src="./js/walidacja.js"></script>
         <script type="text/javascript" src="./js/pdfExport.js"></script>
 		<script type="text/javascript" src="./js/images.js"></script>
+		<script type="text/javascript" src="./js/al_smiles.js"></script>
+		<script type="text/javascript" src="./js/blobstream.js"></script>
+		<script type="text/javascript" src="./js/pdfkit.js"></script>
+		<script type="text/javascript" src="./js/svgToPdf.js"></script>
+		<script>
+			var resCheck;
+			window.addEventListener('resize',function(){
+				clearTimeout(resCheck);
+				resCheck = setTimeout(resizer, 100);
+			})
+
+			function resizer(){
+				atomsList.forEach(element => {
+					resizeDragElement(element);
+				});
+			}
+			    
+		</script>
 </body>
 </html>

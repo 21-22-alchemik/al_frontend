@@ -1,21 +1,5 @@
 /* eslint-disable no-unused-vars */
 
-//check the size of the browser window
-function checkSize() {
-    //loading the values of a browser window
-    var width = window.innerWidth;
-    var newDivMessage = document.getElementById("newDivMessage");
-    //min 1000px, checking
-    if(width < 1000){
-        newDivMessage.classList.remove("activeBadSize");
-    } else {
-        newDivMessage.classList.add("activeBadSize");
-    }
-}
-
-//check when the width of the browser window changes
-window.addEventListener("resize", checkSize);
-
 // MENU
 
 //loading elements

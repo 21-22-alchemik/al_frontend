@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 
 //Create PDf from HTML...
-
+/*
 function CreatePDFfromHTML() {
     var HTML_Width = $("#wizualizacjaDanych").width();
     var HTML_Height = $("#wizualizacjaDanych").height();
@@ -23,4 +23,34 @@ function CreatePDFfromHTML() {
         }
         pdf.save("wiazaniaPDF.pdf");
     });
+}
+*/
+
+function createPdf() {
+    let svg = generateSvg();
+    let png = generateCanvas();
+    let svgHTML = document.createElement("div");
+    svgHTML.innerHTML=svg;
+    let child = svgHTML.firstChild.attributes;
+    if(svg!=false){
+        let options = {
+            width: parseFloat(child.width.value),
+            height: parseFloat(child.height.value),
+            useCss: true,
+            preserveAspectRatio: true
+        };
+        let doc = new PDFDocument({layout: "landscape", size: "A4"});
+
+        SVGtoPDF(doc, svg, 0, 0);
+        
+        let stream = doc.pipe(blobStream());
+        stream.on("finish", function() {
+            let blob = stream.toBlobURL("application/pdf");
+            var link = document.createElement("a");
+            link.download = "structure.pdf";
+            link.href = blob;
+            link.click();
+        });
+        doc.end();
+    }
 }

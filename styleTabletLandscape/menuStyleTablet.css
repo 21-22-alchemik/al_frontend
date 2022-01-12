@@ -1,8 +1,8 @@
 /* Menu */
 
-/* web version for stationar computer */
+/* wersja web dla komputerów stacjonarnych */
 .wrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   transition: 0.4s;
@@ -30,7 +30,7 @@
   position: absolute;
   top: 5vh;
   right: 0;
-  height: 25vh;
+  height: 27vh;
   width: 442px;
   z-index: 10001;
   background-color: #7467e1;
@@ -42,7 +42,7 @@
   position: absolute;
   top: 37vh;
   right: 0;
-  height: 25vh;
+  height: 28vh;
   width: 442px;
   z-index: 10001;
   background-color: #7467e1;
@@ -54,7 +54,7 @@
   position: absolute;
   top: 70vh;
   right: 0;
-  height: 25vh;
+  height: 27vh;
   width: 442px;
   z-index: 10001;
   background-color: #7467e1;
@@ -86,7 +86,7 @@
 .menuTytulPierwiastki {
   transform: rotate(-90deg);
   position: absolute;
-  bottom: 10vh;
+  bottom: 11vh;
   left: -68px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: white;
@@ -112,7 +112,7 @@
   background-color: #4d42a7;
 }
 
-/* close button from menu */
+/* przycisk wyjscia z menu */
 .menuWyjscie {
   width: 200px;
   height: 40px;
@@ -140,7 +140,7 @@
   color: #4d42a7;
 }
 
-/* menu_menu tab */
+/* zakladka menu_menu */
 .zakladkaMenu {
   float: left;
   width: 80%;
@@ -161,7 +161,6 @@
   border: 1px solid #c0e5fb;
   background-color: #c0e5fb;
   border-radius: 10px;
-  user-select: none;
 }
 
 .zakladkaMenuBtn:hover {
@@ -185,28 +184,29 @@
   display: block;
 }
 
-/* toolbar */
+/* panel dolny */
 .panelDolny {
-  position: absolute;
+  position: fixed;
   left: 0;
+  bottom: -30vh;
   bottom: 0;
   height: 75px;
-  width: 60vw;
+  width: 70vw;
   background-color: #7467e1;
   border-radius: 0 10px 0 0;
   z-index: 9999;
 }
 
-/* check bindings style */
+/* SPRAWDŹ ZADANIE - STYL */
 .sprawdzZadanie {
   float: right;
-  margin: 10px 20px 10px 10px;
-  width: 150px;
-  height: 55px;
+  margin: 8px 15px 8px 8px;
+  width: 80px;
+  height: 45px;
   border-radius: 10px;
   border: 2px solid white;
   color: white;
-  font-size: 20px;
+  font-size: 10px;
   background: transparent;
   transition: 0.3s;
 }
@@ -218,7 +218,7 @@
   color: #7467e1;
 }
 
-/* checking size style */
+/* sprawdzenie rozmiaru - bląd */
 .newDivMessage {
   width: 100vw;
   height: 100vh;
