@@ -1,4 +1,5 @@
 /* stylelint-disable selector-id-pattern */
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 
 /* helper */
 .wizualizacjaDanych {
@@ -18,7 +19,7 @@
   position: relative;
 }
 
-.workspace{
+.workspace {
   position: fixed;
   width: calc(100% - 68px);
   height: calc(100% - 85px);
