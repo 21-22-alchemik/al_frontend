@@ -161,6 +161,7 @@
   border: 1px solid #c0e5fb;
   background-color: #c0e5fb;
   border-radius: 10px;
+  user-select: none;
 }
 
 .zakladkaMenuBtn:hover {

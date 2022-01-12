@@ -192,19 +192,23 @@ function dragElement(atom) {
         //is the div in board space?
         var restartNeeded = false;
         if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2))<0){
+            atom.y = 5;
             elmnt.style.top="5px";
             restartNeeded = true;
         }
-        if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2)) > (window.innerHeight - 75 - 75)) {
-            elmnt.style.top = (window.innerHeight - 75 - 5 - 75) + "px";
+        if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2)) > (document.getElementById("wizualizacjaDanych").offsetHeight)- 75 - 40) {
+            atom.y = (document.getElementById("wizualizacjaDanych").offsetHeight - 75 - 40);
+            elmnt.style.top = (document.getElementById("wizualizacjaDanych").offsetHeight - 75 - 40) + "px";
             restartNeeded = true;
         }
         if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2))<0){
+            atom.x = 5;
             elmnt.style.left="5px";
             restartNeeded = true;
         }
-        if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (window.innerWidth - 58 - 75)) {
-            elmnt.style.left = (window.innerWidth - 58 - 5 - 75) + "px";
+        if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (document.getElementById("wizualizacjaDanych").offsetWidth)- 75 - 40 ){
+            atom.x = (document.getElementById("wizualizacjaDanych").offsetWidth - 75 - 40);
+            elmnt.style.left = (document.getElementById("wizualizacjaDanych").offsetWidth - 75 - 40) + "px";
             restartNeeded = true;
         }
 
@@ -248,6 +252,38 @@ function connectionMove(elem) {
         elem.DOM.style.transform = "rotate(" + angle + "deg)";
     }
 }
+
+function resizeDragElement(atom) {
+    var elmnt = atom.DOM;
+    
+    //is the div in board space?
+    var restartNeeded = false;
+    if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2))<0){
+        atom.y = 5;
+        elmnt.style.top="5px";
+        restartNeeded = true;
+    }
+    if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2)) > (document.getElementById("wizualizacjaDanych").offsetHeight)- 75 - 40) {
+        atom.y = (document.getElementById("wizualizacjaDanych").offsetHeight - 75 - 40);
+        elmnt.style.top = (document.getElementById("wizualizacjaDanych").offsetHeight - 75 - 40) + "px";
+        restartNeeded = true;
+    }
+    if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2))<0){
+        atom.x = 5;
+        elmnt.style.left="5px";
+        restartNeeded = true;
+    }
+    if(parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2)) > (document.getElementById("wizualizacjaDanych").offsetWidth)- 75 - 40 ){
+        atom.x = (document.getElementById("wizualizacjaDanych").offsetWidth - 75 - 40);
+        elmnt.style.left = (document.getElementById("wizualizacjaDanych").offsetWidth - 75 - 40) + "px";
+        restartNeeded = true;
+    }
+
+    if(restartNeeded){
+        atom.connections.forEach(conn => connectionMove(conn));
+    }
+
+}  
 
 module.exports.TestAtom = Atom; // eslint-disable-line no-undef
 module.exports.TestConnection = Connection; // eslint-disable-line no-undef

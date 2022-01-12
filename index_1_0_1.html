@@ -11,17 +11,16 @@
 	<link rel="stylesheet" type="text/css" href="./style/wizualizacjaDanych.css">
 	<link rel="stylesheet" type="text/css" href="./style/mendelejew.css">
 	<link rel="stylesheet" type="text/css" href="./style/editStyle.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 </head>
 
 <body onload="checkSize()">
 
 	<!-- Holder of atoms and bonds -->
-	<div id="wizualizacjaDanych">
-		<div id="atomsHolder" class="atomsHolder"></div>
-		<div id="connsHolder" class="connsHolder"></div>
+	<div class="workspace">
+		<div id="wizualizacjaDanych" class="wizualizacjaDanych">
+			<div id="atomsHolder" class="atomsHolder"></div>
+			<div id="connsHolder" class="connsHolder"></div>
+		</div>
 	</div>
 	
 
@@ -57,8 +56,9 @@
 			</div>
 			<div class="menuPanel">
 				<div class="zakladkaMenu" id="zakladkaMenu">
-					<div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()">
-						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="CreatePDFfromHTML()">
+					<!-- <div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()"> --> 
+					<div class="pdf przyciskiMenu">
+						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="createPdf()">
 							<span>Zapisz jako PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
@@ -211,5 +211,22 @@
         <script type="text/javascript" src="./js/pdfExport.js"></script>
 		<script type="text/javascript" src="./js/images.js"></script>
 		<script type="text/javascript" src="./js/al_smiles.js"></script>
+		<script type="text/javascript" src="./js/blobstream.js"></script>
+		<script type="text/javascript" src="./js/pdfkit.js"></script>
+		<script type="text/javascript" src="./js/svgToPdf.js"></script>
+		<script>
+			var resCheck;
+			window.addEventListener('resize',function(){
+				clearTimeout(resCheck);
+				resCheck = setTimeout(resizer, 100);
+			})
+
+			function resizer(){
+				atomsList.forEach(element => {
+					resizeDragElement(element);
+				});
+			}
+			    
+		</script>
 </body>
 </html>
