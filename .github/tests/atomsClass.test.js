@@ -1,7 +1,123 @@
 document.body.innerHTML = '<div id="atomsHolder" class="atomsHolder"></div><div id="connsHolder" class="connsHolder"></div>';
 
-const Atom = require('../../js/classes.js').TestAtom;
-const connection = require('../../js/classes.js').connection;
+class Counter {
+    constructor() {
+        this.atoms = 0;
+        this.conns = 0;
+    }
+    atom() {
+        return this.atoms++;
+    }
+    connection() {
+        return this.conns++;
+    }
+}
+
+const counter = new Counter();
+
+class Atom{
+    constructor(Name, Color, Valence=0, X=5, Y=5){
+        this.id = counter.atom();
+        this.name = Name;
+        this.color = Color;
+        this.x = X;
+        this.y = Y;
+        this.connections = new Array();
+        this.valence = Valence;
+        this.DOM = null;
+
+        this.generate();
+    }
+    //dodawanie połączenia
+    newConnection(conn){
+        this.connections.push(conn);
+    }
+    //generowanie obiektu
+    generate(){
+        var atom = document.createElement("DIV");
+        atom.style.backgroundColor = this.color;
+        atom.innerHTML = this.name;
+        atom.style.top = this.y+"px";
+        atom.style.left = this.x+"px";
+        atom.style.zIndex = zIndexVal++;
+        atomsHolder.appendChild(atom);
+        this.DOM = atom;
+        //dragElement(this);
+    }
+    check(){
+        var sum = 0;
+        this.connections.forEach(elem => {
+            sum += elem.count;
+        });
+
+        //zwracana wartość
+        // 0 - git
+        //ujemna - za mało wiązań
+        //dodatnia - zbyt dużo wiązań
+        return sum - this.valence;
+    }
+}
+
+class Connection {
+    constructor(Parent1, Parent2, Count = 1) {
+        this.id = counter.connection();
+        this.DOM = null;
+        this.parent1 = Parent1;
+        this.parent2 = Parent2;
+        this.count = Count;
+        // podpięcie pod rodziców
+        Parent1.newConnection(this);
+        Parent2.newConnection(this);
+        // wygenerowanie w DOM
+        this.generate();
+    }
+    generate() {
+    // wygenerowanie obiektu DOM
+        var conn = document.createElement("DIV");
+        conn.className = "connection" + this.count;
+        connsHolder.appendChild(conn);
+        // podpięcie odnośnika do obiektu DOM
+        this.DOM = conn;
+        // utworzenie fizycznego połączenia
+        //connectionMove(this);
+    }
+    delete() {
+        this.changeCount(-100);
+    }
+    changeCount(value) {
+    // zmiana rodzaju połączenia
+        this.count += value;
+        if (this.count > 9) {
+            console.log("zbyt potężne wiązanie!");
+            this.count = 9;
+        } else if (this.count <= 0)
+            this.delete();
+        else
+            this.DOM.classList = "connection" + this.count;
+        //connectionMove(this);
+    }
+}
+
+//funkcja dodawania wiązania między atomami
+function connection(Parent1, Parent2){
+    var checker = false;
+    Parent1.connections.forEach(elem => { 
+        if(elem.parent1 == Parent2 || elem.parent2 == Parent2) {
+            elem.changeCount(1);
+            checker = true;
+        }
+    });
+    if(!checker)
+        connsList.push(new Connection(Parent1, Parent2));
+}
+
+var atomsHolder = document.getElementById("atomsHolder");
+var connsHolder = document.getElementById("connsHolder");
+var atomsList = new Array();
+var connsList = new Array();
+
+var zIndexVal = 3;
+
 
 //testing adding atoms
 
