@@ -63,12 +63,12 @@
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
 					</div>
-					<div class="QA przyciskiMenu">
+					<!-- <div class="QA przyciskiMenu">
 						<button class="QABtn zakladkaMenuBtn" id="QABtn">
 							<span>Q&A</span>
 							<img src="IMAGES/menu/QA.png" alt="QAImg" class="QA logo">
 						</button>
-					</div>
+					</div> --> 
 					<!-- saving as JPG --> 
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" onclick="getImage('jpg')">
@@ -93,16 +93,16 @@
 					<!-- SMILES -->
 					<div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" onclick="smilesMenu()">
-							<span>SMILES</span>
+							<span>Notacja SMILES</span>
 						</button>
 					</div>
 
-					<div class="save przyciskiMenu">
+					<!-- <div class="save przyciskiMenu">
 						<button class="saveBtn zakladkaMenuBtn" id="saveBtn">
 							<span>Kontakt</span>
 							<img src="IMAGES/menu/contact.png" alt="contactImg" class="contact logo">
 						</button>
-					</div>
+					</div> -->
 				</div>
 				<div class="zakladkaMenu" id="zakladkaPierwiastki">
 					<div>
@@ -113,18 +113,7 @@
 					</div>
 				</div>
 				<div class="zakladkaMenu" id="zakladkaZwiazki">
-					<button class="zakladkaMenuBtn" onclick="easyExample()">
-						Łatwy związek
-					</button>
-					<button class="zakladkaMenuBtn" onclick="averageExample()">
-						Średni związek
-					</button>
-					<button class="zakladkaMenuBtn" onclick="hardExample()">
-						Trudny związek
-					</button>
-					<button class="zakladkaMenuBtn" onclick="extremeExample()">
-						Trudniejszy zwiąek
-					</button>
+					<button class="zakladkaMenuBtn" onclick="clearAll()">Wyczysć tablicę</button>
 				</div>
 				<!-- close button -->
 				<div class="menuWyjscie">
@@ -216,10 +205,7 @@
 		<script type="text/javascript" src="./js/periodicTable.js"></script>
 		<script type="text/javascript" src="./js/mendelejew.js"></script>
 		<script type="text/javascript" src="./js/actions.js"></script>
-		<script type="text/javascript" src="./js/easy.js"></script>
-		<script type="text/javascript" src="./js/average.js"></script>
-		<script type="text/javascript" src="./js/hard.js"></script>
-		<script type="text/javascript" src="./js/extreme.js"></script>
+		<script type="text/javascript" src="./js/examples.js"></script>
 		<script type="text/javascript" src="./js/editButtons.js"></script>
 		<script type="text/javascript" src="./js/walidacja.js"></script>
         <script type="text/javascript" src="./js/pdfExport.js"></script>

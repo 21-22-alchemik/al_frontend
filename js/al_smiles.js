@@ -1,5 +1,6 @@
 //credit: https://codereview.stackexchange.com/a/179484, thanks!
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 function find_closing_bracket_match_index(str) { 
 
     let depth = 0;
@@ -241,7 +242,7 @@ function smiles_to_element_class(smiles) {
 
 
 function smilesMenu(){
-    document.getElementById('smilesInfoHolder').classList.remove('hidden');
+    document.getElementById("smilesInfoHolder").classList.remove("hidden");
     if(connsList.length>0){
         var atoms = new Array();
         atomsList.forEach(atom =>{
@@ -253,19 +254,19 @@ function smilesMenu(){
                 conns.push([conn.parent1.atomId,conn.parent2.atomId])
             }
         })
-        document.getElementById('smilesHolder').classList.remove('hidden');
-        document.querySelector('#smilesHolder h2').textContent= molecule_to_smiles(atoms,conns);
+        document.getElementById("smilesHolder").classList.remove("hidden");
+        document.querySelector("#smilesHolder h2").textContent= molecule_to_smiles(atoms,conns);
     }
 }
 
 function hideSmiles(){
-    document.getElementById('smilesInfoHolder').classList.add('hidden');
-    document.getElementById('smilesHolder').classList.add('hidden');
+    document.getElementById("smilesInfoHolder").classList.add("hidden");
+    document.getElementById("smilesHolder").classList.add("hidden");
 }
 
 function goSmiles(){
     clearAll();
-    smiles_to_element_class(document.getElementById('smilesInput').value);
+    smiles_to_element_class(document.getElementById("smilesInput").value);
 }
 
 function generateResult(atoms, conns){
