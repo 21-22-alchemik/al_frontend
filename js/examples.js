@@ -21,10 +21,10 @@ function generateExamples(){
         btn.onclick = eval(example[1]);
         btn.textContent = example[0];
         holder.appendChild(btn);
-    })
+    });
 }
 
-generateExamples()
+generateExamples();
 
 function methylIsocyanate(){
     clearAll();
