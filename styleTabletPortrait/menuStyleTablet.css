@@ -188,8 +188,8 @@
 .panelDolny {
   position: absolute;
   left: 0;
-  bottom: -40px;
-  height: 75px;
+  bottom: 0;
+  height: 65px;
   width: 89vw;
   background-color: #7467e1;
   border-radius: 0 10px 0 0;
