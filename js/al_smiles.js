@@ -281,4 +281,4 @@ function generateResult(atoms, conns){
     });
 }
 
-module.exports = al_smiles; // eslint-disable-line no-undef
+module.exports = molecule_to_smiles; // eslint-disable-line no-undef
