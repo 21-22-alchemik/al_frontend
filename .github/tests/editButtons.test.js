@@ -8,15 +8,15 @@ document.body.innerHTML = "<button class=\"sprawdzZadanie\" id=\"sprawdzZadanie\
 "<div id=\"connsHolder\" class=\"connsHolder\"></div>" + 
 "<div class=\"wrapper menuClosed\" id=\"menuWrapper\"></div>";
 
-const TestAtom = require('../../js/polaczenia.js').TestAtom;
-const connection = require('../../js/polaczenia.js').connection;
+const TestAtom = require('../../js/classes.js').TestAtom;
+const connection = require('../../js/classes.js').connection;
 const enablePanel = require('../../js/editButtons.js').enablePanel;
 const disablePanel = require('../../js/editButtons.js').disablePanel;
 const getConnectionById = require('../../js/editButtons.js').getConnectionById;
 const getAtomById = require('../../js/editButtons.js').getAtomById;
 
-const atomsList = require('../../js/polaczenia.js').atomsList;
-const connsList = require('../../js/polaczenia.js').connsList;
+const atomsList = require('../../js/classes.js').atomsList;
+const connsList = require('../../js/classes.js').connsList;
 
 atomsList.push(new TestAtom("H", "black", 1));
 atomsList.push(new TestAtom("H", "black", 1, 85, 5));
