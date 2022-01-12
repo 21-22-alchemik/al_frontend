@@ -2,8 +2,8 @@ document.body.innerHTML = '<div id="atomsHolder" class="atomsHolder"></div><div 
 
 const Atom = require('../../js/classes.js').TestAtom;
 const connection = require('../../js/classes.js').connection;
-const atomsList = require('../../js/classes.js').atomsList;
-const connsList = require('../../js/classes.js').connsList;
+var atomsList = require('../../js/classes.js').atomsList;
+var connsList = require('../../js/classes.js').connsList;
 
 //testing adding atoms
 
