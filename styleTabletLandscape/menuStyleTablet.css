@@ -186,7 +186,7 @@
 
 /* panel dolny */
 .panelDolny {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: -30vh;
   bottom: 0;
