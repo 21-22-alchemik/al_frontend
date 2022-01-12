@@ -1,4 +1,4 @@
-const al_smiles = require('../../js/al_smiles.js')
+const molecule_to_smiles = require('../../js/al_smiles.js')
 
 
 atomsList = new Array();
@@ -27,7 +27,7 @@ connectionList.push([4, 1]);
 connectionList.push([3, 4]);
 
 test('O1C2(O1)(O(O2))', () => {
-    expect(al_smiles(atomsList, connectionList)).toBe("O1C2(O1)(O(O2))");
+    expect(molecule_to_smiles(atomsList, connectionList)).toBe("O1C2(O1)(O(O2))");
 });
 
 
@@ -68,7 +68,7 @@ connectionList2.push([7, 6]);
 
 
 test('CC(=O)(O)', () => {
-    expect(al_smiles(atomsList2, connectionList2)).toBe("CC(=O)(O)");
+    expect(molecule_to_smiles(atomsList2, connectionList2)).toBe("CC(=O)(O)");
 });
 
 
@@ -113,5 +113,5 @@ connectionList3.push([6, 1]);
 
 
 test('OS(O)(=O)(=O)', () => {
-    expect(al_smiles(atomsList3, connectionList3)).toBe("OS(O)(=O)(=O)");
+    expect(molecule_to_smiles(atomsList3, connectionList3)).toBe("OS(O)(=O)(=O)");
 });

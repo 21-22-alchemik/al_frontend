@@ -27,24 +27,19 @@ class Atom {
 
         this.generate();
     }
-    //dodawanie połączenia
+    //add connections
     newConnection(conn) {
-        /*if(this.connections.includes(conn))
-			this.connections[this.connections.indexOf(conn)].changeCount(1);
-		else*/
         this.connections.push(conn);
     }
     removeConnection(conn){
-        //console.log(conn);
-        //console.log(this.connections);
         this.connections.splice(this.connections.indexOf(conn), 1);
-        //console.log(this.connections);
     }
-    //generowanie obiektu
+
+    //object generation
     generate(){
         var atom = document.createElement("DIV");
         atom.style.backgroundColor = this.color;
-        atom.innerHTML = `${this.name}<sub>${this.valence}</sub>`;
+        atom.innerHTML = `${this.name}<sup>${this.valence}</sup>`;
         atom.style.top = this.y+"px";
         atom.style.left = this.x+"px";
         atom.id = "atom_" + this.atomId;
@@ -58,23 +53,18 @@ class Atom {
         this.connections.forEach(elem => {
             sum += elem.count;
         });
-        //ten if else jest tylko informacyjny, później sie go usunie bo on i tak nic nie zmienia
-        //zbyt dużo wiązań
+        //too many bindings
         if(sum > this.valence){
             console.log("ZA DUŻO!!!");
         }
-        //zbyt mało wiązań - domyślnie są jeszcze atomy wodoru, które są niby domyślne i uzupełniają te braki w sumie, ale jeśli założymy tryb edukacyjny - wtedy użytkownik musi dodać je sam
+        //too few bindings
         else if(sum < this.valence){
             console.log("ZA MAŁO!!!");
         }
-        //jest dobrze
+        //it's good
         else{
-            console.log("jakby to powiedział Paweł, jest git");
+            console.log("DOBRZE!!!");
         }
-        //zwracana wartość
-        // 0 - git
-        //ujemna - za mało wiązań
-        //dodatnia - zbyt dużo wiązań
         return sum - this.valence;
     }
 }
@@ -86,38 +76,36 @@ class Connection {
         this.parent1 = Parent1;
         this.parent2 = Parent2;
         this.count = Count;
-        // podpięcie pod rodziców
+        // connected under parents
         Parent1.newConnection(this);
         Parent2.newConnection(this);
-        // wygenerowanie w DOM
+        // DOM generation
         this.generate();
     }
     generate() {
-    // wygenerowanie obiektu DOM
+        // DOM object generation
         var conn = document.createElement("DIV");
         conn.className = "connection" + this.count;
         conn.id = "connection_" + this.connectionId;
         connsHolder.appendChild(conn);
-        // podpięcie odnośnika do obiektu DOM
+        // link to the DOM object
         this.DOM = conn;
-        // utworzenie fizycznego połączenia
+        // create connection
         connectionMove(this);
     }
     delete() {
-        //this.changeCount(-100);
-        // usunięcie wpisu w rodzicach
+        // deleting an entry in parents
         this.parent1.removeConnection(this);
         this.parent2.removeConnection(this);
-        // usunięcie obiektu DOM
+        // remove DOM element
         // connsHolder.removeChild(this.DOM);
-
-    // destroy(this);
+        // destroy(this);
     }
     changeCount(value) {
-    // zmiana rodzaju połączenia
+    // changing the connection type
         this.count += value;
         if (this.count > 9) {
-            console.log("zbyt potężne wiązanie!");
+            console.log("Zbyt potężne wiązanie!");
             this.count = 9;
         } else if (this.count <= 0)
             this.delete();
@@ -127,7 +115,7 @@ class Connection {
     }
 }
 
-//funkcja dodawania wiązania między atomami
+// function of adding a bond between atoms
 function connection(Parent1, Parent2){
     var checker = false;
     Parent1.connections.forEach(elem => { 
@@ -154,7 +142,7 @@ function dragElement(atom) {
         pos2 = 0,
         pos3 = 0,
         pos4 = 0;
-    //przypisanie funkcji naciśnięcia klawisza myszki
+    //assigning a mouse button press function
     elmnt.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
@@ -167,12 +155,12 @@ function dragElement(atom) {
         else
             elmnt.style.zIndex = parseInt(elmnt.style.zIndex) + 1 == zIndexVal ? elmnt.style.zIndex : zIndexVal++;
 
-        //pozycja startowa myszy
+        //mouse start position
         pos3 = e.clientX;
         pos4 = e.clientY;
-        //funkcja przy puszczeniu klawisza myszki
+        //function when releasing the mouse button
         document.onmouseup = closeDragElement;
-        //funkcja przy ruszaniu myszką 
+        //mouseover function
         document.onmousemove = elementDrag;
     }
 
@@ -180,29 +168,28 @@ function dragElement(atom) {
         e = e || window.event;
         e.preventDefault();
 
-        //stara i nowa pozycja myszki
+        //old and new mouse position
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // nowa pozycja elementu
+        // new position of element
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 
-        //zapisz x i y
+        //save x and y
         atom.y = parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2));
         atom.x = parseInt(elmnt.style.left.substr(0, elmnt.style.left.length-2));
-        //console.log(elmnt.x + " - "+elmnt.y);
 
-        // zmiana wyświetlania wiązania
+        // changing the display of the binding
         atom.connections.forEach(conn => connectionMove(conn));
     }
 
     function closeDragElement() {
-        //przerwij poruszanie gdy klawisz myszy jest puszczony
+        //stop moving when the mouse button is released
         document.onmouseup = null;
         document.onmousemove = null;
-        //czy div jest w przestrzeni planszy
+        //is the div in board space?
         var restartNeeded = false;
         if(parseInt(elmnt.style.top.substr(0, elmnt.style.top.length-2))<0){
             elmnt.style.top="5px";
@@ -225,7 +212,6 @@ function dragElement(atom) {
             atom.connections.forEach(conn => connectionMove(conn));
         }
 
-        //popraw z-indexy
         zIndexReduction();
     }  
 }

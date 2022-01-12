@@ -1,5 +1,6 @@
 //credit: https://codereview.stackexchange.com/a/179484, thanks!
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 function find_closing_bracket_match_index(str) { 
 
     let depth = 0;
@@ -28,7 +29,7 @@ function remove_redundant_brackets(smiles) {
 }
 
 
-function al_smiles(atomsList, connectionList) {
+function molecule_to_smiles(atomsList, connectionList) {
     var is_cyclic = false;
     var atomsGraph = new Array();
     var signs = ["", "=", "#"];
@@ -138,4 +139,146 @@ function al_smiles(atomsList, connectionList) {
     }
 }
 
-module.exports = al_smiles; // eslint-disable-line no-undef
+function smiles_to_element_class(smiles) {
+    var current_anchor = 0;
+    var atoms_list = [];
+    var connection_list = [];
+    var brackets_indexes = [];
+
+    function add_connection(a,b,x=1){
+        for(var i=0;i<x;i++){
+            connection_list.push([a ,b]);
+            
+        }
+    }
+
+        
+    function add_connection_info_to_atoms(){
+        connection_list.forEach((element) => {
+            var a = element[0];
+            var b = element[1];
+            atoms_list.forEach((el) => {
+                if(el[0]==a){
+                    el[2] +=1 ;
+                }
+                if(el[0]==b){
+                    el[2] +=1 ;
+                }
+            });
+        });
+    }
+
+    
+
+    
+    
+    for(var i=0;i<smiles.length;i++){
+        if(smiles[i]=="(")
+        {  
+            brackets_indexes.push(i);
+        }
+        else if(smiles[i]==")"){
+            var index_of_opening_bracket = brackets_indexes.pop();
+            add_connection(i-1,index_of_opening_bracket-1);
+            add_connection(index_of_opening_bracket-1,i+1);
+        }
+        else if(smiles[i]=="="){
+            if(smiles[i-1]!="("){
+                add_connection(current_anchor,i+1);
+            }
+            add_connection(current_anchor,i+1);
+
+        }
+        else if(smiles[i]=="#"){
+            if(smiles[i-1]!="("){
+                add_connection(current_anchor,i+1);
+            }
+            add_connection(current_anchor,i+1,2);
+        }
+        else{
+            current_anchor = i;
+
+            atoms_list.push([i,smiles[i],0]);
+            if(smiles[i+1]!=")" && smiles[i+1]!="(" && i+1<smiles.length){
+                add_connection(current_anchor,i+1);
+            }
+
+        }
+    }
+
+
+
+    
+    function get_minium_connections(){
+        atoms_list.forEach(el=>{
+            
+            periodicTable.forEach((element) => {
+                console.log(el[1]);
+                if(el[1]==element["symbol"]){
+                    element["valences"].some((valence) => {if(valence>=el[2]){
+                        for(var i=0;i<valence-el[2];i++){
+                            var x = atoms_list.slice(-1)[0][0]+1;
+                            atoms_list.push([x,"H",1]);
+                            connection_list.push([el[0],x]);
+                        }
+
+                        el[2] = valence;
+                        return true;
+                    }});
+                }
+            });
+            
+        });
+    }
+    
+
+
+
+    add_connection_info_to_atoms();
+    get_minium_connections();
+
+    generateResult(atoms_list, connection_list);
+}
+
+
+function smilesMenu(){
+    document.getElementById("smilesInfoHolder").classList.remove("hidden");
+    if(connsList.length>0){
+        var atoms = new Array();
+        atomsList.forEach(atom =>{
+            atoms.push([atom.atomId,atom.name,atom.valence]);
+        });
+        var conns = new Array();
+        connsList.forEach(conn =>{
+            for(var i = 0; i<conn.count;i++){
+                conns.push([conn.parent1.atomId,conn.parent2.atomId]);
+            }
+        });
+        document.getElementById("smilesHolder").classList.remove("hidden");
+        document.querySelector("#smilesHolder h2").textContent= molecule_to_smiles(atoms,conns);
+    }
+}
+
+function hideSmiles(){
+    document.getElementById("smilesInfoHolder").classList.add("hidden");
+    document.getElementById("smilesHolder").classList.add("hidden");
+}
+
+function goSmiles(){
+    clearAll();
+    smiles_to_element_class(document.getElementById("smilesInput").value);
+}
+
+function generateResult(atoms, conns){
+    clearAll();
+
+    atoms.forEach(atom => {
+        atomsList.push(new Atom(atom[1],getColorBySymbol(atom[1]),atom[2]));
+    });
+
+    conns.forEach(conn =>{
+        connection(atomsList[conn[0]],atomsList[conn[1]]);
+    });
+}
+
+module.exports = molecule_to_smiles; // eslint-disable-line no-undef

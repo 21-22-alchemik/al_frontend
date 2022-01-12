@@ -1,23 +1,8 @@
 /* eslint-disable no-unused-vars */
-//sprawdzanie rozmiaru okan przegladarki
-// function checkSize() {
-//     //wczytanie wartosci okna przegladarki
-//     var width = window.innerWidth;
-//     var newDivMessage = document.getElementById("newDivMessage");
-//     //min 1000px, sprawdzenie
-//     if(width < 1000){
-//         newDivMessage.classList.remove("activeBadSize");
-//     } else {
-//         newDivMessage.classList.add("activeBadSize");
-//     }
-// }
-
-// //sprawdzenie co zmiane szerokosci okna przegladarki
-// window.addEventListener("resize", checkSize);
 
 // MENU
 
-//wczytanie elementów
+//loading elements
 var menuWrapper = document.getElementById("menuWrapper");
 var btnMenu = document.getElementById("menu_menu");
 var btnPierwiastki = document.getElementById("menu_pierwiastki");
@@ -27,7 +12,7 @@ var zakladkaPierwiastki = document.getElementById("zakladkaPierwiastki");
 var zakladkaZwiazki = document.getElementById("zakladkaZwiazki");
 var blockScreen = document.getElementById("blockScreen");
 
-//podpięcia akcji
+//sub-actions
 btnMenu.addEventListener("click", menuControl.bind(null,"menu_menu"));
 btnPierwiastki.addEventListener("click", menuControl.bind(null,"menu_pierwiastki"));
 btnZwiazki.addEventListener("click", menuControl.bind(null,"menu_zwiazki"));
@@ -35,18 +20,18 @@ document.getElementById("wyjscie").addEventListener("click", closeMenu);
 blockScreen.addEventListener("click", closeMenu);
 
 function menuControl(element){
-    //jeśli menu jest zamknięte
+    //if is close
     if(menuWrapper.classList.contains("menuClosed")) {
         changeTab(element);
         openMenu();
     }
-    //jeśli jest otwarte
+    //if is open
     else {
-        //jeśli jest otwarte i jest na obecnej zakładce
+        //if it is open and on the current tab
         if(document.getElementById(element).classList.contains("activeMenu")) {
             changeTab("close");
         }
-        //jeśli zmieniamy karte
+        //if change the tab
         else{
             changeTab(element);
         }
@@ -56,7 +41,7 @@ function menuControl(element){
 function changeTab(element){
 
     if(element!="close"){
-        //czyszczenie 
+        //clear 
         btnMenu.classList.remove("activeMenu");
         btnPierwiastki.classList.remove("activeMenu");
         btnZwiazki.classList.remove("activeMenu");
@@ -75,21 +60,21 @@ function changeTab(element){
         break;
     }
 
-    //menu Pierwiastki
+    //menu elements
     case "menu_pierwiastki":{
         btnPierwiastki.classList.add("activeMenu");
         zakladkaPierwiastki.classList.add("activeZakladka");
         break;
     }
 
-    //menu Związki
+    //menu relations
     case "menu_zwiazki":{
         btnZwiazki.classList.add("activeMenu");
         zakladkaZwiazki.classList.add("activeZakladka");
         break;
     }
 
-    //jeśli zamykamy menu niezależnie od otwartej karty, albo wydarzy sie dziwny błąd i bedzie miało otworzyć zakładke której nie ma, to zamknie menu
+    //if you close the menu regardless of the tab you have open, or if a weird error happens and you want to open a tab that isn't there, it will close the menu
     default:{
         closeMenu();
     }
@@ -103,9 +88,9 @@ function openMenu(){
     setTimeout(function(){ blockScreen.classList.remove("hiddenV"); },10);
 }
 
-// .activeMenu -> kolor zakładki
+// .activeMenu -> tab color
 
-//zamykanie menu - przycisk
+//close menu - button
 function closeMenu() {
     menuWrapper.classList.add("menuClosed");
 
@@ -114,7 +99,7 @@ function closeMenu() {
     btnZwiazki.classList.remove("activeMenu");
     blockScreen.classList.add("hiddenV");
 
-    //zniknij po schowaniu menu
+    //disappear after hiding the menu
     setTimeout(function(){
         zakladkaMenu.classList.remove("activeZakladka");
         zakladkaPierwiastki.classList.remove("activeZakladka");

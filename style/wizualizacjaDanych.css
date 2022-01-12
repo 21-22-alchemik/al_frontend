@@ -1,6 +1,6 @@
 /* stylelint-disable selector-id-pattern */
 
-/* pomocnicze */
+/* helper */
 #wizualizacjaDanych {
   position: fixed;
   width: calc(100% - 60px);

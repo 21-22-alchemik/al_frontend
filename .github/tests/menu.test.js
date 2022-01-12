@@ -1,16 +1,16 @@
-test('Czy jest wieksze niz 1000px', () => {
-    expect(sprawdzenie(1001)).toBe(true);
+test('IsItBiggerThan1000', () => {
+    expect(checkingWindowSize(1001)).toBe(true);
 });
   
-test('Czy jest rowne 1000px', () => {
-    expect(sprawdzenie(1000)).toBe(false);
+test('IsItEgualTo1000', () => {
+    expect(checkingWindowSize(1000)).toBe(false);
 });
 
-test('Czy jest mniejsze 1000px', () => {
-    expect(sprawdzenie(999)).toBe(false);
+test('IsItSmallerThan1000', () => {
+    expect(checkingWindowSize(999)).toBe(false);
 });
 
-function sprawdzenie(width){
+function checkingWindowSize(width){
     if(width <= 1000){
         return false
     } else {

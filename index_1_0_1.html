@@ -40,9 +40,11 @@
 		<div id="atomsHolder" class="atomsHolder"></div>
 		<div id="connsHolder" class="connsHolder"></div>
 	</div>
-	<!-- Menu i panel dolny-->
+	
+
+	<!-- Menu and toolbar-->
 	<div>
-		<!-- Panel dolny -->
+		<!-- toolbar -->
 		<div class="panelDolny">
 			<!-- button chech() -->
 			<button class="sprawdzZadanie" id="sprawdzZadanie">SPRAWDŹ</button>
@@ -74,7 +76,7 @@
 				<div class="zakladkaMenu" id="zakladkaMenu">
 					<div class="pdf przyciskiMenu" onClick="CreatePDFfromHTML()">
 						<button class="pdfBtn zakladkaMenuBtn" id="pdfBtn" onClick="CreatePDFfromHTML()">
-							<span>Konwertuj do PDF</span>
+							<span>Zapisz jako PDF</span>
 							<img src="IMAGES/menu/pdfLogo.png" alt="pdfImg" class="pdf logo">
 						</button>
 					</div>
@@ -133,7 +135,7 @@
 		<!-- Block Screen dla menu-->
 		<div class="blockScreen hidden hiddenV" id="blockScreen"></div>
 	</div>
-	<!-- komunikat o bledach sprawdzenia -->
+	<!-- check error message -->
 	<div class="wynikSprawdzeniaCheck" id="wynikSprawdzeniaCheck">
 		<div id="wyniksprawdzaniaBox" class="wyniksprawdzaniaBox">
 			<h1 id="listaBledow" class="listaBledow">Lista błędów w Twoim działaniu:</h1>
@@ -146,8 +148,28 @@
 			</div>
 		</div>
 	</div>
-	<!-- Tablica Mendelejewa -->
-	<div class="mendelejew hidden" id="mendelejew">
+	<!--SMILES-->
+	<div id="smilesInfoHolder" class="valence smilesInfoHolder hidden">
+		<div class="vHolder">
+			<div>
+				<h3>Podaj SMILES:</h3>
+				<div style="text-align: center;">
+					<input type="text" id="smilesInput" class="vBtn"/>
+					<button onclick="goSmiles()" class="vBtn">-></button>
+				</div>
+			</div>
+			<div id="smilesHolder" class="hidden" style="text-align: center;">
+				<h3>SMILES obecnego związku:</h3>
+				<h2 style="color: white;"></h2>
+			</div>
+			<div onclick="hideSmiles()" class="vBtn">Zamknij</div>
+		</div>
+		
+	</div>
+
+
+		<!-- Periodic table -->
+		<div class="mendelejew hidden" id="mendelejew">
 			<div class="mGrid" id="grid">
 				<div style="grid-area: 2 / 7 / 3 / 9;" class="noHover" onclick="document.getElementById('mendelejew').classList.toggle('hidden');"><h3>Zamknij</h3></div>
 				<div style="grid-area: 6 / 3 / 7 / 4;" class="noHover"><h3>*</h3></div>
@@ -160,9 +182,9 @@
 					<div class="noHover"><h3>**</h3></div>
 				</div>
 			</div>
-	</div>
-	<!-- Wybór walencji -->
-	<div class="valence hidden" id="valence">
+		</div>
+		<!-- Choice of valence -->
+		<div class="valence hidden" id="valence">
 			<div class="vHolder">
 				<h3 id="valInp">none</h3>
 				<div class="vGrid" id="vGrid">
@@ -173,21 +195,20 @@
 				<div class="vBtn" onclick="document.getElementById('valence').classList.toggle('hidden');">Anuluj</div>
 			</div>
 			
-	</div>
-	<!-- Skrypty -->
-		<script type="text/javascript" src="./js/polaczenia.js"></script>
+		</div>
+
+	<!-- Scripts -->
+		<script type="text/javascript" src="./js/classes.js"></script>
 		<script type="text/javascript" src="./js/menu.js"></script>
 		<script type="text/javascript" src="./js/elementAdditionLogic.js"></script>
 		<script type="text/javascript" src="./js/periodicTable.js"></script>
 		<script type="text/javascript" src="./js/mendelejew.js"></script>
 		<script type="text/javascript" src="./js/actions.js"></script>
-		<script type="text/javascript" src="./js/easy.js"></script>
-		<script type="text/javascript" src="./js/average.js"></script>
-		<script type="text/javascript" src="./js/hard.js"></script>
-		<script type="text/javascript" src="./js/extreme.js"></script>
+		<script type="text/javascript" src="./js/examples.js"></script>
 		<script type="text/javascript" src="./js/editButtons.js"></script>
 		<script type="text/javascript" src="./js/walidacja.js"></script>
         <script type="text/javascript" src="./js/pdfExport.js"></script>
 		<script type="text/javascript" src="./js/images.js"></script>
+		<script type="text/javascript" src="./js/al_smiles.js"></script>
 </body>
 </html>

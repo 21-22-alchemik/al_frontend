@@ -146,12 +146,13 @@ function deleteAtomHandler(e)
     if(movedFewPixels(pickedAtomStartingPosition, thisAtom))
     {
         let deletedAtom = atomsList.splice(getAtomById(thisAtom, atomsList).index, 1)[0];
-        thisAtom.remove();
+
 
         for(i = 0; i < connsList.length; i++)
         {
             if(connsList[i].parent1.atomId == deletedAtom.atomId || connsList[i].parent2.atomId == deletedAtom.atomId)
             {
+                connsList[i].delete();
                 connsList[i].DOM.remove();
                 connsList.splice(i, 1);
                 i--;
@@ -159,6 +160,7 @@ function deleteAtomHandler(e)
             }
         }
 
+        thisAtom.remove();
         reduceConnectionIndices();
         reduceAtomIndices();
         counter.atoms--;

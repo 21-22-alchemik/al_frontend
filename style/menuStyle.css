@@ -1,6 +1,6 @@
 /* Menu */
 
-/* wersja web dla komputerów stacjonarnych */
+/* web version for stationar computer */
 .wrapper {
   position: absolute;
   top: 0;
@@ -112,7 +112,7 @@
   background-color: #4d42a7;
 }
 
-/* przycisk wyjscia z menu */
+/* close button from menu */
 .menuWyjscie {
   width: 200px;
   height: 40px;
@@ -140,7 +140,7 @@
   color: #4d42a7;
 }
 
-/* zakladka menu_menu */
+/* menu_menu tab */
 .zakladkaMenu {
   float: left;
   width: 80%;
@@ -184,7 +184,7 @@
   display: block;
 }
 
-/* panel dolny */
+/* toolbar */
 .panelDolny {
   position: absolute;
   left: 0;
@@ -196,7 +196,7 @@
   z-index: 9999;
 }
 
-/* SPRAWDŹ ZADANIE - STYL */
+/* check bindings style */
 .sprawdzZadanie {
   float: right;
   margin: 10px 20px 10px 10px;
@@ -217,7 +217,7 @@
   color: #7467e1;
 }
 
-/* sprawdzenie rozmiaru - bląd */
+/* checking size style */
 .newDivMessage {
   width: 100vw;
   height: 100vh;

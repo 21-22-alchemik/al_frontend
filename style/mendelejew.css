@@ -1,6 +1,6 @@
 /* stylelint-disable declaration-block-no-redundant-longhand-properties */
 
-/* Styl tablicy Mendelejewa */
+/* Mendelejev table style */
 
 .mendelejew {
   height: 100vh;
@@ -102,7 +102,7 @@
   display: none !important;
 }
 
-/* Styl panelu wybierania walencji */
+/* Valencia selection panel style */
 
 .valence {
   position: fixed;
@@ -187,9 +187,6 @@
 .aGrid div:hover {
   border: 1px white solid;
   box-shadow: 0 0 5px 2px white;
-
-  /* border: 1px #4d42a7 solid;
-  box-shadow: 0 0 5px 2px #4d42a7; */
 }
 
 .miniMendelejew {
