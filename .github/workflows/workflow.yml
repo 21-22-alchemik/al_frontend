@@ -50,3 +50,7 @@ env:
   VALIDATE_HTML: false
   VALIDATE_JSON: false
   VALIDATE_JSCPD: false
+<<<<<<< HEAD
+=======
+
+>>>>>>> 679aac2202c08a2250250d6f9d2a822f2495c693
