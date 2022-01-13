@@ -317,8 +317,6 @@ function resizeDragElement(atom) {
 
 }
 
-atomsList.push(new Atom("H", "gray", 1));
-
 module.exports.TestAtom = Atom; // eslint-disable-line no-undef
 module.exports.TestConnection = Connection; // eslint-disable-line no-undef
 module.exports.connection = connection; // eslint-disable-line no-undef
