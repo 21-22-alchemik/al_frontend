@@ -8,7 +8,7 @@ var examplesList = [
     ["Kwas octowy","aceticAcid"],
     ["Cyjanowodór","hydrogenCyanide"],
     ["Kwas acetylosalicylowy","aspirin"],
-    ["Cyprofloksacyna","ciprofloxacin"]
+    // ["Cyprofloksacyna","ciprofloxacin"]
     
 ];
 
