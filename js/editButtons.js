@@ -17,6 +17,8 @@ addConnection.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", addConnectionHandler);
+            item.DOM.addEventListener("touchstart", getItemStartingPosition);
+            item.DOM.addEventListener("touchend", addConnectionHandler);
         });
         document.body.style.cursor = "cell";
         disablePanel(addConnection);
@@ -28,6 +30,8 @@ addConnection.addEventListener("click", () => {
                 item.DOM.classList = "";
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", addConnectionHandler);
+            item.DOM.removeEventListener("touchstart", getItemStartingPosition);
+            item.DOM.removeEventListener("touchend", addConnectionHandler);
         });
         firstElementPicked = false;
         document.body.style.cursor = "default";
@@ -41,6 +45,8 @@ deleteConnectionAtom.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", deleteAtomHandler);
+            item.DOM.addEventListener("touchstart", getItemStartingPosition);
+            item.DOM.addEventListener("touchend", deleteAtomHandler);
         });
         connsList.forEach(item => {
             item.DOM.addEventListener("click", deleteConnectionHandler);
@@ -53,6 +59,8 @@ deleteConnectionAtom.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", deleteAtomHandler);
+            item.DOM.removeEventListener("touchstart", getItemStartingPosition);
+            item.DOM.removeEventListener("touchend", deleteAtomHandler);
         });
         connsList.forEach(item => {
             item.DOM.removeEventListener("click", deleteConnectionHandler);
@@ -68,6 +76,8 @@ getAtomColor.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", setPickerToAtomColor);
+            item.DOM.addEventListener("touchstart", getItemStartingPosition);
+            item.DOM.addEventListener("touchend", setPickerToAtomColor);
         });
         document.body.style.cursor = "crosshair";
         disablePanel(getAtomColor);
@@ -77,6 +87,8 @@ getAtomColor.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", setPickerToAtomColor);
+            item.DOM.removeEventListener("touchstart", getItemStartingPosition);
+            item.DOM.removeEventListener("touchend", setPickerToAtomColor);
         });
         document.body.style.cursor = "default";
         enablePanel(getAtomColor);
@@ -89,6 +101,9 @@ changeAtomColor.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.addEventListener("mousedown", getItemStartingPosition);
             item.DOM.addEventListener("mouseup", changeAtomColorHandler);
+            item.DOM.addEventListener("touchstart", getItemStartingPosition);
+            item.DOM.addEventListener("touchend", changeAtomColorHandler);
+            
         });
         document.body.style.cursor = "crosshair";
         disablePanel(changeAtomColor);
@@ -98,6 +113,8 @@ changeAtomColor.addEventListener("click", () => {
         atomsList.forEach(item => {
             item.DOM.removeEventListener("mousedown", getItemStartingPosition);
             item.DOM.removeEventListener("mouseup", changeAtomColorHandler);
+            item.DOM.removeEventListener("touchstart", getItemStartingPosition);
+            item.DOM.removeEventListener("touchend", changeAtomColorHandler);
         });
         document.body.style.cursor = "default";
         enablePanel(changeAtomColor);

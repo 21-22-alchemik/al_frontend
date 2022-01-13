@@ -145,6 +145,41 @@ function dragElement(atom) {
     //assigning a mouse button press function
     elmnt.onmousedown = dragMouseDown;
 
+    elmnt.ontouchstart = dragTouchStart;
+    elmnt.ontouchmove = touchElementDrag;
+    elmnt.ontouchend = closeDragElement;
+
+    function dragTouchStart(e) {
+        e.preventDefault();
+
+        let touches = e.changedTouches;
+        if(touches.length <= 0) return;
+
+        //z index +1
+        if (elmnt.style.zIndex == "")
+            elmnt.style.zIndex = zIndexVal++;
+        else
+            elmnt.style.zIndex = parseInt(elmnt.style.zIndex) + 1 == zIndexVal ? elmnt.style.zIndex : zIndexVal++;
+    
+        pos3 = touches[0].pageX;
+        pos4 = touches[0].pageY;
+    }
+
+    function touchElementDrag(e) {
+        e.preventDefault();
+        let touches = e.changedTouches;
+        if(touches.length <= 0) return;
+
+        elementDrag(touches[0]);
+    }
+
+    function mouseElementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+
+        elementDrag(e);
+    }
+
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
@@ -156,23 +191,20 @@ function dragElement(atom) {
             elmnt.style.zIndex = parseInt(elmnt.style.zIndex) + 1 == zIndexVal ? elmnt.style.zIndex : zIndexVal++;
 
         //mouse start position
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        pos3 = e.pageX;
+        pos4 = e.pageY;
         //function when releasing the mouse button
         document.onmouseup = closeDragElement;
         //mouseover function
-        document.onmousemove = elementDrag;
+        document.onmousemove = mouseElementDrag;
     }
 
     function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-
         //old and new mouse position
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        pos1 = pos3 - e.pageX;
+        pos2 = pos4 - e.pageY;
+        pos3 = e.pageX;
+        pos4 = e.pageY;
         // new position of element
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
@@ -283,7 +315,9 @@ function resizeDragElement(atom) {
         atom.connections.forEach(conn => connectionMove(conn));
     }
 
-}  
+}
+
+atomsList.push(new Atom("H", "gray", 1));
 
 module.exports.TestAtom = Atom; // eslint-disable-line no-undef
 module.exports.TestConnection = Connection; // eslint-disable-line no-undef
